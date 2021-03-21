@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Rocky : MonoBehaviour
 {
-
     public int Health { get; set; }
 
     public int MaxHealth { get; set; }
