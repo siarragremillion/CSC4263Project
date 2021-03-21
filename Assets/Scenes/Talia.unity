@@ -1227,11 +1227,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2107051019}
-  - component: {fileID: 2107051018}
   - component: {fileID: 2107051017}
   - component: {fileID: 2107051020}
   - component: {fileID: 2107051021}
   - component: {fileID: 2107051022}
+  - component: {fileID: 2107051018}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -1251,7 +1251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c98ccb56a9e234c6aa6818449a48a682, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 2
   detectDistance: 4
   target: {fileID: 0}
 --- !u!50 &2107051018
@@ -1274,7 +1274,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!4 &2107051019
 Transform:
   m_ObjectHideFlags: 0
@@ -1381,6 +1381,7 @@ GameObject:
   - component: {fileID: 2107490836}
   - component: {fileID: 2107490835}
   - component: {fileID: 2107490834}
+  - component: {fileID: 2107490837}
   m_Layer: 5
   m_Name: CrystalCounter
   m_TagString: Untagged
@@ -1470,3 +1471,24 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!50 &2107490837
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107490832}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4

@@ -33,6 +33,7 @@ public class EnemyAI : MonoBehaviour
     private void LateUpdate(){
         target = FindTarget();
     }
+
     Transform FindTarget(){
         if(target == null){
             Transform _target = GameObject.FindGameObjectWithTag("Player").transform;
