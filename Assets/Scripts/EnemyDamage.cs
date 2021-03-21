@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyDamage : MonoBehaviour
 {
-    public float power = 1f;
+    public int power = 1;
 
     // Start is called before the first frame update
     void Start()
