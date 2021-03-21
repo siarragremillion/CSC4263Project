@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class Rocky : MonoBehaviour
 {
-    public int Health { get; set; }
+    public int Health;
 
-    public int MaxHealth { get; set; }
+    public int MaxHealth;
 
-    public int Crystals { get; set; }
+    public int Crystals;
 
-    public int MaxCrystals { get; set; }
+    public int MaxCrystals;
+
+    public bool alive;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +20,7 @@ public class Rocky : MonoBehaviour
         MaxHealth = 3;
         Crystals = 0;
         Health = MaxHealth;
+        alive = true;
     }
 
     // Update is called once per frame
@@ -25,8 +28,8 @@ public class Rocky : MonoBehaviour
     {
         if (Health <= 0)
         {
-            // DEAD
-            // Implement Game Over
+            alive = false;
+            UIManager.GameOver();
         }
     }
 

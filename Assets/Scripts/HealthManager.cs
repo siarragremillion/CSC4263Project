@@ -14,16 +14,21 @@ public class HealthManager : MonoBehaviour
     public Sprite fullHeart;
     public Sprite unfilledHeart;
 
+    public Rocky rocky;
+
     // Start is called before the first frame update
     void Start()
     {   
         currentHealth = 3;
         numHearts = 3;
+
+        rocky = GameObject.FindGameObjectWithTag("Player").GetComponent<Rocky>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        rocky.Health = currentHealth;
 
         if (currentHealth > numHearts)
         {
@@ -49,9 +54,11 @@ public class HealthManager : MonoBehaviour
                 Hearts[i].enabled = false;
             }
         }
+        rocky.Health = currentHealth;
     }
 
     public void HurtPlayer(int damage){
         currentHealth -= damage;
+        
     }
 }
