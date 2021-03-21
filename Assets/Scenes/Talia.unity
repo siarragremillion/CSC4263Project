@@ -346,6 +346,7 @@ GameObject:
   - component: {fileID: 1272980675}
   - component: {fileID: 1272980677}
   - component: {fileID: 1272980673}
+  - component: {fileID: 1272980678}
   m_Layer: 0
   m_Name: Rocky
   m_TagString: Player
@@ -487,6 +488,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 5
   maxHealth: 5
+--- !u!70 &1272980678
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272980671}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.000000009934108, y: -0.048492543}
+  m_Size: {x: 0.103209995, y: 0.22301501}
+  m_Direction: 0
 --- !u!1 &1908394452
 GameObject:
   m_ObjectHideFlags: 0
@@ -619,6 +636,7 @@ GameObject:
   - component: {fileID: 2107051017}
   - component: {fileID: 2107051020}
   - component: {fileID: 2107051021}
+  - component: {fileID: 2107051022}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -740,3 +758,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!70 &2107051022
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107051016}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.18, y: 0.29}
+  m_Direction: 0

@@ -13,10 +13,8 @@ public class EnemyDamage : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other){
-        Debug.Log("TEST 2");
         if(other.collider.tag == "Player"){
             other.gameObject.GetComponent<HealthManager>().HurtPlayer(power);
-            Debug.Log("TEST COLLISION");
         }
     }
 
