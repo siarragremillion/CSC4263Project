@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     GameObject[] pauseObjects;
@@ -18,7 +18,7 @@ public class UIManager : MonoBehaviour
 
         //hidePaused();
 
-        if (Application.loadedLevelName == "TitleScene")
+        if (SceneManager.GetActiveScene().name == "TitleScene")
         {
             //rocky = GameObject.FindGameObjectWithTag("Player").GetComponent<Rocky>();
         }
@@ -83,15 +83,15 @@ public class UIManager : MonoBehaviour
     //loads inputted level
     public void LoadLevel(string level)
     {
-        //SceneManager.LoadScene(level);
-        Application.LoadLevel(level);
+        SceneManager.LoadScene(level);
+        //Application.LoadLevel(level);
     }
 
     //Reloads the Level
     public void Reload()
     {
-        //SceneManager.LoadScene(SceneManager.GetActiveScene());
-        Application.LoadLevel(Application.loadedLevel);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //Application.LoadLevel(Application.loadedLevel);
     }
 
     public void AddRupeeAndDisplayIt()
@@ -106,6 +106,6 @@ public class UIManager : MonoBehaviour
 
     public static void GameOver()
     {
-        Application.LoadLevel("GameOverScene");
+        SceneManager.LoadScene("GameOverScene");
     }
 }
