@@ -28,20 +28,13 @@ public class EnemyDamage : MonoBehaviour
 				currHitCoolDown = hitCooldown;
                 other.gameObject.GetComponent<HealthManager>().HurtPlayer(power);
             }
-        }
-
-        
-        
+        }        
     }
 
     // Update is called once per frame
     void Update()
     {
         currHitCoolDown -= Time.deltaTime;
-    }
-
-    IEnumerator WaitForSeconds(){
-        yield return new WaitForSeconds(damageRate);
     }
 
 }
