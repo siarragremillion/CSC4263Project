@@ -14,13 +14,13 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1;
-        //pauseObjects = GameObject.FindGameObjectsWithTag("ShowOnPause");
+        pauseObjects = GameObject.FindGameObjectsWithTag("ShowOnPause");
 
-        //hidePaused();
+        hidePaused();
 
-        if (SceneManager.GetActiveScene().name == "TitleScene")
+        if (SceneManager.GetActiveScene().name != "TitleScene")
         {
-            //rocky = GameObject.FindGameObjectWithTag("Player").GetComponent<Rocky>();
+            rocky = GameObject.FindGameObjectWithTag("Player").GetComponent<Rocky>();
         }
     }
 
