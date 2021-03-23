@@ -2802,7 +2802,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 11, y: 1}
   m_EdgeRadius: 0
-<<<<<<< HEAD
 --- !u!1 &1535857057
 GameObject:
   m_ObjectHideFlags: 0
@@ -2903,9 +2902,6 @@ Transform:
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1537429092
-=======
---- !u!1 &1407506797
->>>>>>> ea0f84eb2cc3a9a84deee42113a46fe03a4c625a
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
