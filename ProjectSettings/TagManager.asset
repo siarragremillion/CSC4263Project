@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - ShowOnPause
+  - Bullet
   layers:
   - Default
   - TransparentFX
