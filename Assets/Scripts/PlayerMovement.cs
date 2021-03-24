@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public Animator animator;
 
-    Vector2 movement;
+    [SerializeField] Vector2 movement;
 
     // Update is called once per frame
     void Update()
@@ -25,5 +25,9 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+    }
+
+    public Vector2 GetMovement() {
+        return movement; 
     }
 }
