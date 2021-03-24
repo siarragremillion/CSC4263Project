@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     GameObject[] pauseObjects;
+    GameObject[] completeObjects;
 
     Rocky rocky;
 
@@ -15,8 +16,9 @@ public class UIManager : MonoBehaviour
     {
         Time.timeScale = 1;
         pauseObjects = GameObject.FindGameObjectsWithTag("ShowOnPause");
-
+        completeObjects = GameObject.FindGameObjectsWithTag("ShowOnLevelComplete");
         hidePaused();
+        hideComplete();
 
         if (SceneManager.GetActiveScene().name != "TitleScene")
         {
@@ -45,6 +47,24 @@ public class UIManager : MonoBehaviour
         {
             LoadLevel("GameOverScene");
         }*/
+    }
+
+    //shows objects with ShowOnPause tag
+    public void showComplete()
+    {
+        foreach (GameObject g in completeObjects)
+        {
+            g.SetActive(true);
+        }
+    }
+
+    //hides objects with ShowOnPause tag
+    public void hideComplete()
+    {
+        foreach (GameObject g in completeObjects)
+        {
+            g.SetActive(false);
+        }
     }
 
     //shows objects with ShowOnPause tag

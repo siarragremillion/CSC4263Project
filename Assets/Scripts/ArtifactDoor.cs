@@ -12,5 +12,6 @@ public class ArtifactDoor : MonoBehaviour
 
     public void OpenDoor() {
         gameObject.SetActive(false);
+        FindObjectOfType<UIManager>().showComplete();
     }
 }
