@@ -31,6 +31,14 @@ public class EnemyDamage : MonoBehaviour
         }        
     }
 
+    private void OnTriggerEnter2D(Collider2D other){
+        if(other.tag == "Bullet")
+        {
+            Destroy(other.gameObject);
+            gameObject.GetComponent<EnemyHealth>().HurtEnemy(other.GetComponent<BulletMover>().power);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
