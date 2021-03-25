@@ -8,6 +8,7 @@ TagManager:
   - Bullet
   - ShowOnLevelComplete
   - Enemy
+  - ShowOnJournalOpen
   layers:
   - Default
   - TransparentFX

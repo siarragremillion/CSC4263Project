@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
 {
     GameObject[] pauseObjects;
     GameObject[] completeObjects;
+    GameObject[] journalObjects;
 
     Rocky rocky;
 
@@ -17,8 +18,10 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 1;
         pauseObjects = GameObject.FindGameObjectsWithTag("ShowOnPause");
         completeObjects = GameObject.FindGameObjectsWithTag("ShowOnLevelComplete");
+        journalObjects = GameObject.FindGameObjectsWithTag("ShowOnJournalOpen");
         hidePaused();
         hideComplete();
+        hideJournal();
 
         if (SceneManager.GetActiveScene().name != "TitleScene")
         {
@@ -47,6 +50,43 @@ public class UIManager : MonoBehaviour
         {
             LoadLevel("GameOverScene");
         }*/
+    }
+
+    public void showJournal()
+    {
+        /*var button = new GameObject();
+        button.transform.SetParent(GameObject.FindGameObjectWithTag("ShowOnJournalOpen").transform);
+        button.transform.t*/
+        foreach (GameObject g in journalObjects)
+        {
+            g.SetActive(true);
+        }
+
+    }
+
+    public void hideJournal()
+    {
+        foreach (GameObject g in journalObjects)
+        {
+            g.SetActive(false);
+        }
+    }
+
+    public void journalControl()
+    {
+        if (Time.timeScale == 1)
+        {
+            Time.timeScale = 0;
+            showJournal();
+            hidePaused();
+            
+        }
+        else if (Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+            hideJournal();
+            showPaused();
+        }
     }
 
     //shows objects with ShowOnPause tag
