@@ -93,6 +93,7 @@ public class Rocky : MonoBehaviour
         if (crystals < maxCrystals)
         {
             crystals++;
+            GemHandler.gemAmount++;
         }
     }
 
@@ -101,6 +102,7 @@ public class Rocky : MonoBehaviour
         if (crystals < maxCrystals)
         {
             crystals += value;
+            GemHandler.gemAmount += value;
         }
     }
 

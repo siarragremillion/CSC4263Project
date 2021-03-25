@@ -11,7 +11,6 @@ public class UIManager : MonoBehaviour
 
     Rocky rocky;
 
-
     // Start is called before the first frame update
     void Start()
     {
