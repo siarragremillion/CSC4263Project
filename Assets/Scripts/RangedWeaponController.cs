@@ -5,6 +5,8 @@ using UnityEngine;
 public class RangedWeaponController : MonoBehaviour
 {
     public Transform ShootPoint;
+    public Transform GunPoint;
+    public GameObject RangedWeapon;
     public GameObject bullet;
     public float fireRate;
     private float nextFire;
@@ -17,5 +19,17 @@ public class RangedWeaponController : MonoBehaviour
             nextFire = Time.time + fireRate;
             Instantiate(bullet, ShootPoint.position, ShootPoint.rotation);
         }    
+    }
+
+    public void SetActive(bool isActive)
+    {
+        if(isActive == true){
+            Instantiate(RangedWeapon, GunPoint.position, GunPoint.rotation, GunPoint);
+            Debug.Log("Yass Queen");
+        }
+        else{
+            Debug.Log("Werk it girl");
+            //Destroy(RangedWeapon);
+        }
     }
 }

@@ -12,7 +12,12 @@ public class Rocky : MonoBehaviour
 
     public int MaxCrystals;
 
+    public GameObject Gun;
+
+    public int currentWeapon;
+
     public bool alive;
+
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +26,7 @@ public class Rocky : MonoBehaviour
         Crystals = 0;
         Health = MaxHealth;
         alive = true;
+        Physics2D.IgnoreCollision(Gun.transform.GetChild(0).GetComponent<Collider2D>(), GetComponent<Collider2D>());
     }
 
     // Update is called once per frame
@@ -31,6 +37,32 @@ public class Rocky : MonoBehaviour
             alive = false;
             UIManager.GameOver();
         }
+        if(Input.GetKeyDown(KeyCode.F)){
+            if(currentWeapon < 2){
+                currentWeapon++;
+                ChangeWeapon();
+            }
+            else{
+                currentWeapon = 0;
+                ChangeWeapon();
+            }
+        }
+    }
+
+    public void ChangeWeapon(){
+        if(currentWeapon == 0)
+        {
+            GetComponent<RangedWeaponController>().SetActive(true);
+        }
+        else if(currentWeapon == 1)
+        {
+            GetComponent<RangedWeaponController>().SetActive(false);
+        }
+        else
+        {
+            Debug.Log("This is where melee weapon will be deactivated so no weapons are active");
+        }
+
     }
 
     public void PickUpHeart()
@@ -57,4 +89,12 @@ public class Rocky : MonoBehaviour
             Crystals++;
         }
     }
+
+    // void OnCollisionEnter2D (Collision2D collision)
+    // {
+    //     if(collision.gameObject.tag == "Gun")
+    //     {
+    //         Physics2D.IgnoreCollision(Gun.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+    //     }
+    // }
 }
