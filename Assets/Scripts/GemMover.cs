@@ -12,7 +12,6 @@ public class GemMover : MonoBehaviour
     void Start()
     {
         target = new Vector3(transform.position.x, transform.position.y - 0.35f, transform.position.z);
-        Debug.Log(target);
     }
 
     // Update is called once per frame
