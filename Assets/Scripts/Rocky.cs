@@ -8,9 +8,9 @@ public class Rocky : MonoBehaviour
 
     public int MaxHealth;
 
-    public int Crystals;
+    public int crystals;
 
-    public int MaxCrystals;
+    public int maxCrystals;
 
     public GameObject Gun;
 
@@ -23,7 +23,7 @@ public class Rocky : MonoBehaviour
     void Start()
     {
         MaxHealth = 3;
-        Crystals = 0;
+        crystals = 0;
         Health = MaxHealth;
         alive = true;
         //Physics2D.IgnoreCollision(Gun.transform.GetChild(0).GetComponent<Collider2D>(), GetComponent<Collider2D>());
@@ -90,9 +90,17 @@ public class Rocky : MonoBehaviour
 
     public void PickUpCrystal()
     {
-        if (Crystals < MaxCrystals)
+        if (crystals < maxCrystals)
         {
-            Crystals++;
+            crystals++;
+        }
+    }
+
+    public void PickUpCrystal(int value)
+    {
+        if (crystals < maxCrystals)
+        {
+            crystals += value;
         }
     }
 

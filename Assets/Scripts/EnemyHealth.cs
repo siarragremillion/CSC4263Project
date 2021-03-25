@@ -7,6 +7,8 @@ public class EnemyHealth : MonoBehaviour
     public int currentHealth;
     public int maxHealth;
 
+    public GameObject loot;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +25,8 @@ public class EnemyHealth : MonoBehaviour
         currentHealth -= damage;
         if(currentHealth <= 0){
             Destroy(gameObject);
+            // Instantiate(loot, transform.position, transform.rotation);
+            Instantiate(loot, new Vector3(transform.position.x, transform.position.y, -1), transform.rotation); // not sure why the z doesn't get properly set
         }
     }
 }

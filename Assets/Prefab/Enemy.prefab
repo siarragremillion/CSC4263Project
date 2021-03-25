@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4972026620554950703}
   - component: {fileID: 4972026620554950701}
   - component: {fileID: 4972026620554950696}
+  - component: {fileID: 1602624247652544053}
   - component: {fileID: 4972026620554950697}
   - component: {fileID: 4972026620554950698}
   - component: {fileID: 4972026620554950702}
@@ -65,6 +66,21 @@ MonoBehaviour:
   power: 1
   damageRate: 10
   hitCooldown: 2
+--- !u!114 &1602624247652544053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4972026620554950700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ec68ff028c364bd4a9e2ec606e905c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 6
+  maxHealth: 6
+  loot: {fileID: 5019906111271539464, guid: 4bc333a914bee4c40b7bd37284aee3cd, type: 3}
 --- !u!212 &4972026620554950697
 SpriteRenderer:
   m_ObjectHideFlags: 0
