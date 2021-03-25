@@ -18,13 +18,6 @@ public class RangedWeaponMover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        movement.x = rocky.GetComponent<PlayerMovement>().GetMovement().x;
-        movement.y = rocky.GetComponent<PlayerMovement>().GetMovement().y;
+        transform.position = rocky.transform.Find("GunPoint").gameObject.transform.position;
     }
-
-    void FixedUpdate()
-    {
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
-    }
-
 }
