@@ -7,6 +7,7 @@ TagManager:
   - ShowOnPause
   - Bullet
   - ShowOnLevelComplete
+  - Enemy
   layers:
   - Default
   - TransparentFX

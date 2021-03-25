@@ -8,6 +8,8 @@ public class BulletMover : MonoBehaviour
     public float speed;
     private Vector2 movement;
     
+    public int power;
+    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
