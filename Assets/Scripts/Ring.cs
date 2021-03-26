@@ -14,7 +14,7 @@ public class Ring : MonoBehaviour
         GreenSilver // walk through boulders
     }
 
-    public RingType GetArtifactType() {
+    public RingType GetRingType() {
         return ringType;
     }
 }
