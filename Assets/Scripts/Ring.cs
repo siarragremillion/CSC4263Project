@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Ring : MonoBehaviour
 {
+    public bool isActive;
+
     [SerializeField] private RingType ringType;
     public enum RingType {
         RedGold,    // double health

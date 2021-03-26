@@ -27,6 +27,7 @@ public class RingHolder : MonoBehaviour
         Ring ring = other.GetComponent<Ring>();
         if(ring != null){
             AddRing(ring.GetRingType());
+            ring.isActive = true;
             Destroy(ring.gameObject);
         }
     }
