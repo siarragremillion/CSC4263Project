@@ -19,6 +19,9 @@ public class EnemyDamage : MonoBehaviour
         if(other.collider.tag == "Player"){
             other.gameObject.GetComponent<HealthManager>().HurtPlayer(power);
         }
+        else if(other.collider.tag == "Sword"){
+            gameObject.GetComponent<EnemyHealth>().HurtEnemy(other.gameObject.GetComponent<MeleeWeaponMover>().power);
+        }
     }
 
     private void OnCollisionStay2D(Collision2D other){

@@ -6,6 +6,7 @@ public class MeleeWeaponMover : MonoBehaviour
 {
     public Rigidbody2D rb;
     public float moveSpeed = 5f;
+    public int power;
     [SerializeField] Vector2 movement;
     GameObject rocky;
 
