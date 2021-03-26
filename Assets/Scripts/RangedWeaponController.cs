@@ -10,25 +10,30 @@ public class RangedWeaponController : MonoBehaviour
     public GameObject bullet;
     public float fireRate;
     private float nextFire;
+    public bool isActive;
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && Time.time > nextFire)
+        if(Input.GetKeyDown(KeyCode.Space) && Time.time > nextFire && isActive)
         {
             nextFire = Time.time + fireRate;
             Instantiate(bullet, ShootPoint.position, ShootPoint.rotation);
         }    
     }
 
-    public void SetActive(bool isActive)
+    public void SetActive(bool _isActive)
     {
-        if(isActive == true){
+        if(_isActive){
             Instantiate(RangedWeapon, GunPoint.position, GunPoint.rotation, GunPoint);
+            isActive = true;
             Debug.Log("Yass Queen");
         }
         else{
             Debug.Log("Werk it girl");
+            GameObject gun = GameObject.FindGameObjectWithTag("Gun");
+            Destroy(gun);
+            isActive = false;
             //Destroy(RangedWeapon);
         }
     }

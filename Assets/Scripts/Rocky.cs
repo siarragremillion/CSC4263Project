@@ -63,9 +63,11 @@ public class Rocky : MonoBehaviour
         else if(currentWeapon == 1)
         {
             GetComponent<RangedWeaponController>().SetActive(false);
+            GetComponent<MeleeWeaponController>().SetActive(true);
         }
         else
         {
+            GetComponent<MeleeWeaponController>().SetActive(false);
             Debug.Log("This is where melee weapon will be deactivated so no weapons are active");
         }
 

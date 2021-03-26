@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 7563021830001291627}
   - component: {fileID: 7563021830001291628}
   - component: {fileID: 7563021830001291618}
+  - component: {fileID: 7450497027302101188}
   m_Layer: 0
   m_Name: Rocky
   m_TagString: Player
@@ -163,8 +164,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 0
   MaxHealth: 0
-  Crystals: 0
-  MaxCrystals: 0
+  crystals: 0
+  maxCrystals: 0
   Gun: {fileID: 848961128743387328, guid: e05916bf4d0cd4bb698d06b3691d41c9, type: 3}
   currentWeapon: 2
   alive: 1
@@ -236,6 +237,22 @@ MonoBehaviour:
     type: 3}
   bullet: {fileID: 2284218318442046626, guid: 5959fc526a54347daa16c3ed20e0b464, type: 3}
   fireRate: 0.25
+  isActive: 0
+--- !u!114 &7450497027302101188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7563021830001291541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c39c7183382042fcbb0559b6d85d06a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MeleeWeapon: {fileID: 8029483964577890257, guid: f2fe2189becaa4bdfb1c64bc643d952f,
+    type: 3}
+  ShootPoint: {fileID: 7563021830488138915}
 --- !u!1 &7563021830488138914
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ TagManager:
   - Gun
   - Enemy
   - ShowOnJournalOpen
+  - Sword
   layers:
   - Default
   - TransparentFX
