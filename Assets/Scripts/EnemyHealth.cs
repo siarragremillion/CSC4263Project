@@ -6,6 +6,7 @@ public class EnemyHealth : MonoBehaviour
 {
     public int currentHealth;
     public int maxHealth;
+    public Rigidbody2D rb;
 
     public GameObject loot;
 
@@ -27,6 +28,7 @@ public class EnemyHealth : MonoBehaviour
             Destroy(gameObject);
             // Instantiate(loot, transform.position, transform.rotation);
             Instantiate(loot, new Vector3(transform.position.x, transform.position.y, -1), transform.rotation); // not sure why the z doesn't get properly set
+            // GetComponent<Rigidbody2D>().AddForce(new Vector2(500f,500f));
         }
     }
 }

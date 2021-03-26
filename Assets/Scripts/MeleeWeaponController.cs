@@ -19,10 +19,8 @@ public class MeleeWeaponController : MonoBehaviour
             isActive = true;
         }
         else{
-            // sword = GameObject.FindGameObjectWithTag("Sword");
             Destroy(sword);
             isActive = false;
-            //Destroy(RangedWeapon);
         }
     }
 

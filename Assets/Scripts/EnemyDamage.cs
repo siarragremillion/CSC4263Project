@@ -20,7 +20,11 @@ public class EnemyDamage : MonoBehaviour
             other.gameObject.GetComponent<HealthManager>().HurtPlayer(power);
         }
         else if(other.collider.tag == "Sword"){
+            Debug.Log("stab");
             gameObject.GetComponent<EnemyHealth>().HurtEnemy(other.gameObject.GetComponent<MeleeWeaponMover>().power);
+            
+            // Vector2 moveDirection = transform.position - other.transform.position;
+            // GetComponent<Rigidbody2D>().AddForce(moveDirection.normalized * -500f);
         }
     }
 
