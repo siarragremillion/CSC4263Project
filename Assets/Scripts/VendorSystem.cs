@@ -9,8 +9,7 @@ public class VendorSystem : MonoBehaviour
 
     private void Start()
     {
-        dialogBox.EnableItemText(false);
-        StartCoroutine(SetupVendor());
+        
     }
 
     public IEnumerator SetupVendor()

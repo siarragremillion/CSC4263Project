@@ -24,8 +24,6 @@ public class DialogBox : MonoBehaviour
             dialogText.text += letter;
             yield return new WaitForSeconds(1f/lettersPerSecond);
         }
-
-        //EnableItemText(true);
     }
 
     public void EnableItemText(bool enabled)
