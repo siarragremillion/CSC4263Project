@@ -18,10 +18,15 @@ public class Rocky : MonoBehaviour
 
     public bool alive;
 
+    public int swordPower;
+    public int gunPower;
+
     public List<JournalEntry> Journal;
     // Start is called before the first frame update
     void Start()
     {
+        swordPower = 3;
+        gunPower = 2;
         MaxHealth = 3;
         crystals = 0;
         Health = MaxHealth;

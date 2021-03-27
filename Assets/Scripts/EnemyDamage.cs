@@ -11,6 +11,7 @@ public class EnemyDamage : MonoBehaviour
     private Vector3 direction;
 	[SerializeField] protected float hitCooldown = 2f;
     protected float currHitCoolDown = 2f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +24,7 @@ public class EnemyDamage : MonoBehaviour
             other.gameObject.GetComponent<HealthManager>().HurtPlayer(power);
         }
         else if(other.collider.tag == "Sword"){
-            gameObject.GetComponent<EnemyHealth>().HurtEnemy(other.gameObject.GetComponent<MeleeWeaponMover>().power);
+            gameObject.GetComponent<EnemyHealth>().HurtEnemy(GameObject.FindObjectOfType<Rocky>().swordPower);
 
             /* This bounces the enemy back by 1 in the y direction so it only works if rocky is attacking from above the enemy. 
              * If we can get his direction then we can do something similar to this to make him bounce back by one in the appropriate direction.
@@ -59,7 +60,7 @@ public class EnemyDamage : MonoBehaviour
         if(other.tag == "Bullet")
         {
             Destroy(other.gameObject);
-            gameObject.GetComponent<EnemyHealth>().HurtEnemy(other.GetComponent<BulletMover>().power);
+            gameObject.GetComponent<EnemyHealth>().HurtEnemy(GameObject.FindObjectOfType<Rocky>().gunPower);
             //Vector2 moveDirection = transform.position - other.transform.position;
             //GetComponent<Rigidbody2D>().AddForce(moveDirection.normalized *-500f, ForceMode2D.Impulse);
             BounceEnemy(other);

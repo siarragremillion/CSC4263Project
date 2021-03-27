@@ -6,7 +6,7 @@ public class MeleeWeaponController : MonoBehaviour
 {
     public GameObject MeleeWeapon;
     
-    private GameObject sword;
+    public GameObject sword;
 
     public Transform ShootPoint;
     public bool isActive;

@@ -531,7 +531,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &250897629
 RectTransform:
   m_ObjectHideFlags: 0
@@ -962,6 +962,16 @@ PrefabInstance:
       propertyPath: rb
       value: 
       objectReference: {fileID: 173700435}
+    - target: {fileID: 1602624247652544053, guid: 4a553b8f83c534c89ad10a21b72c7ce2,
+        type: 3}
+      propertyPath: maxHealth
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1602624247652544053, guid: 4a553b8f83c534c89ad10a21b72c7ce2,
+        type: 3}
+      propertyPath: currentHealth
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4972026620554950696, guid: 4a553b8f83c534c89ad10a21b72c7ce2,
         type: 3}
       propertyPath: rb
@@ -976,6 +986,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 4972026620554950700, guid: 4a553b8f83c534c89ad10a21b72c7ce2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4972026620554950702, guid: 4a553b8f83c534c89ad10a21b72c7ce2,
         type: 3}
@@ -1421,7 +1436,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &616511686
 Transform:
   m_ObjectHideFlags: 0
@@ -1451,6 +1466,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 961744978}
   dialogBox: {fileID: 741682413}
+  canLeaveInteraction: 0
+  currentItem: 0
 --- !u!210 &616511688
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -2126,6 +2143,9 @@ MonoBehaviour:
   - {fileID: 1216262676}
   - {fileID: 920957343}
   itemsShown: 0
+  itemPrices:
+  - {fileID: 1519211908}
+  - {fileID: 966060071}
 --- !u!1 &827595762
 GameObject:
   m_ObjectHideFlags: 0
@@ -2621,10 +2641,10 @@ RectTransform:
   m_Father: {fileID: 250897629}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 100, y: -37.5}
+  m_SizeDelta: {x: 200, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &920957343
 MonoBehaviour:
@@ -2659,7 +2679,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Sword
+  m_Text: Gun
 --- !u!222 &920957344
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3067,10 +3087,10 @@ RectTransform:
   m_Father: {fileID: 250897629}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 100, y: -12.5}
+  m_SizeDelta: {x: 200, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1216262676
 MonoBehaviour:
@@ -3105,7 +3125,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Gun
+  m_Text: Sword
 --- !u!222 &1216262677
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4443,9 +4463,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '50
-
-'
+  m_Text: 50
 --- !u!222 &1519211909
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4649,7 +4667,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7563021830001291629, guid: 9b1b6b6e2b29b4e7aadb12cf8b35aea8,
         type: 3}
+      propertyPath: crystals
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 7563021830001291629, guid: 9b1b6b6e2b29b4e7aadb12cf8b35aea8,
+        type: 3}
       propertyPath: MaxHealth
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7563021830001291629, guid: 9b1b6b6e2b29b4e7aadb12cf8b35aea8,
+        type: 3}
+      propertyPath: swordPower
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7563021830001291629, guid: 9b1b6b6e2b29b4e7aadb12cf8b35aea8,

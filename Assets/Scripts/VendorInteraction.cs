@@ -13,9 +13,7 @@ public class VendorInteraction : MonoBehaviour
     void Update()
     {
         if (canInteract) {
-            Debug.Log("Abbiesplaining");
             if (Input.GetKeyDown(KeyCode.E)) {
-                Debug.Log("AbbiesplainingTRUE");
                 canInteract = false;
                 rocky.GetComponent<PlayerMovement>().FreezeMovement();
                 vendorSystem.gameObject.SetActive(true);
@@ -30,7 +28,10 @@ public class VendorInteraction : MonoBehaviour
             {
                 vendorSystem.gameObject.SetActive(false);
                 rocky.GetComponent<PlayerMovement>().UnfreezeMovement();
+                vendorSystem.canLeaveInteraction = false;
+                canInteract = true;
             }
+
             
         }
 
@@ -40,7 +41,6 @@ public class VendorInteraction : MonoBehaviour
     {
         if (other.transform.tag.Equals("Player"))
         {
-            Debug.Log("Collided");
             canInteract = true;
         }
     }
@@ -49,7 +49,6 @@ public class VendorInteraction : MonoBehaviour
     {
         if (other.transform.tag.Equals("Player"))
         {
-            Debug.Log("Done Collided");
             canInteract = false;
             vendorSystem.gameObject.SetActive(false);
         }

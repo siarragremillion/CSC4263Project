@@ -10,8 +10,9 @@ public class DialogBox : MonoBehaviour
     [SerializeField] Color highlightedColor;
 
     [SerializeField] GameObject itemSelector;
-    [SerializeField] List<Text> itemTexts;
+    [SerializeField] public List<Text> itemTexts;
     [SerializeField] public bool itemsShown;
+    [SerializeField] public List<Text> itemPrices;
 
     public void SetDialog(string dialog)
     {
@@ -59,5 +60,11 @@ public class DialogBox : MonoBehaviour
         {
             item.color = color;
         }
+    }
+
+    public void RemoveItemFromList(Text textObject)
+    {
+        itemTexts.Remove(textObject);
+        textObject.gameObject.SetActive(false);
     }
 }
