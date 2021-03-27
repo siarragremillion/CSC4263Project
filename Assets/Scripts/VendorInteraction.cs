@@ -6,6 +6,7 @@ public class VendorInteraction : MonoBehaviour
 {
     [SerializeField] public bool canInteract;
     [SerializeField] VendorSystem vendorSystem;
+    [SerializeField] GameObject rocky;
 
 
     // Update is called once per frame
@@ -16,11 +17,21 @@ public class VendorInteraction : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E)) {
                 Debug.Log("AbbiesplainingTRUE");
                 canInteract = false;
-                //Time.timeScale = 0;
+                rocky.GetComponent<PlayerMovement>().FreezeMovement();
                 vendorSystem.gameObject.SetActive(true);
                 StartCoroutine(vendorSystem.SetupVendor());
             }
 
+        }
+
+        if (vendorSystem.canLeaveInteraction)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                vendorSystem.gameObject.SetActive(false);
+                rocky.GetComponent<PlayerMovement>().UnfreezeMovement();
+            }
+            
         }
 
     }

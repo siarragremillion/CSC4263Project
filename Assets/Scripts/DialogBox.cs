@@ -7,8 +7,11 @@ public class DialogBox : MonoBehaviour
 {
     [SerializeField] Text dialogText;
     [SerializeField] int lettersPerSecond;
+    [SerializeField] Color highlightedColor;
+
     [SerializeField] GameObject itemSelector;
     [SerializeField] List<Text> itemTexts;
+    [SerializeField] public bool itemsShown;
 
     public void SetDialog(string dialog)
     {
@@ -29,5 +32,32 @@ public class DialogBox : MonoBehaviour
     public void EnableItemText(bool enabled)
     {
         itemSelector.SetActive(enabled);
+        itemsShown = enabled;
+    }
+
+    public void UpdateItemSelection(int selectedItem)
+    {
+        for (int i = 0; i < itemTexts.Count; i++)
+        {
+            if (i == selectedItem)
+            {
+                ChangeColorOfChildrenAndSelf(itemTexts[i], highlightedColor);
+                //itemTexts[i].color = highlightedColor;
+            }
+            else
+            {
+                ChangeColorOfChildrenAndSelf(itemTexts[i], Color.white);
+                //itemTexts[i].color = Color.white;
+            }
+        }
+    }
+
+    void ChangeColorOfChildrenAndSelf(Text itemText, Color color)
+    {
+        itemText.color = color;
+        foreach (var item in itemText.GetComponentsInChildren<Text>())
+        {
+            item.color = color;
+        }
     }
 }

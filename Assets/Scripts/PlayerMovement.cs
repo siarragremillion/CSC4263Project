@@ -30,4 +30,19 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 GetMovement() {
         return movement; 
     }
+
+    public void FreezeMovement()
+    {
+        movement.x = 0;
+        movement.y = 0;
+        animator.SetFloat("Horizontal", movement.x);
+        animator.SetFloat("Vertical", movement.y);
+        animator.SetFloat("Speed", movement.sqrMagnitude);
+        enabled = false;
+    }
+
+    public void UnfreezeMovement()
+    {
+        enabled = true;
+    }
 }
