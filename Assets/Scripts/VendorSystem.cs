@@ -17,6 +17,10 @@ public class VendorSystem : MonoBehaviour
     private void Start()
     {
         dialogBox.EnableItemText(false);
+        for(int i = 0; i < vendor.GetItemNames().Length; i++){
+            dialogBox.itemTexts[i].text = vendor.GetItemNames()[i];
+            dialogBox.itemPrices[i].text = vendor.GetItemPrices()[i].ToString();
+        }
     }
 
     public void SetVendor(Vendor _vendor){
