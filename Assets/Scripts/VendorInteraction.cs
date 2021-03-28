@@ -17,6 +17,7 @@ public class VendorInteraction : MonoBehaviour
                 canInteract = false;
                 rocky.GetComponent<PlayerMovement>().FreezeMovement();
                 vendorSystem.gameObject.SetActive(true);
+                vendorSystem.SetVendor(GetComponent<Vendor>());
                 StartCoroutine(vendorSystem.SetupVendor());
             }
 

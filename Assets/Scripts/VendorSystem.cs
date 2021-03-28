@@ -8,6 +8,7 @@ public class VendorSystem : MonoBehaviour
 {
     [SerializeField] Rocky player;
     [SerializeField] DialogBox dialogBox;
+    [SerializeField] Vendor vendor;
 
     public bool canLeaveInteraction;
 
@@ -18,19 +19,25 @@ public class VendorSystem : MonoBehaviour
         dialogBox.EnableItemText(false);
     }
 
+    public void SetVendor(Vendor _vendor){
+        vendor = _vendor;
+    }
+
     public IEnumerator SetupVendor()
     {
         dialogBox.EnableItemText(false);
         currentItem = 0;
+        // if vendor is sold out
         if (dialogBox.itemTexts.Count == 0)
         {
-            yield return dialogBox.TypeDialog("Hey Rock, ain't got anything for you.");
+            yield return dialogBox.TypeDialog(vendor.GetText());
             yield return new WaitForSeconds(1f / 30);
             canLeaveInteraction = true;
         }
+        // if vendor has items to sell
         else
         {
-            yield return dialogBox.TypeDialog("Hey Rock, the names Paulie. What weapon do you want to upgrade?");
+            yield return dialogBox.TypeDialog(vendor.GetText());
             yield return new WaitForSeconds(1f / 30);
 
             ItemSelection();
