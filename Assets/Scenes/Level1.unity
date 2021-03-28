@@ -11087,6 +11087,26 @@ PrefabInstance:
       propertyPath: m_FontData.m_FontSize
       value: 27
       objectReference: {fileID: 0}
+    - target: {fileID: 3788027110957829563, guid: 317ef8faff59f904b9dd91a05a7e0bdc,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 343659206}
+    - target: {fileID: 3788027110957829563, guid: 317ef8faff59f904b9dd91a05a7e0bdc,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: journalControl
+      objectReference: {fileID: 0}
+    - target: {fileID: 6793363735267357152, guid: 317ef8faff59f904b9dd91a05a7e0bdc,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 343659206}
+    - target: {fileID: 6793363735267357152, guid: 317ef8faff59f904b9dd91a05a7e0bdc,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Quit
+      objectReference: {fileID: 0}
     - target: {fileID: 6793363735432388332, guid: 317ef8faff59f904b9dd91a05a7e0bdc,
         type: 3}
       propertyPath: m_UiScaleMode
@@ -11110,7 +11130,7 @@ PrefabInstance:
     - target: {fileID: 6793363735432388337, guid: 317ef8faff59f904b9dd91a05a7e0bdc,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6793363735432388338, guid: 317ef8faff59f904b9dd91a05a7e0bdc,
         type: 3}
@@ -11216,6 +11236,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6793363736402449777, guid: 317ef8faff59f904b9dd91a05a7e0bdc,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 343659206}
+    - target: {fileID: 6793363736402449777, guid: 317ef8faff59f904b9dd91a05a7e0bdc,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: pauseControl
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 317ef8faff59f904b9dd91a05a7e0bdc, type: 3}
@@ -11469,7 +11499,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &952120291
 RectTransform:
   m_ObjectHideFlags: 0
