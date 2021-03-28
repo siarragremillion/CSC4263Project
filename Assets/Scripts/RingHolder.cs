@@ -23,8 +23,8 @@ public class RingHolder : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter2D(Collider2D other){
-        Ring ring = other.GetComponent<Ring>();
+    private void isPickedUp(){
+        Ring ring = gameObject.GetComponent<Ring>();
         if(ring != null){
             AddRing(ring.GetRingType());
             ring.isActive = true;

@@ -2740,9 +2740,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1079122123}
   - component: {fileID: 1079122122}
-  - component: {fileID: 1079122124}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2814,20 +2813,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1079122124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1079122121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b8dc74e575c44042879ca3e71bfae52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isActive: 0
-  ringType: 0
 --- !u!1 &1133223316
 GameObject:
   m_ObjectHideFlags: 0
@@ -5105,6 +5090,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b8dc74e575c44042879ca3e71bfae52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2064691955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2064691950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c647e947727249ac9a52c7479716134, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ringList: 
 --- !u!224 &2079792110 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6793363735432388338, guid: 317ef8faff59f904b9dd91a05a7e0bdc,
@@ -5333,6 +5331,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WaterRing
+      objectReference: {fileID: 0}
+    - target: {fileID: 7803962852197091360, guid: 65eb3dd12bf6e4a589a0689ce1ca6d75,
+        type: 3}
+      propertyPath: m_TagString
+      value: Ring
       objectReference: {fileID: 0}
     - target: {fileID: 7803962852197091391, guid: 65eb3dd12bf6e4a589a0689ce1ca6d75,
         type: 3}

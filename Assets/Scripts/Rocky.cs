@@ -15,6 +15,7 @@ public class Rocky : MonoBehaviour
     public GameObject Gun;
 
     public GameObject currentSearchable = null;
+    public GameObject currentInteractable = null;
 
     public int currentWeapon;
 
@@ -67,6 +68,10 @@ public class Rocky : MonoBehaviour
             {
                 //play brushing animation?
                 currentSearchable.SendMessage("isSearched");
+            }
+            if (currentInteractable)
+            {
+                currentInteractable.SendMessage("isPickedUp");
             }
         }
     }
@@ -140,15 +145,27 @@ public class Rocky : MonoBehaviour
             Debug.Log(other.name);
             currentSearchable = other.gameObject;
         }
+        if (other.CompareTag("Ring"))
+        {
+            Debug.Log(other.name);
+            currentInteractable = other.gameObject;
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Searchable"))
         {
-            if(other.gameObject== currentSearchable)
+            if(other.gameObject == currentSearchable)
             {
                 currentSearchable = null;
+            }
+        }
+        if (other.CompareTag("Ring"))
+        {
+            if (other.gameObject == currentInteractable)
+            {
+                currentInteractable = null;
             }
         }
     }

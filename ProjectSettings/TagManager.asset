@@ -12,6 +12,7 @@ TagManager:
   - ShowOnJournalOpen
   - Sword
   - Searchable
+  - Ring
   layers:
   - Default
   - TransparentFX
