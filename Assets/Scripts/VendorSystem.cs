@@ -97,17 +97,8 @@ public class VendorSystem : MonoBehaviour
         var price = Int32.Parse(priceText.text);
         if (player.crystals >= price)
         {
-            switch (textEle.text)
-            {
-                case "Sword":
-                    player.swordPower *= 2;
-                    break;
-                case "Gun":
-                    player.gunPower *= 2;
-                    break;
-                default:
-                    break;
-            }
+
+            vendor.PowerUp(textEle.text);
 
             dialogBox.EnableItemText(false);
             dialogBox.RemoveItemFromList(textEle);

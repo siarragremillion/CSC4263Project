@@ -44,8 +44,8 @@ public class Vendor : MonoBehaviour
     private void SetUpWeaponsmith(){
         canSellText = "Hey Rock, the names Paulie. What weapon do you want to upgrade?";
         cannotSellText = "Hey Rock, ain't got anything for you.";
-        soldText = 
-        notEnoughGemsText =
+        soldText = "test 1";
+        notEnoughGemsText = "test 2";
 
         itemNames = new String[]{"Sword", "Gun"};
         itemPrices = new int[]{50, 100};
