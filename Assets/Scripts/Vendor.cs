@@ -9,7 +9,7 @@ public class Vendor : MonoBehaviour
 
     [SerializeField] private VendorType vendorType;
     [SerializeField] private bool canSell;
-    [SerializeField] private String canSellText, cannotSellText, soldText, notEnoughGemsText;
+    [SerializeField] private String canSellText, cannotSellText;
 
     // Items to sell info
     [SerializeField] private String[] itemNames;
@@ -44,8 +44,6 @@ public class Vendor : MonoBehaviour
     private void SetUpWeaponsmith(){
         canSellText = "Hey Rock, the names Paulie. What weapon do you want to upgrade?";
         cannotSellText = "Hey Rock, ain't got anything for you.";
-        soldText = "test 1";
-        notEnoughGemsText = "test 2";
 
         itemNames = new String[]{"Sword", "Gun"};
         itemPrices = new int[]{50, 100};
@@ -93,8 +91,13 @@ public class Vendor : MonoBehaviour
     }
 
     public String GetSoldText(bool hasEnoughGems){
-        if(hasEnoughGems) return soldText;
-        else return notEnoughGemsText;
+        if(hasEnoughGems) return "Thank you for purchasing!";
+        else return "You do not have enough gems to purchase this.";
+    }
+
+    public String GetSoldText(bool hasEnoughGems, String item){
+        if(hasEnoughGems) return ($"Thank you for purchasing the {item}!");
+        else return ($"You do not have enough gems to purchase the {item}.");
     }
 
     public void PowerUp(String itemBought){
@@ -110,4 +113,5 @@ public class Vendor : MonoBehaviour
                 break;
         }
     }
+
 }

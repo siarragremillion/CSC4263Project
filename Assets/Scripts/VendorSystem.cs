@@ -102,7 +102,7 @@ public class VendorSystem : MonoBehaviour
 
             dialogBox.EnableItemText(false);
             dialogBox.RemoveItemFromList(textEle);
-            yield return dialogBox.TypeDialog($"Thank you for purchasing the {textEle.text} Upgrade!");
+            yield return dialogBox.TypeDialog(vendor.GetSoldText(true, textEle.text));
             yield return new WaitForSeconds(1f);
 
             player.crystals -= price;
@@ -110,7 +110,7 @@ public class VendorSystem : MonoBehaviour
         else
         {
             dialogBox.EnableItemText(false);
-            yield return dialogBox.TypeDialog($"You do not have enough gems to purchase the {textEle.text} Upgrade.");
+            yield return dialogBox.TypeDialog(vendor.GetSoldText(false, textEle.text));
             yield return new WaitForSeconds(1f);
         }
 
