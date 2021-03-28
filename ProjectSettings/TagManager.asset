@@ -11,6 +11,7 @@ TagManager:
   - Enemy
   - ShowOnJournalOpen
   - Sword
+  - Searchable
   layers:
   - Default
   - TransparentFX

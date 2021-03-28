@@ -14,6 +14,8 @@ public class Rocky : MonoBehaviour
 
     public GameObject Gun;
 
+    public GameObject currentSearchable = null;
+
     public int currentWeapon;
 
     public bool alive;
@@ -56,6 +58,15 @@ public class Rocky : MonoBehaviour
             else{
                 currentWeapon = 0;
                 ChangeWeapon();
+            }
+        }
+        //interaction
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (currentSearchable) //if player is collided with a searchable
+            {
+                //play brushing animation?
+                currentSearchable.SendMessage("isSearched");
             }
         }
     }
@@ -120,4 +131,25 @@ public class Rocky : MonoBehaviour
     //         Physics2D.IgnoreCollision(Gun.GetComponent<Collider2D>(), GetComponent<Collider2D>());
     //     }
     // }
+
+    //for searchables
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.CompareTag ("Searchable"))
+        {
+            Debug.Log(other.name);
+            currentSearchable = other.gameObject;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Searchable"))
+        {
+            if(other.gameObject== currentSearchable)
+            {
+                currentSearchable = null;
+            }
+        }
+    }
 }
