@@ -111,10 +111,6 @@ public class VendorSystem : MonoBehaviour
             yield return new WaitForSeconds(1f);
 
             player.crystals -= price;
-            /*while (!Input.GetKeyDown(KeyCode.E))
-            {
-
-            }*/
         } 
         else
         {
