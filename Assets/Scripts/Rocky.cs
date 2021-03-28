@@ -23,6 +23,7 @@ public class Rocky : MonoBehaviour
 
     public int swordPower;
     public int gunPower;
+    public bool waterRingisActive;
 
     public List<JournalEntry> Journal;
     // Start is called before the first frame update
@@ -68,6 +69,7 @@ public class Rocky : MonoBehaviour
             {
                 //play brushing animation?
                 currentSearchable.SendMessage("isSearched");
+
             }
             if (currentInteractable)
             {

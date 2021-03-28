@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class Water : MonoBehaviour
 {
-    public Ring waterRing;
+    public GameObject waterRing;
     private GameObject rocky;
 
     // Start is called before the first frame update
     void Start()
     {
         rocky = GameObject.FindGameObjectWithTag("Player");
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(waterRing.isActive)
+        if(rocky.GetComponent<Rocky>().currentInteractable)
         {
             Physics2D.IgnoreCollision(rocky.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
