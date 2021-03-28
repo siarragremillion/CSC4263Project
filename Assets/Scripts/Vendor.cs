@@ -90,6 +90,29 @@ public class Vendor : MonoBehaviour
         else return cannotSellText;
     }
 
+    /*
+    TODO put this code here
+
+        if (player.crystals >= price)
+        {
+
+            vendor.PowerUp(textEle.text);
+
+            dialogBox.EnableItemText(false);
+            dialogBox.RemoveItemFromList(textEle);
+            yield return dialogBox.TypeDialog(vendor.GetSoldText(true, textEle.text));
+            yield return new WaitForSeconds(1f);
+
+            player.crystals -= price;
+        } 
+        else
+        {
+            dialogBox.EnableItemText(false);
+            yield return dialogBox.TypeDialog(vendor.GetSoldText(false, textEle.text));
+            yield return new WaitForSeconds(1f);
+        }
+    */
+
     public String GetSoldText(bool hasEnoughGems){
         if(hasEnoughGems) return "Thank you for purchasing!";
         else return "You do not have enough gems to purchase this.";
