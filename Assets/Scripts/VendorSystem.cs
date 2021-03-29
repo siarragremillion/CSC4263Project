@@ -95,7 +95,7 @@ public class VendorSystem : MonoBehaviour
 
         var priceText = dialogBox.itemPrices[currentItem];
         var price = Int32.Parse(priceText.text);
-        if (player.crystals >= price)
+        if (player.SpendCrystal(price))
         {
 
             vendor.PowerUp(textEle.text);
@@ -104,8 +104,6 @@ public class VendorSystem : MonoBehaviour
             dialogBox.RemoveItemFromList(textEle);
             yield return dialogBox.TypeDialog(vendor.GetSoldText(true, textEle.text));
             yield return new WaitForSeconds(1f);
-
-            player.crystals -= price;
         } 
         else
         {

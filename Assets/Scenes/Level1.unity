@@ -26876,6 +26876,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7563021830001291629, guid: 9b1b6b6e2b29b4e7aadb12cf8b35aea8,
         type: 3}
+      propertyPath: Health
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7563021830001291629, guid: 9b1b6b6e2b29b4e7aadb12cf8b35aea8,
+        type: 3}
+      propertyPath: crystals
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7563021830001291629, guid: 9b1b6b6e2b29b4e7aadb12cf8b35aea8,
+        type: 3}
+      propertyPath: gunPower
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7563021830001291629, guid: 9b1b6b6e2b29b4e7aadb12cf8b35aea8,
+        type: 3}
+      propertyPath: MaxHealth
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7563021830001291629, guid: 9b1b6b6e2b29b4e7aadb12cf8b35aea8,
+        type: 3}
+      propertyPath: swordPower
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7563021830001291629, guid: 9b1b6b6e2b29b4e7aadb12cf8b35aea8,
+        type: 3}
+      propertyPath: maxCrystals
+      value: 99
+      objectReference: {fileID: 0}
+    - target: {fileID: 7563021830001291629, guid: 9b1b6b6e2b29b4e7aadb12cf8b35aea8,
+        type: 3}
       propertyPath: dialogHandler
       value: 
       objectReference: {fileID: 272687772}
@@ -28612,5 +28642,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6752511196781886882, guid: fc83992ccdd80814b9e3ea6151ba8c54,
+        type: 3}
+      propertyPath: rocky
+      value: 
+      objectReference: {fileID: 388747271}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc83992ccdd80814b9e3ea6151ba8c54, type: 3}

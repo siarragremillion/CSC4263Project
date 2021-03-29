@@ -35,6 +35,7 @@ public class Rocky : MonoBehaviour
         gunPower = 2;
         MaxHealth = 3;
         crystals = 10;
+        GemHandler.gemAmount = crystals;
         Health = MaxHealth;
         alive = true;
         //Physics2D.IgnoreCollision(Gun.transform.GetChild(0).GetComponent<Collider2D>(), GetComponent<Collider2D>());
@@ -137,8 +138,19 @@ public class Rocky : MonoBehaviour
         if (crystals < maxCrystals)
         {
             crystals += value;
-            GemHandler.gemAmount += value;
+            GemHandler.gemAmount = crystals;
         }
+    }
+
+    public bool SpendCrystal (int value)
+    {
+        if (crystals >= value)
+        {
+            crystals -= value;
+            GemHandler.gemAmount = crystals;
+            return true;
+        }
+        return false;
     }
 
     // void OnCollisionEnter2D (Collision2D collision)
