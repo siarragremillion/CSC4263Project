@@ -14,7 +14,7 @@ public class BulletMover : MonoBehaviour
         GameObject rocky = GameObject.FindGameObjectWithTag("Player");
         movement = rocky.GetComponent<PlayerMovement>().GetMovement();
         if(movement.x == 0 && movement.y == 0){
-            rb.velocity = -transform.up * speed;
+            rb.velocity = rocky.GetComponent<PlayerMovement>().GetPrevMovement() * speed;
             Debug.Log("Test");
         }
         else{

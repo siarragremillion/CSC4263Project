@@ -9,7 +9,13 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public Animator animator;
 
+    [SerializeField] Vector2 prevMovement;
+
     [SerializeField] Vector2 movement;
+
+    void Start() {
+        prevMovement = new Vector2(0, -1);
+    }
 
     // Update is called once per frame
     void Update()
@@ -17,9 +23,16 @@ public class PlayerMovement : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
-        animator.SetFloat("Horizontal", movement.x);
-        animator.SetFloat("Vertical", movement.y);
         animator.SetFloat("Speed", movement.sqrMagnitude);
+
+        if(movement.sqrMagnitude < 0.01){
+            animator.SetFloat("Horizontal", prevMovement.x);
+            animator.SetFloat("Vertical", prevMovement.y);
+        }else{
+            animator.SetFloat("Horizontal", movement.x);
+            animator.SetFloat("Vertical", movement.y);
+            prevMovement = movement;
+        }
     }
 
     void FixedUpdate()
@@ -29,6 +42,10 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector2 GetMovement() {
         return movement; 
+    }
+
+    public Vector2 GetPrevMovement() {
+        return prevMovement; 
     }
 
     public void FreezeMovement()
