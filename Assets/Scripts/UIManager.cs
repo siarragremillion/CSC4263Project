@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
         hideComplete();
         hideJournal();
 
-        if (SceneManager.GetActiveScene().name != "TitleScene")
+        if (SceneManager.GetActiveScene().name.Equals("Level1"))
         {
             rocky = GameObject.FindGameObjectWithTag("Player").GetComponent<Rocky>();
         }

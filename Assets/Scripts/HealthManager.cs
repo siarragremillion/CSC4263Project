@@ -28,6 +28,12 @@ public class HealthManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (currentHealth <= 0)
+        {
+            rocky.alive = false;
+            UIManager.GameOver();
+        }
+
         rocky.Health = currentHealth;
 
         if (currentHealth > numHearts)

@@ -46,7 +46,7 @@ public class Vendor : MonoBehaviour
         cannotSellText = "Hey Rock, ain't got anything for you.";
 
         itemNames = new String[]{"Sword", "Gun"};
-        itemPrices = new int[]{50, 100};
+        itemPrices = new int[]{2, 4};
     }
 
     private void SetUpGrocer(){

@@ -25,6 +25,8 @@ public class Rocky : MonoBehaviour
     public int gunPower;
     public bool waterRingisActive;
 
+    public DialogHandler dialogHandler;
+
     public List<JournalEntry> Journal;
     // Start is called before the first frame update
     void Start()
@@ -32,7 +34,7 @@ public class Rocky : MonoBehaviour
         swordPower = 3;
         gunPower = 2;
         MaxHealth = 3;
-        crystals = 0;
+        crystals = 10;
         Health = MaxHealth;
         alive = true;
         //Physics2D.IgnoreCollision(Gun.transform.GetChild(0).GetComponent<Collider2D>(), GetComponent<Collider2D>());
@@ -47,12 +49,14 @@ public class Rocky : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Health <= 0)
+        if (Health < 0 || Health == 0)
         {
+            Debug.Log("Rocky Is Dead");
             alive = false;
             UIManager.GameOver();
         }
-        if(Input.GetKeyDown(KeyCode.F)){
+
+        if (Input.GetKeyDown(KeyCode.F)) {
             if(currentWeapon < 2){
                 currentWeapon++;
                 ChangeWeapon();
@@ -74,9 +78,15 @@ public class Rocky : MonoBehaviour
             if (currentInteractable)
             {
                 currentInteractable.SendMessage("isPickedUp");
+                dialogHandler.gameObject.SetActive(true);
+                dialogHandler.SetUpDialog();
+                StartCoroutine(dialogHandler.TypeDialog("You found the Water Ring!\nYou can now walk on water."));
+                
             }
         }
     }
+
+
 
     public void ChangeWeapon(){
         if(currentWeapon == 0)
