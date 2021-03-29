@@ -8,6 +8,8 @@ public class UIManager : MonoBehaviour
     GameObject[] pauseObjects;
     GameObject[] completeObjects;
     GameObject[] journalObjects;
+    GameObject[] aboutObjects;
+    GameObject[] titleButtonsObjects;
 
     Rocky rocky;
 
@@ -18,12 +20,17 @@ public class UIManager : MonoBehaviour
         pauseObjects = GameObject.FindGameObjectsWithTag("ShowOnPause");
         completeObjects = GameObject.FindGameObjectsWithTag("ShowOnLevelComplete");
         journalObjects = GameObject.FindGameObjectsWithTag("ShowOnJournalOpen");
+        aboutObjects = GameObject.FindGameObjectsWithTag("About");
+        titleButtonsObjects = GameObject.FindGameObjectsWithTag("TitleScreenButtons");
+
+        hideAbout();
         hidePaused();
         hideComplete();
         hideJournal();
 
         if (SceneManager.GetActiveScene().name.Equals("Level1"))
         {
+
             rocky = GameObject.FindGameObjectWithTag("Player").GetComponent<Rocky>();
         }
     }
@@ -91,6 +98,7 @@ public class UIManager : MonoBehaviour
     //shows objects with ShowOnPause tag
     public void showComplete()
     {
+        Time.timeScale = 0;
         foreach (GameObject g in completeObjects)
         {
             g.SetActive(true);
@@ -136,6 +144,59 @@ public class UIManager : MonoBehaviour
         {
             Time.timeScale = 1;
             hidePaused();
+        }
+    }
+
+    //shows objects with ShowOnPause tag
+    public void showAbout()
+    {
+        foreach (GameObject g in aboutObjects)
+        {
+            g.SetActive(true);
+        }
+    }
+
+    //hides objects with ShowOnPause tag
+    public void hideAbout()
+    {
+        foreach (GameObject g in aboutObjects)
+        {
+            g.SetActive(false);
+        }
+    }
+
+    //shows objects with ShowOnPause tag
+    public void showTitleButtons()
+    {
+        foreach (GameObject g in titleButtonsObjects)
+        {
+            g.SetActive(true);
+        }
+    }
+
+    //hides objects with ShowOnPause tag
+    public void hideTitleButtons()
+    {
+        foreach (GameObject g in titleButtonsObjects)
+        {
+            g.SetActive(false);
+        }
+    }
+
+    // Controls the about page on the title screen
+    public void aboutControl()
+    {
+        if (Time.timeScale == 1)
+        {
+            Time.timeScale = 0;
+            showAbout();
+            hideTitleButtons();
+        }
+        else if (Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+            hideAbout();
+            showTitleButtons();
         }
     }
 

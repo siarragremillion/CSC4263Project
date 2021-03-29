@@ -5,6 +5,7 @@ using UnityEngine;
 public class ArtifactHolder : MonoBehaviour
 {
     [SerializeField] private List<Artifact.ArtifactType> artifactList;
+    [SerializeField] public DialogHandler dialogHandler;
 
     private void Awake(){
         artifactList = new List<Artifact.ArtifactType>();
@@ -28,6 +29,9 @@ public class ArtifactHolder : MonoBehaviour
         if(artifact != null){
             AddArtifact(artifact.GetArtifactType());
             Destroy(artifact.gameObject);
+            dialogHandler.gameObject.SetActive(true);
+            dialogHandler.SetUpDialog();
+            StartCoroutine(dialogHandler.TypeDialog("You found the Artifact!\nYou can now complete the level.\nGo to the door!!!!"));
         }
 
         ArtifactDoor artifactDoor = other.GetComponent<ArtifactDoor>();

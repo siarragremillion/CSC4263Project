@@ -13,6 +13,8 @@ TagManager:
   - Sword
   - Searchable
   - Ring
+  - TitleScreenButtons
+  - About
   layers:
   - Default
   - TransparentFX
