@@ -85,6 +85,11 @@ public class Vendor : MonoBehaviour
         return canSell;
     }
 
+    public void SetCanSell(bool _canSell)
+    {
+        canSell = _canSell;
+    }
+
     public String GetText() {
         if(canSell) return canSellText;
         else return cannotSellText;

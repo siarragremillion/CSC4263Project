@@ -101,7 +101,7 @@ public class VendorSystem : MonoBehaviour
             vendor.PowerUp(textEle.text);
 
             dialogBox.EnableItemText(false);
-            dialogBox.RemoveItemFromList(textEle);
+            dialogBox.RemoveItemFromList(textEle, vendor);
             yield return dialogBox.TypeDialog(vendor.GetSoldText(true, textEle.text));
             yield return new WaitForSeconds(1f);
         } 

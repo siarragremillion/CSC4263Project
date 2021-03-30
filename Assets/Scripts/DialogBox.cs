@@ -28,6 +28,7 @@ public class DialogBox : MonoBehaviour
             dialogText.text += letter;
             yield return new WaitForSeconds(1f/lettersPerSecond);
         }
+        yield return StartCoroutine(WaitForKeyDown(KeyCode.E));
     }
 
     public void EnableItemText(bool enabled)
@@ -62,9 +63,31 @@ public class DialogBox : MonoBehaviour
         }
     }
 
-    public void RemoveItemFromList(Text textObject)
+    public void RemoveItemFromList(Text textObject, Vendor vendor)
     {
-        itemTexts.Remove(textObject);
-        textObject.gameObject.SetActive(false);
+        if (itemTexts.Count == 0)
+        {
+            Debug.LogError("There are no more items, but they still were able to remove an item");
+        }
+
+        else
+        {
+            itemTexts.Remove(textObject);
+            textObject.gameObject.SetActive(false);
+
+            if (itemTexts.Count == 0)
+            {
+                vendor.SetCanSell(false);
+            }
+        }
+    }
+
+    // Waits until a certain key is pressed
+    IEnumerator WaitForKeyDown(KeyCode keyCode)
+    {
+        while (!Input.GetKeyDown(keyCode))
+        {
+            yield return null;
+        }
     }
 }
