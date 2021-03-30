@@ -11,22 +11,47 @@ public class UIManager : MonoBehaviour
     GameObject[] aboutObjects;
     GameObject[] titleButtonsObjects;
 
+    [SerializeField] GameObject titleSelector;
+    [SerializeField] public List<Text> titleItems;
+
+    [SerializeField] GameObject aboutSelector;
+    [SerializeField] public List<Text> aboutItems;
+    [SerializeField] public bool aboutFlag;
+
+    private int selector;
+    [SerializeField] Color highlightedColor;
+    [SerializeField] Color defaultColor;
+
+    [SerializeField] private Text previousText;
+
     Rocky rocky;
 
     // Start is called before the first frame update
     void Start()
     {
         Time.timeScale = 1;
-        pauseObjects = GameObject.FindGameObjectsWithTag("ShowOnPause");
-        completeObjects = GameObject.FindGameObjectsWithTag("ShowOnLevelComplete");
-        journalObjects = GameObject.FindGameObjectsWithTag("ShowOnJournalOpen");
-        aboutObjects = GameObject.FindGameObjectsWithTag("About");
-        titleButtonsObjects = GameObject.FindGameObjectsWithTag("TitleScreenButtons");
 
-        hideAbout();
-        hidePaused();
-        hideComplete();
-        hideJournal();
+        switch (SceneManager.GetActiveScene().name)
+        {
+            case "TitleScene":
+                hideAbout();
+                break;
+            case "Level1":
+                hidePaused();
+                hideJournal();
+                hideComplete();
+                break;
+            case "GameOver":
+                break;
+            default:
+                hideAbout();
+                hidePaused();
+                hideComplete();
+                hideJournal();
+                break;
+        }
+
+
 
         if (SceneManager.GetActiveScene().name.Equals("Level1"))
         {
@@ -52,10 +77,32 @@ public class UIManager : MonoBehaviour
             }
         }
 
-        /*if (rocky.alive == false)
+        switch (SceneManager.GetActiveScene().name)
         {
-            LoadLevel("GameOverScene");
-        }*/
+            case "TitleScene":
+                if (aboutFlag)
+                {
+                    SelectHandler(aboutItems);
+                }
+                else
+                {
+                    SelectHandler(titleItems);
+                }
+                
+                break;
+            case "Level1":
+                hidePaused();
+                hideComplete();
+                break;
+            case "GameOver":
+                break;
+            default:
+                hideAbout();
+                hidePaused();
+                hideComplete();
+                hideJournal();
+                break;
+        }
     }
 
     public void showJournal()
@@ -150,37 +197,43 @@ public class UIManager : MonoBehaviour
     //shows objects with ShowOnPause tag
     public void showAbout()
     {
-        foreach (GameObject g in aboutObjects)
+        aboutFlag = true;
+        aboutSelector.SetActive(true);
+        /*foreach (GameObject g in aboutObjects)
         {
             g.SetActive(true);
-        }
+        }*/
     }
 
-    //hides objects with ShowOnPause tag
+    //hides about objects
     public void hideAbout()
     {
-        foreach (GameObject g in aboutObjects)
+        aboutFlag = false;
+        aboutSelector.SetActive(false);
+        /*foreach (GameObject g in aboutObjects)
         {
             g.SetActive(false);
-        }
+        }*/
     }
 
-    //shows objects with ShowOnPause tag
+    //shows title objects 
     public void showTitleButtons()
     {
-        foreach (GameObject g in titleButtonsObjects)
+        titleSelector.SetActive(true);
+        /*foreach (GameObject g in titleButtonsObjects)
         {
             g.SetActive(true);
-        }
+        }*/
     }
 
-    //hides objects with ShowOnPause tag
+    //hides title objects
     public void hideTitleButtons()
     {
-        foreach (GameObject g in titleButtonsObjects)
+        titleSelector.SetActive(false);
+        /*foreach (GameObject g in titleButtonsObjects)
         {
             g.SetActive(false);
-        }
+        }*/
     }
 
     // Controls the about page on the title screen
@@ -214,11 +267,6 @@ public class UIManager : MonoBehaviour
         //Application.LoadLevel(Application.loadedLevel);
     }
 
-    public void AddRupeeAndDisplayIt()
-    {
-
-    }
-
     public void Quit()
     {
         Application.Quit();
@@ -227,5 +275,72 @@ public class UIManager : MonoBehaviour
     public static void GameOver()
     {
         SceneManager.LoadScene("GameOverScene");
+    }
+
+    public void SelectHandler(List<Text> selectorTexts)
+    { 
+        if (Input.GetKeyDown(KeyCode.S) && selector + 1 < selectorTexts.Count)
+        {
+            selector++;
+        }
+        else if (Input.GetKeyDown(KeyCode.W) && selector > 0)
+        {
+            selector--;
+        }
+
+        UpdateItemSelection(selector, selectorTexts);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ItemSelected(selectorTexts[selector]);
+        }
+    }
+
+    public void UpdateItemSelection(int selectedItem, List<Text> selectorTexts)
+    {
+        for (int i = 0; i < selectorTexts.Count; i++)
+        {
+            if (i == selectedItem)
+            {
+                
+                selectorTexts[i].color = highlightedColor;
+            }
+            else
+            {
+                selectorTexts[i].color = defaultColor;
+            }
+        }
+    }
+
+    public void ItemSelected(Text selectedText)
+    {
+        string choice = selectedText.text;
+        
+        switch (choice)
+        {
+            case "Start": 
+                LoadLevel("Level1");
+                break;
+            case "Quit":
+                Quit();
+                break;
+            case "About":
+                aboutControl();
+                break;
+            case "Continue":
+                pauseControl();
+                break;
+            case "Journal":
+                journalControl();
+                break;
+            case "<":
+                ItemSelected(previousText);
+                    break; 
+            default:
+                break;
+        }
+
+        previousText = selectedText;
+        selector = 0;
     }
 }
