@@ -5,11 +5,14 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
-    GameObject[] pauseObjects;
-    GameObject[] completeObjects;
-    GameObject[] journalObjects;
-    GameObject[] aboutObjects;
-    GameObject[] titleButtonsObjects;
+    [SerializeField] GameObject gameOverSelector;
+    [SerializeField] public List<Text> gameOverItems;
+
+    [SerializeField] GameObject completeSelector;
+    [SerializeField] public List<Text> completeItems;
+
+    [SerializeField] GameObject pauseSelector;
+    [SerializeField] public List<Text> pauseItems;
 
     [SerializeField] GameObject titleSelector;
     [SerializeField] public List<Text> titleItems;
@@ -18,11 +21,17 @@ public class UIManager : MonoBehaviour
     [SerializeField] public List<Text> aboutItems;
     [SerializeField] public bool aboutFlag;
 
+    [SerializeField] GameObject journalSelector;
+    [SerializeField] public List<Text> journalItems;
+    [SerializeField] public bool journalFlag;
+
     private int selector;
     [SerializeField] Color highlightedColor;
     [SerializeField] Color defaultColor;
 
     [SerializeField] private Text previousText;
+
+    [SerializeField] private bool InUI;
 
     Rocky rocky;
 
@@ -30,21 +39,16 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1;
+        InUI = false;
 
         switch (SceneManager.GetActiveScene().name)
         {
             case "TitleScene":
                 hideAbout();
                 break;
-            case "Level1":
-                hidePaused();
-                hideJournal();
-                hideComplete();
-                break;
             case "GameOver":
                 break;
             default:
-                hideAbout();
                 hidePaused();
                 hideComplete();
                 hideJournal();
@@ -68,11 +72,13 @@ public class UIManager : MonoBehaviour
             if (Time.timeScale == 1 && rocky.alive == true)
             {
                 Time.timeScale = 0;
+                InUI = true;
                 showPaused();
             }
             else if (Time.timeScale == 0 && rocky.alive == true)
             {
                 Time.timeScale = 1;
+                InUI = false;
                 hidePaused();
             }
         }
@@ -90,93 +96,75 @@ public class UIManager : MonoBehaviour
                 }
                 
                 break;
-            case "Level1":
-                hidePaused();
-                hideComplete();
-                break;
             case "GameOver":
                 break;
             default:
-                hideAbout();
-                hidePaused();
-                hideComplete();
-                hideJournal();
+                if (journalFlag)
+                {
+                    SelectHandler(journalItems);
+                }
+                else
+                {
+                    SelectHandler(pauseItems);
+                }
                 break;
         }
     }
 
+    // shows journal objects
     public void showJournal()
     {
-        /*var button = new GameObject();
-        button.transform.SetParent(GameObject.FindGameObjectWithTag("ShowOnJournalOpen").transform);
-        button.transform.t*/
-        foreach (GameObject g in journalObjects)
-        {
-            g.SetActive(true);
-        }
-
+        journalSelector.SetActive(true);
+        journalFlag = true;
     }
 
     public void hideJournal()
     {
-        foreach (GameObject g in journalObjects)
-        {
-            g.SetActive(false);
-        }
+        journalSelector.SetActive(false);
+        journalFlag = false;
     }
 
     public void journalControl()
     {
-        if (Time.timeScale == 1)
+        if (!journalFlag)
         {
-            Time.timeScale = 0;
+            journalFlag = true;
             showJournal();
             hidePaused();
             
         }
-        else if (Time.timeScale == 0)
+        else
         {
-            Time.timeScale = 1;
+            journalFlag = false;
             hideJournal();
             showPaused();
         }
     }
 
-    //shows objects with ShowOnPause tag
+    //shows level complete objects
     public void showComplete()
     {
         Time.timeScale = 0;
-        foreach (GameObject g in completeObjects)
-        {
-            g.SetActive(true);
-        }
+        completeSelector.SetActive(true);
     }
 
-    //hides objects with ShowOnPause tag
+    //hides level complete objects
     public void hideComplete()
     {
-        foreach (GameObject g in completeObjects)
-        {
-            g.SetActive(false);
-        }
+        Time.timeScale = 1;
+        completeSelector.SetActive(false);
     }
 
-    //shows objects with ShowOnPause tag
+    //shows pause objects
     public void showPaused()
     {
-        foreach (GameObject g in pauseObjects)
-        {
-            g.SetActive(true);
-        }
+        pauseSelector.SetActive(true);
     }
 
-    //hides objects with ShowOnPause tag
+    //hides pause objects
     public void hidePaused()
     {
-        foreach (GameObject g in pauseObjects)
-        {
-            g.SetActive(false);
-        }
+        pauseSelector.SetActive(false);
     }
 
     //controls the pausing of the scene
@@ -199,10 +187,6 @@ public class UIManager : MonoBehaviour
     {
         aboutFlag = true;
         aboutSelector.SetActive(true);
-        /*foreach (GameObject g in aboutObjects)
-        {
-            g.SetActive(true);
-        }*/
     }
 
     //hides about objects
@@ -210,30 +194,18 @@ public class UIManager : MonoBehaviour
     {
         aboutFlag = false;
         aboutSelector.SetActive(false);
-        /*foreach (GameObject g in aboutObjects)
-        {
-            g.SetActive(false);
-        }*/
     }
 
     //shows title objects 
     public void showTitleButtons()
     {
         titleSelector.SetActive(true);
-        /*foreach (GameObject g in titleButtonsObjects)
-        {
-            g.SetActive(true);
-        }*/
     }
 
     //hides title objects
     public void hideTitleButtons()
     {
         titleSelector.SetActive(false);
-        /*foreach (GameObject g in titleButtonsObjects)
-        {
-            g.SetActive(false);
-        }*/
     }
 
     // Controls the about page on the title screen
@@ -278,21 +250,25 @@ public class UIManager : MonoBehaviour
     }
 
     public void SelectHandler(List<Text> selectorTexts)
-    { 
-        if (Input.GetKeyDown(KeyCode.S) && selector + 1 < selectorTexts.Count)
+    {
+        if (InUI)
         {
-            selector++;
-        }
-        else if (Input.GetKeyDown(KeyCode.W) && selector > 0)
-        {
-            selector--;
-        }
+            Debug.Log(selector);
+            if (Input.GetKeyDown(KeyCode.S) && selector + 1 < selectorTexts.Count)
+            {
+                selector++;
+            }
+            else if (Input.GetKeyDown(KeyCode.W) && selector > 0)
+            {
+                selector--;
+            }
 
-        UpdateItemSelection(selector, selectorTexts);
+            UpdateItemSelection(selector, selectorTexts);
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            ItemSelected(selectorTexts[selector]);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                ItemSelected(selectorTexts[selector]);
+            }
         }
     }
 
@@ -328,6 +304,9 @@ public class UIManager : MonoBehaviour
                 aboutControl();
                 break;
             case "Continue":
+                pauseControl();
+                break;
+            case "Resume":
                 pauseControl();
                 break;
             case "Journal":
