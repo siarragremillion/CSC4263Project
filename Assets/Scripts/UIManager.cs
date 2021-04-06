@@ -33,22 +33,29 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private bool InUI;
 
+    // Variable that is true when you can use the pause menu and false when you are on the game over screen and the start screen
+    [SerializeField] private bool InGame;
+
     Rocky rocky;
 
     // Start is called before the first frame update
     void Start()
     {
         Time.timeScale = 1;
-        InUI = false;
+        InUI = true;
+
 
         switch (SceneManager.GetActiveScene().name)
         {
             case "TitleScene":
+                aboutFlag = false;
                 hideAbout();
                 break;
-            case "GameOver":
+            case "GameOverScene":
                 break;
             default:
+                InUI = false;
+                InGame = true;
                 hidePaused();
                 hideComplete();
                 hideJournal();
@@ -59,7 +66,6 @@ public class UIManager : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name.Equals("Level1"))
         {
-
             rocky = GameObject.FindGameObjectWithTag("Player").GetComponent<Rocky>();
         }
     }
@@ -67,47 +73,48 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        
+        if (InGame && Input.GetKeyDown(KeyCode.Escape))
         {
-            if (Time.timeScale == 1 && rocky.alive == true)
+            if (journalFlag)
             {
-                Time.timeScale = 0;
-                InUI = true;
-                showPaused();
+                journalControl();
             }
-            else if (Time.timeScale == 0 && rocky.alive == true)
+            else
             {
-                Time.timeScale = 1;
-                InUI = false;
-                hidePaused();
+                pauseControl();
             }
         }
 
-        switch (SceneManager.GetActiveScene().name)
+        if (InUI)
         {
-            case "TitleScene":
-                if (aboutFlag)
-                {
-                    SelectHandler(aboutItems);
-                }
-                else
-                {
-                    SelectHandler(titleItems);
-                }
-                
-                break;
-            case "GameOver":
-                break;
-            default:
-                if (journalFlag)
-                {
-                    SelectHandler(journalItems);
-                }
-                else
-                {
-                    SelectHandler(pauseItems);
-                }
-                break;
+            switch (SceneManager.GetActiveScene().name)
+            {
+                case "TitleScene":
+                    if (aboutFlag)
+                    {
+                        SelectHandler(aboutItems);
+                    }
+                    else
+                    {
+                        SelectHandler(titleItems);
+                    }
+
+                    break;
+                case "GameOverScene":
+                    SelectHandler(gameOverItems);
+                    break;
+                default:
+                    if (journalFlag)
+                    {
+                        SelectHandler(journalItems);
+                    }
+                    else
+                    {
+                        SelectHandler(pauseItems);
+                    }
+                    break;
+            }
         }
     }
 
@@ -129,9 +136,10 @@ public class UIManager : MonoBehaviour
         if (!journalFlag)
         {
             journalFlag = true;
+            InUI = true;
             showJournal();
             hidePaused();
-            
+
         }
         else
         {
@@ -174,15 +182,17 @@ public class UIManager : MonoBehaviour
         {
             Time.timeScale = 0;
             showPaused();
+            InUI = true;
         }
         else if (Time.timeScale == 0)
         {
             Time.timeScale = 1;
             hidePaused();
+            InUI = false;
         }
     }
 
-    //shows objects with ShowOnPause tag
+    //shows about objects
     public void showAbout()
     {
         aboutFlag = true;
@@ -253,7 +263,6 @@ public class UIManager : MonoBehaviour
     {
         if (InUI)
         {
-            Debug.Log(selector);
             if (Input.GetKeyDown(KeyCode.S) && selector + 1 < selectorTexts.Count)
             {
                 selector++;
@@ -278,7 +287,7 @@ public class UIManager : MonoBehaviour
         {
             if (i == selectedItem)
             {
-                
+
                 selectorTexts[i].color = highlightedColor;
             }
             else
@@ -291,10 +300,11 @@ public class UIManager : MonoBehaviour
     public void ItemSelected(Text selectedText)
     {
         string choice = selectedText.text;
-        
+        Debug.Log(choice);
         switch (choice)
         {
-            case "Start": 
+            
+            case "Start":
                 LoadLevel("Level1");
                 break;
             case "Quit":
@@ -304,7 +314,7 @@ public class UIManager : MonoBehaviour
                 aboutControl();
                 break;
             case "Continue":
-                pauseControl();
+                LoadLevel("Level1");
                 break;
             case "Resume":
                 pauseControl();
@@ -314,7 +324,7 @@ public class UIManager : MonoBehaviour
                 break;
             case "<":
                 ItemSelected(previousText);
-                    break; 
+                break;
             default:
                 break;
         }
