@@ -5,24 +5,15 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] GameObject gameOverSelector;
-    [SerializeField] public List<Text> gameOverItems;
-
     [SerializeField] GameObject completeSelector;
     [SerializeField] public List<Text> completeItems;
 
     [SerializeField] GameObject pauseSelector;
     [SerializeField] public List<Text> pauseItems;
 
-    [SerializeField] GameObject titleSelector;
-    [SerializeField] public List<Text> titleItems;
-
-    [SerializeField] GameObject aboutSelector;
-    [SerializeField] public List<Text> aboutItems;
-    [SerializeField] public bool aboutFlag;
-
     [SerializeField] GameObject journalSelector;
     [SerializeField] public List<Text> journalItems;
+    [SerializeField] GameObject journalEntry;
     [SerializeField] public bool journalFlag;
 
     private int selector;
@@ -33,9 +24,6 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private bool InUI;
 
-    // Variable that is true when you can use the pause menu and false when you are on the game over screen and the start screen
-    [SerializeField] private bool InGame;
-
     Rocky rocky;
 
     // Start is called before the first frame update
@@ -45,22 +33,12 @@ public class UIManager : MonoBehaviour
         InUI = true;
 
 
-        switch (SceneManager.GetActiveScene().name)
-        {
-            case "TitleScene":
-                aboutFlag = false;
-                hideAbout();
-                break;
-            case "GameOverScene":
-                break;
-            default:
-                InUI = false;
-                InGame = true;
-                hidePaused();
-                hideComplete();
-                hideJournal();
-                break;
-        }
+
+        InUI = false;
+        hidePaused();
+        hideComplete();
+        hideJournal();
+
 
 
 
@@ -73,8 +51,8 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if (InGame && Input.GetKeyDown(KeyCode.Escape))
+
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (journalFlag)
             {
@@ -88,33 +66,15 @@ public class UIManager : MonoBehaviour
 
         if (InUI)
         {
-            switch (SceneManager.GetActiveScene().name)
+            if (journalFlag)
             {
-                case "TitleScene":
-                    if (aboutFlag)
-                    {
-                        SelectHandler(aboutItems);
-                    }
-                    else
-                    {
-                        SelectHandler(titleItems);
-                    }
-
-                    break;
-                case "GameOverScene":
-                    SelectHandler(gameOverItems);
-                    break;
-                default:
-                    if (journalFlag)
-                    {
-                        SelectHandler(journalItems);
-                    }
-                    else
-                    {
-                        SelectHandler(pauseItems);
-                    }
-                    break;
+                SelectHandler(journalItems);
             }
+            else
+            {
+                SelectHandler(pauseItems);
+            }
+
         }
     }
 
@@ -137,6 +97,7 @@ public class UIManager : MonoBehaviour
         {
             journalFlag = true;
             InUI = true;
+            journalEntry.SetActive(false);
             showJournal();
             hidePaused();
 
@@ -192,73 +153,6 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    //shows about objects
-    public void showAbout()
-    {
-        aboutFlag = true;
-        aboutSelector.SetActive(true);
-    }
-
-    //hides about objects
-    public void hideAbout()
-    {
-        aboutFlag = false;
-        aboutSelector.SetActive(false);
-    }
-
-    //shows title objects 
-    public void showTitleButtons()
-    {
-        titleSelector.SetActive(true);
-    }
-
-    //hides title objects
-    public void hideTitleButtons()
-    {
-        titleSelector.SetActive(false);
-    }
-
-    // Controls the about page on the title screen
-    public void aboutControl()
-    {
-        if (Time.timeScale == 1)
-        {
-            Time.timeScale = 0;
-            showAbout();
-            hideTitleButtons();
-        }
-        else if (Time.timeScale == 0)
-        {
-            Time.timeScale = 1;
-            hideAbout();
-            showTitleButtons();
-        }
-    }
-
-    //loads inputted level
-    public void LoadLevel(string level)
-    {
-        SceneManager.LoadScene(level);
-        //Application.LoadLevel(level);
-    }
-
-    //Reloads the Level
-    public void Reload()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        //Application.LoadLevel(Application.loadedLevel);
-    }
-
-    public void Quit()
-    {
-        Application.Quit();
-    }
-
-    public static void GameOver()
-    {
-        SceneManager.LoadScene("GameOverScene");
-    }
-
     public void SelectHandler(List<Text> selectorTexts)
     {
         if (InUI)
@@ -302,16 +196,9 @@ public class UIManager : MonoBehaviour
         string choice = selectedText.text;
         Debug.Log(choice);
         switch (choice)
-        {
-            
-            case "Start":
-                LoadLevel("Level1");
-                break;
+        { 
             case "Quit":
                 Quit();
-                break;
-            case "About":
-                aboutControl();
                 break;
             case "Continue":
                 LoadLevel("Level1");
@@ -326,10 +213,39 @@ public class UIManager : MonoBehaviour
                 ItemSelected(previousText);
                 break;
             default:
+                if (journalFlag)
+                {
+
+                    journalEntry.SetActive(true);
+                }
                 break;
         }
 
         previousText = selectedText;
         selector = 0;
+    }
+
+    //loads inputted level
+    public static void LoadLevel(string level)
+    {
+        SceneManager.LoadScene(level);
+    }
+
+    //Reloads the Level
+    public static void Reload()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    // Closes Game
+    public static void Quit()
+    {
+        Application.Quit();
+    }
+
+    // Loads Game Over Screen
+    public static void GameOver()
+    {
+        SceneManager.LoadScene("GameOverScene");
     }
 }
