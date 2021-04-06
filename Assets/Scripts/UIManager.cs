@@ -11,9 +11,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject pauseSelector;
     [SerializeField] public List<Text> pauseItems;
 
-    [SerializeField] GameObject journalSelector;
-    [SerializeField] public List<Text> journalItems;
-    [SerializeField] GameObject journalEntry;
+    [SerializeField] public JournalSystem journalSystem;
     [SerializeField] public bool journalFlag;
 
     private int selector;
@@ -30,17 +28,10 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1;
-        InUI = true;
-
-
 
         InUI = false;
         hidePaused();
         hideComplete();
-        hideJournal();
-
-
-
 
         if (SceneManager.GetActiveScene().name.Equals("Level1"))
         {
@@ -51,62 +42,21 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (journalFlag)
-            {
-                journalControl();
-            }
-            else
-            {
-                pauseControl();
-            }
-        }
-
-        if (InUI)
-        {
-            if (journalFlag)
-            {
-                SelectHandler(journalItems);
-            }
-            else
-            {
-                SelectHandler(pauseItems);
-            }
-
-        }
-    }
-
-    // shows journal objects
-    public void showJournal()
-    {
-        journalSelector.SetActive(true);
-        journalFlag = true;
-    }
-
-    public void hideJournal()
-    {
-        journalSelector.SetActive(false);
-        journalFlag = false;
-    }
-
-    public void journalControl()
-    {
         if (!journalFlag)
         {
-            journalFlag = true;
-            InUI = true;
-            journalEntry.SetActive(false);
-            showJournal();
-            hidePaused();
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (!journalFlag)
+                {
+                    pauseControl();
+                }
+            }
 
-        }
-        else
-        {
-            journalFlag = false;
-            hideJournal();
-            showPaused();
+            if (InUI)
+            {
+                SelectHandler(pauseItems);
+
+            }
         }
     }
 
@@ -153,6 +103,13 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    // Method that the JournalSystem Calls to leave the journal and return to the pause menu
+    public void ReEnterPause()
+    {
+        showPaused();
+        journalFlag = false;
+    }
+
     public void SelectHandler(List<Text> selectorTexts)
     {
         if (InUI)
@@ -196,7 +153,7 @@ public class UIManager : MonoBehaviour
         string choice = selectedText.text;
         Debug.Log(choice);
         switch (choice)
-        { 
+        {
             case "Quit":
                 Quit();
                 break;
@@ -207,17 +164,15 @@ public class UIManager : MonoBehaviour
                 pauseControl();
                 break;
             case "Journal":
-                journalControl();
+                hidePaused();
+                journalFlag = true;
+                journalSystem.SetUp();
                 break;
             case "<":
                 ItemSelected(previousText);
                 break;
             default:
-                if (journalFlag)
-                {
-
-                    journalEntry.SetActive(true);
-                }
+                Debug.Log("Invalid Selector: " + choice);
                 break;
         }
 

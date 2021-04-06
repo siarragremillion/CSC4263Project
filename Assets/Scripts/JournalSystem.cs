@@ -11,7 +11,7 @@ public class JournalSystem : MonoBehaviour
         {
             (new JournalEntry {
                 Title = "Help!!!",
-                Content = "",
+                Content = @"I'm trapped at the bottom of this cave. I was searching for the secrets hidden within. Please come find me! You can switch weapons by pressing the E key.",
                 Author = ""
             }, false),
             (new JournalEntry
@@ -43,10 +43,17 @@ The strange part.  Maybe I’m going mad…but I’d bet this ring will let me get acr
 
     [SerializeField] public bool InJournal;
 
+    private int selector;
+    [SerializeField] Color highlightedColor;
+    [SerializeField] Color defaultColor;
+
+    public UIManager uiManager;
+
     // Start is called before the first frame update
     void Start()
     {
         JournalContent.gameObject.SetActive(false);
+
         for (int i = 0; i < journals.Count; i++)
         {
             titleTexts[i].text = journals[i].entry.Title;
@@ -58,7 +65,61 @@ The strange part.  Maybe I’m going mad…but I’d bet this ring will let me get acr
     {
         if (InJournal)
         {
+            HandleJournalSelection();
+        }
+    }
 
+    public void SetUp()
+    {
+        JournalSelector.SetActive(true);
+        InJournal = true;
+    }
+
+    public void HandleJournalSelection()
+    {
+            if (Input.GetKeyDown(KeyCode.S) && selector + 1 < titleTexts.Count)
+            {
+                selector++;
+            }
+            else if (Input.GetKeyDown(KeyCode.W) && selector > 0)
+            {
+                selector--;
+            }
+
+            UpdateItemSelection(selector, titleTexts);
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                ItemSelected(titleTexts[selector], selector);
+            }
+    }
+
+    public void UpdateItemSelection(int selectedItem, List<Text> selectorTexts)
+    {
+        for (int i = 0; i < selectorTexts.Count; i++)
+        {
+            if (i == selectedItem)
+            {
+
+                selectorTexts[i].color = highlightedColor;
+            }
+            else
+            {
+                selectorTexts[i].color = defaultColor;
+            }
+        }
+    }
+
+    public void ItemSelected(Text selectedText, int journalNumber)
+    {
+        Debug.Log(selectedText.text);
+        if (selectedText.text.Equals("<")) {
+            JournalSelector.SetActive(false);
+            uiManager.ReEnterPause();
+        }
+        else {
+            JournalContent.text = journals[journalNumber].entry.Content;
+            JournalContent.gameObject.SetActive(true);
         }
     }
 }
