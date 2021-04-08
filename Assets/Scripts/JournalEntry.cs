@@ -11,4 +11,7 @@ public class JournalEntry
     public string Author { get; set; }
 
     public string Date { get; set; }
+
+    public bool hasInJournal { get; set; }
+    public bool isAdded { get; set; }
 }

@@ -26,8 +26,8 @@ public class Rocky : MonoBehaviour
     public bool waterRingisActive;
 
     public DialogHandler dialogHandler;
+    public JournalSystem journalSystem;
 
-    public List<JournalEntry> Journal;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,13 +38,6 @@ public class Rocky : MonoBehaviour
         GemHandler.gemAmount = crystals;
         Health = MaxHealth;
         alive = true;
-        //Physics2D.IgnoreCollision(Gun.transform.GetChild(0).GetComponent<Collider2D>(), GetComponent<Collider2D>());
-        
-        Journal = new List<JournalEntry>() { new JournalEntry() { Title = "HELP!!!!", 
-            Content = string.Format("Dear Rocky, /n/n I'm trapped at the bottom of this cave. I was searching for the secrets hidden within. Please come find me! You can switch weapons by pressing the E key."),
-            Author = "Crystal \"Chris\" Chrisington ",
-            Date = "01/11/19XX"
-        } };
     }
 
     // Update is called once per frame
@@ -82,6 +75,7 @@ public class Rocky : MonoBehaviour
                 dialogHandler.gameObject.SetActive(true);
                 dialogHandler.SetUpDialog();
                 StartCoroutine(dialogHandler.TypeDialog("You found the Water Ring!\nYou can now walk on water."));
+                journalSystem.FindJournal(1);
                 
             }
         }

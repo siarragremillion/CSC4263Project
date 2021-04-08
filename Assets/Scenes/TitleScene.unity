@@ -370,6 +370,61 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 191282004}
   m_CullTransparentMesh: 1
+--- !u!1 &198697408
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 198697410}
+  - component: {fileID: 198697409}
+  m_Layer: 0
+  m_Name: TitleScreenUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &198697409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198697408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6af72b05f812bf44eb945060c9318f47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  titleSelector: {fileID: 1918700840}
+  titleItems:
+  - {fileID: 1282095682}
+  - {fileID: 1665996493}
+  - {fileID: 208641499}
+  aboutSelector: {fileID: 215326012}
+  aboutItems:
+  - {fileID: 182384797}
+  aboutFlag: 0
+  highlightedColor: {r: 0.41568628, g: 0.7372549, b: 0.35686275, a: 1}
+  defaultColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  previousText: {fileID: 0}
+--- !u!4 &198697410
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198697408}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 312.0193, y: 288.22778, z: -10.551812}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &208641497
 GameObject:
   m_ObjectHideFlags: 0
@@ -763,17 +818,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5edfee925162f664ca20336b401d049a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  titleSelector: {fileID: 1918700840}
-  titleItems:
-  - {fileID: 1282095682}
-  - {fileID: 1665996493}
-  - {fileID: 208641499}
-  aboutSelector: {fileID: 215326012}
-  aboutItems:
-  - {fileID: 182384797}
-  aboutFlag: 0
+  completeSelector: {fileID: 0}
+  completeItems: []
+  pauseSelector: {fileID: 0}
+  pauseItems: []
+  journalSelector: {fileID: 0}
+  journalItems: []
+  journalEntry: {fileID: 0}
+  journalFlag: 0
   highlightedColor: {r: 0.41568628, g: 0.7372549, b: 0.35686275, a: 1}
   defaultColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  previousText: {fileID: 0}
+  InUI: 0
 --- !u!4 &387666221
 Transform:
   m_ObjectHideFlags: 0

@@ -499,6 +499,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 955648104}
   m_CullTransparentMesh: 1
+--- !u!1 &1362436827
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1362436829}
+  - component: {fileID: 1362436828}
+  m_Layer: 0
+  m_Name: GameOverUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1362436828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362436827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 257e62b6d4b344f439124333d6156a35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameOverSelector: {fileID: 1953082671}
+  gameOverItems:
+  - {fileID: 346001374}
+  - {fileID: 2084516843}
+  highlightedColor: {r: 0.41568628, g: 0.7372549, b: 0.35686275, a: 1}
+  defaultColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+--- !u!4 &1362436829
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362436827}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 534.4662, y: 298.45078, z: -79.94759}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1495696057
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,7 +561,7 @@ GameObject:
   - component: {fileID: 1495696059}
   - component: {fileID: 1495696058}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -786,71 +835,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!1 &2018681403
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2018681405}
-  - component: {fileID: 2018681404}
-  m_Layer: 0
-  m_Name: UIManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2018681404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2018681403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5edfee925162f664ca20336b401d049a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameOverSelector: {fileID: 1953082671}
-  gameOverItems:
-  - {fileID: 346001374}
-  - {fileID: 2084516843}
-  completeSelector: {fileID: 0}
-  completeItems:
-  - {fileID: 0}
-  pauseSelector: {fileID: 0}
-  pauseItems: []
-  titleSelector: {fileID: 0}
-  titleItems: []
-  aboutSelector: {fileID: 0}
-  aboutItems: []
-  aboutFlag: 0
-  journalSelector: {fileID: 0}
-  journalItems: []
-  journalFlag: 0
-  highlightedColor: {r: 0.41568628, g: 0.7372549, b: 0.35686275, a: 1}
-  defaultColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  previousText: {fileID: 0}
-  InUI: 0
-  InGame: 0
---- !u!4 &2018681405
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2018681403}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 431.5423, y: 353.76254, z: -174.4324}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2084516841
 GameObject:
   m_ObjectHideFlags: 0
