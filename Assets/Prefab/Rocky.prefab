@@ -57,6 +57,7 @@ MonoBehaviour:
   moveSpeed: 5
   rb: {fileID: 7563021830001291627}
   animator: {fileID: 7563021830001291630}
+  prevMovement: {x: 0, y: 0}
   movement: {x: 0, y: 0}
 --- !u!95 &7563021830001291630
 Animator:
@@ -167,8 +168,15 @@ MonoBehaviour:
   crystals: 0
   maxCrystals: 0
   Gun: {fileID: 848961128743387328, guid: e05916bf4d0cd4bb698d06b3691d41c9, type: 3}
+  currentSearchable: {fileID: 0}
+  currentInteractable: {fileID: 0}
   currentWeapon: 2
   alive: 1
+  swordPower: 0
+  gunPower: 0
+  waterRingisActive: 0
+  dialogHandler: {fileID: 0}
+  journalSystem: {fileID: 0}
 --- !u!114 &7563021830001291619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,6 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   artifactList: 
+  dialogHandler: {fileID: 0}
 --- !u!50 &7563021830001291627
 Rigidbody2D:
   serializedVersion: 4
@@ -252,7 +261,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MeleeWeapon: {fileID: 8029483964577890257, guid: f2fe2189becaa4bdfb1c64bc643d952f,
     type: 3}
+  sword: {fileID: 0}
   ShootPoint: {fileID: 7563021830488138915}
+  isActive: 0
 --- !u!1 &7563021830488138914
 GameObject:
   m_ObjectHideFlags: 0

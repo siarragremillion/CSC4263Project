@@ -8,6 +8,7 @@ public class EnemyDamage : MonoBehaviour
     public int damageRate = 10;
 	[SerializeField] protected float hitCooldown = 2f;
     protected float currHitCoolDown = 2f;
+    public float moveSpeed = 3f;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,7 +51,7 @@ public class EnemyDamage : MonoBehaviour
             gameObject.GetComponent<EnemyHealth>().HurtEnemy(GameObject.FindObjectOfType<Rocky>().gunPower);
             Vector2 moveDirection = transform.position - other.transform.position;
             Vector2 newDir = moveDirection.normalized;
-            Vector3 temp = transform.position;
+            Vector2 temp = transform.position;
             temp.x = transform.position.x + newDir.x;
             temp.y = transform.position.y + newDir.y;
             transform.position = temp;
