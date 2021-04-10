@@ -28,6 +28,7 @@ public class MeleeWeaponController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space) && isActive )
         {
+            Debug.Log("I am in here");
             sword.transform.GetChild(0).GetComponent<Collider2D>().enabled = true;
 
         } 
