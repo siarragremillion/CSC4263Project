@@ -5,24 +5,13 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] GameObject gameOverSelector;
-    [SerializeField] public List<Text> gameOverItems;
-
     [SerializeField] GameObject completeSelector;
     [SerializeField] public List<Text> completeItems;
 
     [SerializeField] GameObject pauseSelector;
     [SerializeField] public List<Text> pauseItems;
 
-    [SerializeField] GameObject titleSelector;
-    [SerializeField] public List<Text> titleItems;
-
-    [SerializeField] GameObject aboutSelector;
-    [SerializeField] public List<Text> aboutItems;
-    [SerializeField] public bool aboutFlag;
-
-    [SerializeField] GameObject journalSelector;
-    [SerializeField] public List<Text> journalItems;
+    [SerializeField] public JournalSystem journalSystem;
     [SerializeField] public bool journalFlag;
 
     private int selector;
@@ -39,27 +28,13 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1;
+
         InUI = false;
-
-        switch (SceneManager.GetActiveScene().name)
-        {
-            case "TitleScene":
-                hideAbout();
-                break;
-            case "GameOver":
-                break;
-            default:
-                hidePaused();
-                hideComplete();
-                hideJournal();
-                break;
-        }
-
-
+        hidePaused();
+        hideComplete();
 
         if (SceneManager.GetActiveScene().name.Equals("Level1"))
         {
-
             rocky = GameObject.FindGameObjectWithTag("Player").GetComponent<Rocky>();
         }
     }
@@ -67,77 +42,21 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (Time.timeScale == 1 && rocky.alive == true)
-            {
-                Time.timeScale = 0;
-                InUI = true;
-                showPaused();
-            }
-            else if (Time.timeScale == 0 && rocky.alive == true)
-            {
-                Time.timeScale = 1;
-                InUI = false;
-                hidePaused();
-            }
-        }
-
-        switch (SceneManager.GetActiveScene().name)
-        {
-            case "TitleScene":
-                if (aboutFlag)
-                {
-                    SelectHandler(aboutItems);
-                }
-                else
-                {
-                    SelectHandler(titleItems);
-                }
-                
-                break;
-            case "GameOver":
-                break;
-            default:
-                if (journalFlag)
-                {
-                    SelectHandler(journalItems);
-                }
-                else
-                {
-                    SelectHandler(pauseItems);
-                }
-                break;
-        }
-    }
-
-    // shows journal objects
-    public void showJournal()
-    {
-        journalSelector.SetActive(true);
-        journalFlag = true;
-    }
-
-    public void hideJournal()
-    {
-        journalSelector.SetActive(false);
-        journalFlag = false;
-    }
-
-    public void journalControl()
-    {
         if (!journalFlag)
         {
-            journalFlag = true;
-            showJournal();
-            hidePaused();
-            
-        }
-        else
-        {
-            journalFlag = false;
-            hideJournal();
-            showPaused();
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (!journalFlag)
+                {
+                    pauseControl();
+                }
+            }
+
+            if (InUI)
+            {
+                SelectHandler(pauseItems);
+
+            }
         }
     }
 
@@ -174,86 +93,27 @@ public class UIManager : MonoBehaviour
         {
             Time.timeScale = 0;
             showPaused();
+            InUI = true;
         }
         else if (Time.timeScale == 0)
         {
             Time.timeScale = 1;
             hidePaused();
+            InUI = false;
         }
     }
 
-    //shows objects with ShowOnPause tag
-    public void showAbout()
+    // Method that the JournalSystem Calls to leave the journal and return to the pause menu
+    public void ReEnterPause()
     {
-        aboutFlag = true;
-        aboutSelector.SetActive(true);
-    }
-
-    //hides about objects
-    public void hideAbout()
-    {
-        aboutFlag = false;
-        aboutSelector.SetActive(false);
-    }
-
-    //shows title objects 
-    public void showTitleButtons()
-    {
-        titleSelector.SetActive(true);
-    }
-
-    //hides title objects
-    public void hideTitleButtons()
-    {
-        titleSelector.SetActive(false);
-    }
-
-    // Controls the about page on the title screen
-    public void aboutControl()
-    {
-        if (Time.timeScale == 1)
-        {
-            Time.timeScale = 0;
-            showAbout();
-            hideTitleButtons();
-        }
-        else if (Time.timeScale == 0)
-        {
-            Time.timeScale = 1;
-            hideAbout();
-            showTitleButtons();
-        }
-    }
-
-    //loads inputted level
-    public void LoadLevel(string level)
-    {
-        SceneManager.LoadScene(level);
-        //Application.LoadLevel(level);
-    }
-
-    //Reloads the Level
-    public void Reload()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        //Application.LoadLevel(Application.loadedLevel);
-    }
-
-    public void Quit()
-    {
-        Application.Quit();
-    }
-
-    public static void GameOver()
-    {
-        SceneManager.LoadScene("GameOverScene");
+        showPaused();
+        journalFlag = false;
     }
 
     public void SelectHandler(List<Text> selectorTexts)
     {
         if (InUI)
         {
-            Debug.Log(selector);
             if (Input.GetKeyDown(KeyCode.S) && selector + 1 < selectorTexts.Count)
             {
                 selector++;
@@ -278,7 +138,7 @@ public class UIManager : MonoBehaviour
         {
             if (i == selectedItem)
             {
-                
+
                 selectorTexts[i].color = highlightedColor;
             }
             else
@@ -291,35 +151,56 @@ public class UIManager : MonoBehaviour
     public void ItemSelected(Text selectedText)
     {
         string choice = selectedText.text;
-        
+        Debug.Log(choice);
         switch (choice)
         {
-            case "Start": 
-                LoadLevel("Level1");
-                break;
             case "Quit":
                 Quit();
                 break;
-            case "About":
-                aboutControl();
-                break;
             case "Continue":
-                pauseControl();
+                LoadLevel("Level1");
                 break;
             case "Resume":
                 pauseControl();
                 break;
             case "Journal":
-                journalControl();
+                hidePaused();
+                journalFlag = true;
+                journalSystem.SetUp();
                 break;
             case "<":
                 ItemSelected(previousText);
-                    break; 
+                break;
             default:
+                Debug.Log("Invalid Selector: " + choice);
                 break;
         }
 
         previousText = selectedText;
         selector = 0;
+    }
+
+    //loads inputted level
+    public static void LoadLevel(string level)
+    {
+        SceneManager.LoadScene(level);
+    }
+
+    //Reloads the Level
+    public static void Reload()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    // Closes Game
+    public static void Quit()
+    {
+        Application.Quit();
+    }
+
+    // Loads Game Over Screen
+    public static void GameOver()
+    {
+        SceneManager.LoadScene("GameOverScene");
     }
 }
