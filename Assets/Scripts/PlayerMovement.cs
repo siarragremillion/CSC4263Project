@@ -9,17 +9,32 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public Animator animator;
 
+    private Rocky rocky;  
     [SerializeField] Vector2 prevMovement;
 
     [SerializeField] Vector2 movement;
 
     void Start() {
         prevMovement = new Vector2(0, -1);
+        rocky = GetComponent<Rocky>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(prevMovement.x >= 0)
+        {
+            Quaternion quaternionRight = Quaternion.Euler(0, 0, 0);
+            gameObject.transform.GetChild(0).transform.rotation = quaternionRight;
+            gameObject.transform.GetChild(1).transform.rotation = quaternionRight;
+            //shootpoint face right
+        }
+        else if(prevMovement.x < 0)
+        {
+           Quaternion quaternionLeft = Quaternion.Euler(0, 180, 0);
+            gameObject.transform.GetChild(0).transform.rotation = quaternionLeft;
+            gameObject.transform.GetChild(1).transform.rotation = quaternionLeft;
+        }
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
