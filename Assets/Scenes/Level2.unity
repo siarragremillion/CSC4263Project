@@ -35458,6 +35458,7 @@ GameObject:
   - component: {fileID: 604138675}
   - component: {fileID: 604138674}
   - component: {fileID: 604138673}
+  - component: {fileID: 604138676}
   m_Layer: 0
   m_Name: Walls (Collidable)
   m_TagString: Untagged
@@ -51985,6 +51986,18 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &604138676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 604138671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 259bf790a36564014a2210bbaccff3c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &766070720
 GameObject:
   m_ObjectHideFlags: 0
