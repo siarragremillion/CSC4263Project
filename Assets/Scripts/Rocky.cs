@@ -28,6 +28,11 @@ public class Rocky : MonoBehaviour
     public DialogHandler dialogHandler;
     public JournalSystem journalSystem;
 
+    private Ring.RingType typeRing;
+
+    private Ring test;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -72,6 +77,8 @@ public class Rocky : MonoBehaviour
             if (currentInteractable)
             {
                 currentInteractable.SendMessage("isPickedUp");
+                Debug.Log(test.GetRingType());
+                GetComponent<RingHolder>().AddRing(test.GetRingType());
                 dialogHandler.gameObject.SetActive(true);
                 dialogHandler.SetUpDialog();
                 StartCoroutine(dialogHandler.TypeDialog("You found the Water Ring!\nYou can now walk on water."));
@@ -167,6 +174,8 @@ public class Rocky : MonoBehaviour
         {
             Debug.Log(other.name);
             currentInteractable = other.gameObject;
+            test = currentInteractable.GetComponent<Ring>();
+            Debug.Log(typeRing);
         }
     }
 

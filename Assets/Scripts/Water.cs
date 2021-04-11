@@ -7,6 +7,7 @@ public class Water : MonoBehaviour
     public GameObject waterRing;
     private GameObject rocky;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +18,7 @@ public class Water : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(rocky.GetComponent<Rocky>().currentInteractable)
+        if(rocky.GetComponent<RingHolder>().ContainsRing(Ring.RingType.BlueSilver))
         {
             Physics2D.IgnoreCollision(rocky.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }

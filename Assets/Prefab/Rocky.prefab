@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 7563021830001291628}
   - component: {fileID: 7563021830001291618}
   - component: {fileID: 7450497027302101188}
+  - component: {fileID: 5878852337463390980}
   m_Layer: 0
   m_Name: Rocky
   m_TagString: Player
@@ -59,6 +60,7 @@ MonoBehaviour:
   animator: {fileID: 7563021830001291630}
   prevMovement: {x: 0, y: 0}
   movement: {x: 0, y: 0}
+  direction: {x: 0, y: 0, z: 0, w: 0}
 --- !u!95 &7563021830001291630
 Animator:
   serializedVersion: 3
@@ -264,6 +266,19 @@ MonoBehaviour:
   sword: {fileID: 0}
   ShootPoint: {fileID: 7563021830488138915}
   isActive: 0
+--- !u!114 &5878852337463390980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7563021830001291541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c647e947727249ac9a52c7479716134, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ringList: 
 --- !u!1 &7563021830488138914
 GameObject:
   m_ObjectHideFlags: 0
