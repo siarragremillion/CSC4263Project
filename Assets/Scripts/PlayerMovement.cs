@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] Vector2 movement;
 
+    public Quaternion direction;
+
     void Start() {
         prevMovement = new Vector2(0, -1);
         rocky = GetComponent<Rocky>();
@@ -22,9 +24,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(prevMovement.x >= 0)
+
+        if(prevMovement.x > 0)
         {
             Quaternion quaternionRight = Quaternion.Euler(0, 0, 0);
+            direction = quaternionRight;
             gameObject.transform.GetChild(0).transform.rotation = quaternionRight;
             gameObject.transform.GetChild(1).transform.rotation = quaternionRight;
             //shootpoint face right
@@ -32,8 +36,19 @@ public class PlayerMovement : MonoBehaviour
         else if(prevMovement.x < 0)
         {
            Quaternion quaternionLeft = Quaternion.Euler(0, 180, 0);
+            direction = quaternionLeft;
             gameObject.transform.GetChild(0).transform.rotation = quaternionLeft;
             gameObject.transform.GetChild(1).transform.rotation = quaternionLeft;
+        }
+        //up
+        if (prevMovement.y < 0)
+        {
+            direction = Quaternion.Euler(0, 0, 270);
+        }
+        //down
+        else if(prevMovement.y > 0)
+        {
+            direction = Quaternion.Euler(0, 0, 90);
         }
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
@@ -77,6 +92,33 @@ public class PlayerMovement : MonoBehaviour
     {
         enabled = true;
     }
+
+    // public Quaternion GetRockyDirection()
+    // {
+    //     Quaternion.Euler direction = Quaternion.Euler(0,0,0);
+    //     //right
+    //     if(prevMovement.x >= 0)
+    //     {
+    //         direction = Quaternion.Euler(0, 0, 0);
+    //     }
+    //     //left
+    //     else if(prevMovement.x < 0)
+    //     {
+    //         direction = Quaternion.Euler(0, 180, 0);
+
+    //     }
+    //     //up
+    //     else if (prevMovement.y >= 0)
+    //     {
+    //         direction = Quaternion.Euler(90, 0, 0);
+    //     }
+    //     //down
+    //     else if(prevMovement.y < 0)
+    //     {
+    //         direction = Quaternion.Euler(-90, 0, 0);
+    //     }
+    //     return direction;
+    // }
 }
 
 /*

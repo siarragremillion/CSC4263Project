@@ -12,13 +12,13 @@ public class RangedWeaponController : MonoBehaviour
     private float nextFire;
     public bool isActive;
 
-    // Update is called once per frame
+
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space) && Time.time > nextFire && isActive)
         {
             nextFire = Time.time + fireRate;
-            Instantiate(bullet, ShootPoint.position, ShootPoint.rotation);
+            Instantiate(bullet, ShootPoint.position, GetComponent<PlayerMovement>().direction);
         }    
     }
 
