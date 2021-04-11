@@ -32,6 +32,9 @@ public class Rocky : MonoBehaviour
 
     private Ring test;
 
+    public bool hasDrink;
+    public bool hasFood;
+
 
     // Start is called before the first frame update
     void Start()
@@ -83,7 +86,7 @@ public class Rocky : MonoBehaviour
                 dialogHandler.SetUpDialog();
                 StartCoroutine(dialogHandler.TypeDialog("You found the Water Ring!\nYou can now walk on water."));
                 journalSystem.FindJournal(1);
-                
+
             }
         }
     }

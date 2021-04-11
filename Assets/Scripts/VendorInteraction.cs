@@ -32,11 +32,8 @@ public class VendorInteraction : MonoBehaviour
                 rocky.GetComponent<PlayerMovement>().UnfreezeMovement();
                 vendorSystem.canLeaveInteraction = false;
                 canInteract = true;
-            }
-
-            
+            }   
         }
-
     }
 
     private void OnCollisionEnter2D(Collision2D other)

@@ -9,10 +9,10 @@ public class Vendor : MonoBehaviour
 
     [SerializeField] private VendorType vendorType;
     [SerializeField] private bool canSell;
-    [SerializeField] private String canSellText, cannotSellText;
+    [SerializeField] private string canSellText, cannotSellText;
 
     // Items to sell info
-    [SerializeField] private String[] itemNames;
+    [SerializeField] private string[] itemNames;
     [SerializeField] private int[] itemPrices;
 
     public enum VendorType {
@@ -45,7 +45,7 @@ public class Vendor : MonoBehaviour
         canSellText = "Hey Rock, the names Paulie. What weapon do you want to upgrade?";
         cannotSellText = "Hey Rock, ain't got anything for you.";
 
-        itemNames = new String[]{"Sword", "Gun"};
+        itemNames = new string[]{"Sword", "Gun"};
         itemPrices = new int[]{2, 4};
     }
 
@@ -53,7 +53,7 @@ public class Vendor : MonoBehaviour
         canSellText = "Thanks for saving me! How about a snack to celebrate?";
         cannotSellText = "By golly, I'm just fresh out.";
 
-        itemNames = new String[]{"Food", "Drink"};
+        itemNames = new string[]{"Food", "Drink"};
         itemPrices = new int[]{25, 10};
     }
 
@@ -61,7 +61,7 @@ public class Vendor : MonoBehaviour
         canSellText = "I've got a fine selection of gold rings for you to choose from.";
         cannotSellText = "You've already bought out my stock!";
 
-        itemNames = new String[]{"Ruby", "Jade"};
+        itemNames = new string[]{"Ruby", "Jade"};
         itemPrices = new int[]{200, 200};
     }
 
@@ -69,7 +69,7 @@ public class Vendor : MonoBehaviour
         
     }
 
-    public String[] GetItemNames(){
+    public string[] GetItemNames(){
         return itemNames;
     }
 
@@ -90,7 +90,7 @@ public class Vendor : MonoBehaviour
         canSell = _canSell;
     }
 
-    public String GetText() {
+    public string GetText() {
         if(canSell) return canSellText;
         else return cannotSellText;
     }
@@ -118,17 +118,17 @@ public class Vendor : MonoBehaviour
         }
     */
 
-    public String GetSoldText(bool hasEnoughGems){
+    public string GetSoldText(bool hasEnoughGems){
         if(hasEnoughGems) return "Thank you for purchasing!";
         else return "You do not have enough gems to purchase this.";
     }
 
-    public String GetSoldText(bool hasEnoughGems, String item){
+    public string GetSoldText(bool hasEnoughGems, string item){
         if(hasEnoughGems) return ($"Thank you for purchasing the {item}!");
         else return ($"You do not have enough gems to purchase the {item}.");
     }
 
-    public void PowerUp(String itemBought){
+    public void PowerUp(string itemBought){
         switch (itemBought)
         {
             case "Sword":
@@ -136,6 +136,21 @@ public class Vendor : MonoBehaviour
                 break;
             case "Gun":
                 rocky.gunPower *= 2;
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void ObtainFood(string itemBought)
+    {
+        switch (itemBought)
+        {
+            case "Food":
+                rocky.hasFood = true;
+                break;
+            case "Drink":
+                rocky.hasDrink = true;
                 break;
             default:
                 break;

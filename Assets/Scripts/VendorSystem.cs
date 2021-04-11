@@ -97,8 +97,20 @@ public class VendorSystem : MonoBehaviour
         var price = Int32.Parse(priceText.text);
         if (player.SpendCrystal(price))
         {
-
-            vendor.PowerUp(textEle.text);
+            switch ((int) vendor.GetVendorType())
+            {
+                case 0:
+                    vendor.PowerUp(textEle.text);
+                    break;
+                case 1:
+                    vendor.ObtainFood(textEle.text);
+                    break;
+                case 2:
+                    //vendor.GetRing(textEle.text);
+                    break;
+                default:
+                    break;
+            }
 
             dialogBox.EnableItemText(false);
             dialogBox.RemoveItemFromList(textEle, vendor);

@@ -16,11 +16,14 @@ public class HealthManager : MonoBehaviour
 
     public Rocky rocky;
 
+    public bool cached;
+
     // Start is called before the first frame update
     void Start()
     {   
-        currentHealth = 3;
+        currentHealth = 1;
         numHearts = 3;
+        cached = false;
 
         rocky = GameObject.FindGameObjectWithTag("Player").GetComponent<Rocky>();
     }
@@ -28,43 +31,56 @@ public class HealthManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentHealth <= 0)
+        if (!cached)
         {
-            rocky.alive = false;
-            UIManager.GameOver();
-        }
 
-        rocky.Health = currentHealth;
 
-        if (currentHealth > numHearts)
-        {
-            currentHealth = numHearts;
-        }
-
-        for (int i = 0; i < Hearts.Length; i++)
-        {
-            if (i < currentHealth)
+            if (currentHealth <= 0)
             {
-                Hearts[i].sprite = fullHeart;
-            }
-            else
-            {
-                Hearts[i].sprite = unfilledHeart;
+                rocky.alive = false;
+                UIManager.GameOver();
             }
 
-            if (i < numHearts)
+            rocky.Health = currentHealth;
+
+            if (currentHealth > numHearts)
             {
-                Hearts[i].enabled = true;
+                currentHealth = numHearts;
             }
-            else {
-                Hearts[i].enabled = false;
+
+            for (int i = 0; i < Hearts.Length; i++)
+            {
+                if (i < currentHealth)
+                {
+                    Hearts[i].sprite = fullHeart;
+                }
+                else
+                {
+                    Hearts[i].sprite = unfilledHeart;
+                }
+
+                if (i < numHearts)
+                {
+                    Hearts[i].enabled = true;
+                }
+                else
+                {
+                    Hearts[i].enabled = false;
+                }
             }
+            rocky.Health = currentHealth;
+            cached = true;
         }
-        rocky.Health = currentHealth;
     }
 
     public void HurtPlayer(int damage){
         currentHealth -= damage;
-        
+        cached = false;
+    }
+
+    public void HealPlayer(int health)
+    {
+        currentHealth += health;
+        cached = false;
     }
 }
