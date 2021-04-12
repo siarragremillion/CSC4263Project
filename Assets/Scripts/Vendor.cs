@@ -12,8 +12,8 @@ public class Vendor : MonoBehaviour
     [SerializeField] private string canSellText, cannotSellText;
 
     // Items to sell info
-    [SerializeField] private string[] itemNames;
-    [SerializeField] private int[] itemPrices;
+    [SerializeField] public List<string> itemNames;
+    [SerializeField] public List<int> itemPrices;
 
     public enum VendorType {
         Weaponsmith,
@@ -45,35 +45,55 @@ public class Vendor : MonoBehaviour
         canSellText = "Hey Rock, the names Paulie. What weapon do you want to upgrade?";
         cannotSellText = "Hey Rock, ain't got anything for you.";
 
-        itemNames = new string[]{"Sword", "Gun"};
-        itemPrices = new int[]{2, 4};
+        itemNames = new List<string> {"Sword", "Gun"};
+        itemPrices = new List<int> {2, 4};
     }
 
     private void SetUpGrocer(){
         canSellText = "Thanks for saving me! How about a snack to celebrate?";
         cannotSellText = "By golly, I'm just fresh out.";
 
-        itemNames = new string[]{"Food", "Drink"};
-        itemPrices = new int[]{25, 10};
+        itemNames = new List<string> {"Food", "Drink"};
+        itemPrices = new List<int> {25, 10};
     }
 
     private void SetUpJeweler(){
         canSellText = "I've got a fine selection of gold rings for you to choose from.";
         cannotSellText = "You've already bought out my stock!";
 
-        itemNames = new string[]{"Ruby", "Jade"};
-        itemPrices = new int[]{200, 200};
+        itemNames = new List<string> {"Ruby", "Jade"};
+        itemPrices = new List<int> {200, 200};
     }
 
     public void Update() {
         
     }
 
-    public string[] GetItemNames(){
+    public void RemoveItemFromLists(string itemName)
+    {
+        if (itemNames.Count == 0)
+        {
+            Debug.LogError("There are no more items, but they still were able to remove an item");
+        }
+
+        else
+        {
+            var index = itemNames.IndexOf(itemName);
+            itemPrices.RemoveAt(index);
+            itemNames.RemoveAt(index);
+
+            if (itemNames.Count == 0)
+            {
+                SetCanSell(false);
+            }
+        }
+    }
+
+    public List<string> GetItemNames(){
         return itemNames;
     }
 
-    public int[] GetItemPrices(){
+    public List<int> GetItemPrices(){
         return itemPrices;
     }
 

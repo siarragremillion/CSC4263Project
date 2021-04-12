@@ -9,26 +9,38 @@ public class VendorSystem : MonoBehaviour
     [SerializeField] Rocky player;
     [SerializeField] DialogBox dialogBox;
     [SerializeField] Vendor vendor;
+    public Vendor pastVendor;
 
     public bool canLeaveInteraction;
 
     public int currentItem;
 
+    public bool cached;
+
     private void Start()
     {
         dialogBox.EnableItemText(false);
-        for(int i = 0; i < vendor.GetItemNames().Length; i++){
+        for(int i = 0; i < vendor.GetItemNames().Count; i++){
             dialogBox.itemTexts[i].text = vendor.GetItemNames()[i];
             dialogBox.itemPrices[i].text = vendor.GetItemPrices()[i].ToString();
         }
+        cached = true;
     }
 
     public void SetVendor(Vendor _vendor){
+        pastVendor = vendor;
         vendor = _vendor;
+
+
     }
 
     public IEnumerator SetupVendor()
     {
+        if (pastVendor != null && !vendor.GetVendorType().Equals(pastVendor.GetVendorType()))
+        {
+            dialogBox.ResetVendor(vendor);
+        }
+        cached = false;
         dialogBox.EnableItemText(false);
         currentItem = 0;
         // if vendor is sold out
@@ -41,6 +53,14 @@ public class VendorSystem : MonoBehaviour
         // if vendor has items to sell
         else
         {
+            if (!cached)
+            {
+                for (int i = 0; i < vendor.GetItemNames().Count; i++)
+                {
+                    dialogBox.itemTexts[i].text = vendor.GetItemNames()[i];
+                    dialogBox.itemPrices[i].text = vendor.GetItemPrices()[i].ToString();
+                }
+            }
             yield return dialogBox.TypeDialog(vendor.GetText());
             yield return new WaitForSeconds(1f / 30);
 
@@ -66,14 +86,14 @@ public class VendorSystem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.S))
         {
-            if (currentItem + 1 < dialogBox.itemTexts.Count)
+            if (currentItem + 1 < vendor.itemNames.Count)
             {
                 ++currentItem;
             }
         }
         else if (Input.GetKeyDown(KeyCode.W))
         {
-            if (currentItem > 0 && dialogBox.itemTexts.Count > 1)
+            if (currentItem > 0 && vendor.itemNames.Count > 1)
             {
                 --currentItem;
             }
@@ -93,8 +113,7 @@ public class VendorSystem : MonoBehaviour
     {
         canLeaveInteraction = false;
 
-        var priceText = dialogBox.itemPrices[currentItem];
-        var price = Int32.Parse(priceText.text);
+        var price = vendor.itemPrices[currentItem];
         if (player.SpendCrystal(price))
         {
             switch ((int) vendor.GetVendorType())
@@ -113,7 +132,8 @@ public class VendorSystem : MonoBehaviour
             }
 
             dialogBox.EnableItemText(false);
-            dialogBox.RemoveItemFromList(textEle, vendor);
+            vendor.RemoveItemFromLists(textEle.text);
+            textEle.gameObject.SetActive(false);
             yield return dialogBox.TypeDialog(vendor.GetSoldText(true, textEle.text));
             yield return new WaitForSeconds(1f);
         } 
@@ -127,6 +147,7 @@ public class VendorSystem : MonoBehaviour
         canLeaveInteraction = true;
 
         StartCoroutine(SetupVendor());
+        cached = false;
     }
 
     

@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class VendorInteraction : MonoBehaviour
 {
-    [SerializeField] public bool canInteract;
+    public bool canInteract = false;
     [SerializeField] VendorSystem vendorSystem;
     [SerializeField] GameObject rocky;
+    [SerializeField] Vendor vendor;
 
+    private bool sameVendor;
 
     // Update is called once per frame
     void Update()
@@ -18,13 +20,17 @@ public class VendorInteraction : MonoBehaviour
                 rocky.GetComponent<PlayerMovement>().FreezeMovement();
                 vendorSystem.gameObject.SetActive(true);
                 Debug.Log("Showing");
-                vendorSystem.SetVendor(GetComponent<Vendor>());
+                if (sameVendor)
+                {
+                    vendorSystem.SetVendor(vendor);
+                }
                 StartCoroutine(vendorSystem.SetupVendor());
+                vendorSystem.cached = false;
             }
 
         }
 
-        if (vendorSystem.canLeaveInteraction)
+        if (vendorSystem.canLeaveInteraction && sameVendor)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -34,10 +40,13 @@ public class VendorInteraction : MonoBehaviour
                 canInteract = true;
             }   
         }
+
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        sameVendor = true;
+        Debug.Log(vendor.GetVendorType());
         if (other.transform.tag.Equals("Player"))
         {
             canInteract = true;
@@ -46,9 +55,12 @@ public class VendorInteraction : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D other)
     {
+        sameVendor = false;
+        Debug.Log(vendor.GetVendorType());
+        canInteract = false;
         if (other.transform.tag.Equals("Player"))
         {
-            canInteract = false;
+            
             vendorSystem.gameObject.SetActive(false);
         }
     }

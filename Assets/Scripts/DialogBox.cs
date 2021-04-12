@@ -63,23 +63,24 @@ public class DialogBox : MonoBehaviour
         }
     }
 
-    public void RemoveItemFromList(Text textObject, Vendor vendor)
+    public void ResetVendor(Vendor vendor)
     {
-        if (itemTexts.Count == 0)
+        foreach (var item in itemTexts)
         {
-            Debug.LogError("There are no more items, but they still were able to remove an item");
+            item.gameObject.SetActive(false);
         }
 
-        else
+        foreach (var item in itemPrices)
         {
-            itemTexts.Remove(textObject);
-            textObject.gameObject.SetActive(false);
-
-            if (itemTexts.Count == 0)
-            {
-                vendor.SetCanSell(false);
-            }
+            item.gameObject.SetActive(false);
         }
+
+        for (int i = 0; i < vendor.itemNames.Count; i++)
+        {
+            itemTexts[i].gameObject.SetActive(true);
+            itemPrices[i].gameObject.SetActive(true);
+        }
+
     }
 
     // Waits until a certain key is pressed
