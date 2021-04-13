@@ -16,6 +16,7 @@ public class VendorInteraction : MonoBehaviour
     {
         if (canInteract) {
             if (Input.GetKeyDown(KeyCode.E)) {
+                GlobalControl.Instance.canPause = false;
                 canInteract = false;
                 rocky.GetComponent<PlayerMovement>().FreezeMovement();
                 vendorSystem.gameObject.SetActive(true);
@@ -38,6 +39,7 @@ public class VendorInteraction : MonoBehaviour
                 rocky.GetComponent<PlayerMovement>().UnfreezeMovement();
                 vendorSystem.canLeaveInteraction = false;
                 canInteract = true;
+                GlobalControl.Instance.canPause = true;
             }   
         }
 

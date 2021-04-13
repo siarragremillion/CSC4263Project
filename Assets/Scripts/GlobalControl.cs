@@ -24,6 +24,8 @@ public class GlobalControl : MonoBehaviour
     public bool hasDrink;
     public bool hasFood;
 
+    public bool canPause;
+
     private void Start()
     {
         swordPower = 3;
