@@ -36,11 +36,19 @@ public class EnemyDamage : MonoBehaviour
     private void OnCollisionStay2D(Collision2D other){
         if(other.collider.CompareTag("Player"))
         {
+            currHitCoolDown -= Time.deltaTime;
+
             if(currHitCoolDown < 0){
 				currHitCoolDown = hitCooldown;
                 other.gameObject.GetComponent<HealthManager>().HurtPlayer(power);
             }
         }        
+    }
+
+    private void OnCollisionExit2D(Collision2D other){
+        if(other.collider.CompareTag("Player")){
+            currHitCoolDown = hitCooldown;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -62,7 +70,7 @@ public class EnemyDamage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currHitCoolDown -= Time.deltaTime;
+        // currHitCoolDown -= Time.deltaTime;
     }
 
 }

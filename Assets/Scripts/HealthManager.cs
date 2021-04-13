@@ -21,7 +21,7 @@ public class HealthManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {   
-        currentHealth = 1;
+        currentHealth = 3;
         numHearts = 3;
         cached = false;
 
