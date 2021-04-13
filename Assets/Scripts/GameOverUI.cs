@@ -71,7 +71,7 @@ class GameOverUI : MonoBehaviour
         {
 
             case "Continue":
-                LoadLevel("Level1");
+                LoadLevel("Level0");
                 break;
             case "Quit":
                 Quit();

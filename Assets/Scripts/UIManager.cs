@@ -33,7 +33,7 @@ public class UIManager : MonoBehaviour
         hidePaused();
         hideComplete();
 
-        if (SceneManager.GetActiveScene().name.Equals("Level1"))
+        if (SceneManager.GetActiveScene().name.Contains("Level"))
         {
             rocky = GameObject.FindGameObjectWithTag("Player").GetComponent<Rocky>();
         }
@@ -158,7 +158,7 @@ public class UIManager : MonoBehaviour
                 Quit();
                 break;
             case "Continue":
-                LoadLevel("Level1");
+                LoadLevel("Level0");
                 break;
             case "Resume":
                 pauseControl();
