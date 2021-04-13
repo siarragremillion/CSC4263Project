@@ -39,13 +39,18 @@ public class Rocky : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        swordPower = 3;
-        gunPower = 2;
-        MaxHealth = 3;
-        crystals = 10;
+        Health = GlobalControl.Instance.Health;
+        MaxHealth = GlobalControl.Instance.MaxHealth;
+        crystals = GlobalControl.Instance.crystals;
+        maxCrystals = GlobalControl.Instance.maxCrystals;
+        currentWeapon = GlobalControl.Instance.currentWeapon;
+        alive = GlobalControl.Instance.alive;
+        swordPower = GlobalControl.Instance.swordPower;
+        gunPower = GlobalControl.Instance.gunPower;
+        waterRingisActive = GlobalControl.Instance.waterRingisActive;
+        hasFood = GlobalControl.Instance.hasFood;
+        hasDrink = GlobalControl.Instance.hasDrink;
         GemHandler.gemAmount = crystals;
-        Health = MaxHealth;
-        alive = true;
     }
 
     // Update is called once per frame
@@ -91,7 +96,18 @@ public class Rocky : MonoBehaviour
         }
     }
 
-
+    // Save data to global control
+    public void SavePlayer()
+    {
+        GlobalControl.Instance.Health = Health;
+        GlobalControl.Instance.MaxHealth = MaxHealth;
+        GlobalControl.Instance.crystals = crystals;
+        GlobalControl.Instance.maxCrystals = maxCrystals;
+        GlobalControl.Instance.currentWeapon = currentWeapon;
+        GlobalControl.Instance.alive = alive;
+        GlobalControl.Instance.hasDrink = hasDrink;
+        GlobalControl.Instance.hasFood = hasFood;
+    }
 
     public void ChangeWeapon(){
         if(currentWeapon == 0)

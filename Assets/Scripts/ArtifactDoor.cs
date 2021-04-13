@@ -11,8 +11,9 @@ public class ArtifactDoor : MonoBehaviour
         return artifactType;
     }
 
-    public void OpenDoor() {
+    public void OpenDoor(Rocky rocky) {
         gameObject.SetActive(false);
+        rocky.SavePlayer();
         var sceneName = SceneManager.GetActiveScene().name;
         if (sceneName.Contains("Level"))
         {

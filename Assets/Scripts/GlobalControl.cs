@@ -17,9 +17,27 @@ public class GlobalControl : MonoBehaviour
 
     public bool alive;
 
+    public int swordPower;
+    public int gunPower;
+    public bool waterRingisActive;
+
     public bool hasDrink;
     public bool hasFood;
 
+    private void Start()
+    {
+        swordPower = 3;
+        gunPower = 2;
+        waterRingisActive = false;
+        MaxHealth = 3;
+        crystals = 10;
+        Health = MaxHealth;
+        currentWeapon = 0;
+        hasDrink = false;
+        hasFood = false;
+        alive = true;
+    }
+    
     void Awake()
     {
         if (Instance == null)

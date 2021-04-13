@@ -39,11 +39,11 @@ public class ArtifactHolder : MonoBehaviour
         if(artifactDoor != null){
             if (SceneManager.GetActiveScene().name.Equals("Level0"))
             {
-                artifactDoor.OpenDoor();
+                artifactDoor.OpenDoor(gameObject.GetComponent<Rocky>());
             }
             else if(ContainsArtifact(artifactDoor.GetArtifactType())){
                 RemoveArtifact(artifactDoor.GetArtifactType());
-                artifactDoor.OpenDoor();
+                artifactDoor.OpenDoor(gameObject.GetComponent<Rocky>());
             }
         }
     }
