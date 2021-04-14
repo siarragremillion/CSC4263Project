@@ -30,7 +30,7 @@ public class Rocky : MonoBehaviour
 
     private Ring.RingType typeRing;
 
-    private Ring test;
+    private Ring ring;
 
     public bool hasDrink;
     public bool hasFood;
@@ -85,13 +85,25 @@ public class Rocky : MonoBehaviour
             if (currentInteractable)
             {
                 currentInteractable.SendMessage("isPickedUp");
-                Debug.Log(test.GetRingType());
-                GetComponent<RingHolder>().AddRing(test.GetRingType());
+                GetComponent<RingHolder>().AddRing(ring.GetRingType());
+                GetComponent<RingHolder>().SetActiveRing(ring.GetRingType());
                 dialogHandler.gameObject.SetActive(true);
                 dialogHandler.SetUpDialog();
                 StartCoroutine(dialogHandler.TypeDialog("You found the Water Ring!\nYou can now walk on water."));
                 journalSystem.FindJournal(1);
 
+            }
+        }
+        //changing rings
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            Debug.Log(GetComponent<RingHolder>().GetActiveRing() );
+            if(GetComponent<RingHolder>().GetActiveRing() == Ring.RingType.none){
+                Debug.Log("No rings have been collected");
+                //maybe put a dialog box here saying you currently have not collected any rings
+            }
+            else{
+                GetComponent<RingHolder>().ChangeRing();
             }
         }
     }
@@ -194,10 +206,9 @@ public class Rocky : MonoBehaviour
         }
         if (other.CompareTag("Ring"))
         {
-            Debug.Log(other.name);
             currentInteractable = other.gameObject;
-            test = currentInteractable.GetComponent<Ring>();
-            Debug.Log(typeRing);
+            ring = currentInteractable.GetComponent<Ring>();
+            Debug.Log(ring.GetRingType());
         }
     }
 

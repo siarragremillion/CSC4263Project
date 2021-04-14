@@ -13,10 +13,12 @@ public class Ring : MonoBehaviour
         GreenGold,  // double food's impact
         RedSilver,  // walk through fire
         BlueSilver, // walk on water
-        GreenSilver // walk through boulders
+        GreenSilver, // walk through boulders
+        none
     }
 
     public RingType GetRingType() {
         return ringType;
     }
+
 }

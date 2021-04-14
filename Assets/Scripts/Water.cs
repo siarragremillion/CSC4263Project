@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Water : MonoBehaviour
 {
-    public GameObject waterRing;
     private GameObject rocky;
 
 
@@ -18,9 +17,12 @@ public class Water : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(rocky.GetComponent<RingHolder>().ContainsRing(Ring.RingType.BlueSilver))
+        if(rocky.GetComponent<RingHolder>().GetActiveRing() == Ring.RingType.BlueSilver)
         {
-            Physics2D.IgnoreCollision(rocky.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+            Physics2D.IgnoreCollision(rocky.GetComponent<Collider2D>(), GetComponent<Collider2D>(),true);
+        }
+        else{
+            Physics2D.IgnoreCollision(rocky.GetComponent<Collider2D>(), GetComponent<Collider2D>(),false);
         }
     }
 }
