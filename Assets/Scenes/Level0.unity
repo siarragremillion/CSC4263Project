@@ -5785,6 +5785,7 @@ MonoBehaviour:
   waterRingisActive: 0
   hasDrink: 0
   hasFood: 0
+  canPause: 0
 --- !u!4 &1048119169
 Transform:
   m_ObjectHideFlags: 0
@@ -5951,7 +5952,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1058398951}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.13, y: 7.83, z: 0}
+  m_LocalPosition: {x: 10.01, y: 8.35, z: 0}
   m_LocalScale: {x: 6, y: 6, z: 1.8484}
   m_Children: []
   m_Father: {fileID: 0}
