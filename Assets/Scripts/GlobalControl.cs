@@ -37,6 +37,7 @@ public class GlobalControl : MonoBehaviour
         currentWeapon = 0;
         hasDrink = false;
         hasFood = false;
+        canPause = true;
         alive = true;
     }
     
