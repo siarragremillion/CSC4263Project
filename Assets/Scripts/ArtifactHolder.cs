@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ArtifactHolder : MonoBehaviour
 {
@@ -36,9 +37,13 @@ public class ArtifactHolder : MonoBehaviour
 
         ArtifactDoor artifactDoor = other.GetComponent<ArtifactDoor>();
         if(artifactDoor != null){
-            if(ContainsArtifact(artifactDoor.GetArtifactType())){
+            if (SceneManager.GetActiveScene().name.Equals("Level0"))
+            {
+                artifactDoor.OpenDoor(gameObject.GetComponent<Rocky>());
+            }
+            else if(ContainsArtifact(artifactDoor.GetArtifactType())){
                 RemoveArtifact(artifactDoor.GetArtifactType());
-                artifactDoor.OpenDoor();
+                artifactDoor.OpenDoor(gameObject.GetComponent<Rocky>());
             }
         }
     }

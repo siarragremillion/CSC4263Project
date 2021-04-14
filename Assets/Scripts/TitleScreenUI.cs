@@ -122,7 +122,7 @@ public class TitleScreenUI : MonoBehaviour
         {
 
             case "Start":
-                UIManager.LoadLevel("Level1");
+                UIManager.LoadLevel("Level0");
                 break;
             case "Quit":
                 UIManager.Quit();
