@@ -15,6 +15,7 @@ TagManager:
   - Ring
   - TitleScreenButtons
   - About
+  - BossBullet
   layers:
   - Default
   - TransparentFX

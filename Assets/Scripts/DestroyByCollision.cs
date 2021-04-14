@@ -8,7 +8,7 @@ public class DestroyByCollision : MonoBehaviour
     void onCollisionEnter2D(Collider2D collider)
     {
         Debug.Log("test");
-        if(collider.tag == "Bullet")
+        if(collider.tag == "Bullet" || collider.tag == "BossBullet")
         {
             Destroy(collider.gameObject);
         }
@@ -17,7 +17,7 @@ public class DestroyByCollision : MonoBehaviour
     void OnTriggerExit2D(Collider2D collider)
     {
         Debug.Log("Test 2");
-        if(collider.tag == "Bullet")
+        if(collider.tag == "Bullet" || collider.tag == "BossBullet")
         {
             Destroy(collider.gameObject);
         }
