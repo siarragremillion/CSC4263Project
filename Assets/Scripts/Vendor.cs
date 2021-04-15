@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -46,7 +44,7 @@ public class Vendor : MonoBehaviour
         cannotSellText = "Hey Rock, ain't got anything for you.";
 
         itemNames = new List<string> {"Sword", "Gun"};
-        itemPrices = new List<int> {2, 4};
+        itemPrices = new List<int> {15, 30};
     }
 
     private void SetUpGrocer(){
@@ -54,7 +52,7 @@ public class Vendor : MonoBehaviour
         cannotSellText = "By golly, I'm just fresh out.";
 
         itemNames = new List<string> {"Food", "Drink"};
-        itemPrices = new List<int> {25, 10};
+        itemPrices = new List<int> {5, 10};
     }
 
     private void SetUpJeweler(){
@@ -162,19 +160,35 @@ public class Vendor : MonoBehaviour
         }
     }
 
-    public void ObtainFood(string itemBought)
+    public string ObtainFood(string itemBought)
     {
         switch (itemBought)
         {
             case "Food":
-                rocky.hasFood = true;
+                if (rocky.hasFood)
+                {
+                    return "You already have food!";
+                }
+                else
+                {
+                    rocky.hasFood = true;
+                }
                 break;
             case "Drink":
-                rocky.hasDrink = true;
+                if (rocky.hasDrink)
+                {
+                    return "You already have a drink!";
+                }
+                else
+                {
+                    rocky.hasDrink = true;
+                }
                 break;
             default:
                 break;
         }
+
+        return null;
     }
 
 }

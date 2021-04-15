@@ -73,6 +73,7 @@ public class Rocky : MonoBehaviour
                 ChangeWeapon();
             }
         }
+
         //interaction
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -87,9 +88,23 @@ public class Rocky : MonoBehaviour
                 currentInteractable.SendMessage("isPickedUp");
                 GetComponent<RingHolder>().AddRing(ring.GetRingType());
                 GetComponent<RingHolder>().SetActiveRing(ring.GetRingType());
+                string dialogText = "";
+                if (ring.GetRingType() == Ring.RingType.RedSilver)
+                {
+                    dialogText = "You found the Fire Ring!\nYou can now walk through fire.";
+                }
+                else if (ring.GetRingType() == Ring.RingType.BlueSilver)
+                {
+                    dialogText = "You found the Water Ring!\nYou can now walk on water.";
+                }
+                else if (ring.GetRingType() == Ring.RingType.GreenSilver)
+                {
+                    dialogText = "You found the Earch Ring!\nYou can now move heavy boulders.";
+                }
+
                 dialogHandler.gameObject.SetActive(true);
                 dialogHandler.SetUpDialog();
-                StartCoroutine(dialogHandler.TypeDialog("You found the Water Ring!\nYou can now walk on water."));
+                StartCoroutine(dialogHandler.TypeDialog(dialogText));
                 journalSystem.FindJournal(1);
 
             }

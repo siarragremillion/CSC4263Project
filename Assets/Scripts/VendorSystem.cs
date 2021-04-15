@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -112,7 +110,7 @@ public class VendorSystem : MonoBehaviour
     IEnumerator ItemSelected(Text textEle, int currentItem)
     {
         canLeaveInteraction = false;
-
+        string grocerObtainFood = null;
         var price = vendor.itemPrices[currentItem];
         if (player.SpendCrystal(price))
         {
@@ -122,7 +120,13 @@ public class VendorSystem : MonoBehaviour
                     vendor.PowerUp(textEle.text);
                     break;
                 case 1:
-                    vendor.ObtainFood(textEle.text);
+                    grocerObtainFood = vendor.ObtainFood(textEle.text);
+                    if (grocerObtainFood != null)
+                    {
+                        player.PickUpCrystal(price);
+                        yield return dialogBox.TypeDialog(grocerObtainFood);
+                        yield return new WaitForSeconds(1f);
+                    }
                     break;
                 case 2:
                     //vendor.GetRing(textEle.text);
@@ -132,10 +136,16 @@ public class VendorSystem : MonoBehaviour
             }
 
             dialogBox.EnableItemText(false);
-            vendor.RemoveItemFromLists(textEle.text);
-            textEle.gameObject.SetActive(false);
-            yield return dialogBox.TypeDialog(vendor.GetSoldText(true, textEle.text));
-            yield return new WaitForSeconds(1f);
+            if (vendor.GetVendorType() != Vendor.VendorType.Grocer)
+            {
+                vendor.RemoveItemFromLists(textEle.text);
+                textEle.gameObject.SetActive(false);
+            }
+            if (grocerObtainFood == null)
+            {
+                yield return dialogBox.TypeDialog(vendor.GetSoldText(true, textEle.text));
+                yield return new WaitForSeconds(1f);
+            }
         } 
         else
         {
