@@ -35912,6 +35912,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: bca22b461019a40639c4be46fff0fcc6, type: 3}
   - {fileID: 21300000, guid: b04b050cf515c42f09323240a41dfe8a, type: 3}
   - {fileID: 21300000, guid: 01a0537218b5246f1b7b703b08dc2066, type: 3}
+  currentRing: 0
   rocky: {fileID: 388747271}
 --- !u!4 &2066375367
 Transform:
@@ -36187,6 +36188,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1033111335356924137, guid: cd9295af73d934bd4b1d070b0c5c550f,
         type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1033111335356924137, guid: cd9295af73d934bd4b1d070b0c5c550f,
+        type: 3}
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
@@ -36423,6 +36429,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FireObstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6053504220551662981, guid: 90d5dd649574a482abc55a832140dc91,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6053504220551663000, guid: 90d5dd649574a482abc55a832140dc91,
         type: 3}
