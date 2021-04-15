@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Searchables : MonoBehaviour
 {
-    public Ring treasure;
+    public GameObject treasure;
 
     void Start()
     {
@@ -13,7 +13,7 @@ public class Searchables : MonoBehaviour
 
     public void isSearched()
     {
-        gameObject.SetActive(false);
+        Destroy(gameObject);
         Instantiate(treasure, transform.position, transform.rotation);
 
     }
