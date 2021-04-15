@@ -94,18 +94,7 @@ public class Rocky : MonoBehaviour
 
             }
         }
-        //changing rings
-        if(Input.GetKeyDown(KeyCode.K))
-        {
-            Debug.Log(GetComponent<RingHolder>().GetActiveRing() );
-            if(GetComponent<RingHolder>().GetActiveRing() == Ring.RingType.none){
-                Debug.Log("No rings have been collected");
-                //maybe put a dialog box here saying you currently have not collected any rings
-            }
-            else{
-                GetComponent<RingHolder>().ChangeRing();
-            }
-        }
+        
     }
 
     // Save data to global control
