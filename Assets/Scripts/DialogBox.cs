@@ -26,6 +26,10 @@ public class DialogBox : MonoBehaviour
         foreach (var letter in dialog.ToCharArray())
         {
             dialogText.text += letter;
+            var tempVol = SfxManager.sfxInstance.Audio.volume;
+            SfxManager.sfxInstance.Audio.volume = 0.5f;
+            SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.dialogBlip);
+            SfxManager.sfxInstance.Audio.volume = tempVol;
             yield return new WaitForSeconds(1f/lettersPerSecond);
         }
         yield return StartCoroutine(WaitForKeyDown(KeyCode.E));

@@ -35,6 +35,10 @@ public class Rocky : MonoBehaviour
     public bool hasDrink;
     public bool hasFood;
 
+/*    // RingFound.mp3 but could be used for other things as well
+    public AudioClip pickUpSound;
+
+    public AudioSource audioSource;*/
 
     // Start is called before the first frame update
     void Start()
@@ -85,28 +89,7 @@ public class Rocky : MonoBehaviour
             }
             if (currentInteractable)
             {
-                currentInteractable.SendMessage("isPickedUp");
-                GetComponent<RingHolder>().AddRing(ring.GetRingType());
-                GetComponent<RingHolder>().SetActiveRing(ring.GetRingType());
-                string dialogText = "";
-                if (ring.GetRingType() == Ring.RingType.RedSilver)
-                {
-                    dialogText = "You found the Fire Ring!\nYou can now walk through fire.";
-                }
-                else if (ring.GetRingType() == Ring.RingType.BlueSilver)
-                {
-                    dialogText = "You found the Water Ring!\nYou can now walk on water.";
-                }
-                else if (ring.GetRingType() == Ring.RingType.GreenSilver)
-                {
-                    dialogText = "You found the Earch Ring!\nYou can now move heavy boulders.";
-                }
-
-                dialogHandler.gameObject.SetActive(true);
-                dialogHandler.SetUpDialog();
-                StartCoroutine(dialogHandler.TypeDialog(dialogText));
-                journalSystem.FindJournal(1);
-
+                StartCoroutine(Interactable());
             }
         }
         
@@ -232,5 +215,44 @@ public class Rocky : MonoBehaviour
                 currentInteractable = null;
             }
         }
+    }
+
+    IEnumerator Interactable()
+    {
+        var music = GameObject.FindGameObjectWithTag("Music");
+        var musicSource = music.GetComponent<AudioSource>();
+        musicSource.Pause();
+
+        yield return new WaitForSeconds(.3f);
+
+        dialogHandler.SetUpDialog();
+        SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.itemPickup);
+
+        yield return new WaitForSeconds(SfxManager.sfxInstance.itemPickup.length / 2);
+
+        currentInteractable.SendMessage("isPickedUp");
+        GetComponent<RingHolder>().AddRing(ring.GetRingType());
+        GetComponent<RingHolder>().SetActiveRing(ring.GetRingType());
+        string dialogText = "";
+        if (ring.GetRingType() == Ring.RingType.RedSilver)
+        {
+            dialogText = "You found the Fire Ring!\nYou can now walk through fire.";
+        }
+        else if (ring.GetRingType() == Ring.RingType.BlueSilver)
+        {
+            dialogText = "You found the Water Ring!\nYou can now walk on water.";
+        }
+        else if (ring.GetRingType() == Ring.RingType.GreenSilver)
+        {
+            dialogText = "You found the Earch Ring!\nYou can now move heavy boulders.";
+        }
+
+        dialogHandler.gameObject.SetActive(true);
+        yield return StartCoroutine(dialogHandler.TypeDialog(dialogText));
+        journalSystem.FindJournal(1);
+
+        yield return new WaitForSeconds(.3f);
+
+        musicSource.UnPause();
     }
 }

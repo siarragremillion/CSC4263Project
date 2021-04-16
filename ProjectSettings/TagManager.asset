@@ -16,6 +16,7 @@ TagManager:
   - TitleScreenButtons
   - About
   - BossBullet
+  - Music
   layers:
   - Default
   - TransparentFX
