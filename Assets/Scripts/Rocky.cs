@@ -83,13 +83,30 @@ public class Rocky : MonoBehaviour
         {
             if (currentSearchable) //if player is collided with a searchable
             {
-                //play brushing animation?
-                currentSearchable.SendMessage("isSearched");
-
+                StartCoroutine(Searchable());
             }
             if (currentInteractable)
             {
-                StartCoroutine(Interactable());
+                currentInteractable.SendMessage("isPickedUp");
+                GetComponent<RingHolder>().AddRing(ring.GetRingType());
+                GetComponent<RingHolder>().SetActiveRing(ring.GetRingType());
+                string dialogText = "";
+                if (ring.GetRingType() == Ring.RingType.RedSilver)
+                {
+                    dialogText = "You found the Fire Ring!\nYou can now walk through fire.";
+                }
+                else if (ring.GetRingType() == Ring.RingType.BlueSilver)
+                {
+                    dialogText = "You found the Water Ring!\nYou can now walk on water.";
+                }
+                else if (ring.GetRingType() == Ring.RingType.GreenSilver)
+                {
+                    dialogText = "You found the Earch Ring!\nYou can now move heavy boulders.";
+                }
+
+                dialogHandler.gameObject.SetActive(true);
+                StartCoroutine(dialogHandler.TypeDialog(dialogText));
+                journalSystem.FindJournal(1);
             }
         }
         
@@ -217,7 +234,7 @@ public class Rocky : MonoBehaviour
         }
     }
 
-    IEnumerator Interactable()
+    IEnumerator Searchable()
     {
         var music = GameObject.FindGameObjectWithTag("Music");
         var musicSource = music.GetComponent<AudioSource>();
@@ -230,26 +247,7 @@ public class Rocky : MonoBehaviour
 
         yield return new WaitForSeconds(SfxManager.sfxInstance.itemPickup.length / 2);
 
-        currentInteractable.SendMessage("isPickedUp");
-        GetComponent<RingHolder>().AddRing(ring.GetRingType());
-        GetComponent<RingHolder>().SetActiveRing(ring.GetRingType());
-        string dialogText = "";
-        if (ring.GetRingType() == Ring.RingType.RedSilver)
-        {
-            dialogText = "You found the Fire Ring!\nYou can now walk through fire.";
-        }
-        else if (ring.GetRingType() == Ring.RingType.BlueSilver)
-        {
-            dialogText = "You found the Water Ring!\nYou can now walk on water.";
-        }
-        else if (ring.GetRingType() == Ring.RingType.GreenSilver)
-        {
-            dialogText = "You found the Earch Ring!\nYou can now move heavy boulders.";
-        }
-
-        dialogHandler.gameObject.SetActive(true);
-        yield return StartCoroutine(dialogHandler.TypeDialog(dialogText));
-        journalSystem.FindJournal(1);
+        currentSearchable.SendMessage("isSearched");
 
         yield return new WaitForSeconds(.3f);
 
