@@ -7,10 +7,17 @@ public class DialogHandler : MonoBehaviour
 {
     public Text dialogText;
     public Rocky rocky;
+    public bool inDialog;
 
     public void SetUpDialog()
     {
         rocky.GetComponent<PlayerMovement>().FreezeMovement();
+        inDialog = true;
+    }
+
+    public void StopDialog()
+    {
+        inDialog = false;
     }
 
     public IEnumerator TypeDialog(string dialog)
@@ -31,6 +38,10 @@ public class DialogHandler : MonoBehaviour
         yield return StartCoroutine(WaitForKeyDown(KeyCode.E));
         rocky.GetComponent<PlayerMovement>().UnfreezeMovement();
         gameObject.SetActive(false);
+        var music = GameObject.FindGameObjectWithTag("Music");
+        var musicSource = music.GetComponent<AudioSource>();
+        musicSource.UnPause();
+        inDialog = false;
     }
 
     IEnumerator WaitForKeyDown(KeyCode keyCode)

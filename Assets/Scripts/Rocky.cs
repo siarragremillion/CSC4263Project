@@ -79,7 +79,7 @@ public class Rocky : MonoBehaviour
         }
 
         //interaction
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && !dialogHandler.inDialog)
         {
             if (currentSearchable) //if player is collided with a searchable
             {
@@ -240,17 +240,14 @@ public class Rocky : MonoBehaviour
         var musicSource = music.GetComponent<AudioSource>();
         musicSource.Pause();
 
-        yield return new WaitForSeconds(.3f);
 
-        dialogHandler.SetUpDialog();
+        gameObject.GetComponent<PlayerMovement>().FreezeMovement();
         SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.itemPickup);
 
         yield return new WaitForSeconds(SfxManager.sfxInstance.itemPickup.length / 2);
 
         currentSearchable.SendMessage("isSearched");
 
-        yield return new WaitForSeconds(.3f);
-
-        musicSource.UnPause();
+        gameObject.GetComponent<PlayerMovement>().UnfreezeMovement();
     }
 }
