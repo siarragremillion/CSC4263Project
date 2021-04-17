@@ -13,6 +13,14 @@ public class SfxManager : MonoBehaviour
 
     public AudioClip dialogBlip;
 
+    public AudioClip LevelComplete;
+
+    public AudioClip ArtifactFound;
+
+    public AudioClip PlayerUpgrade;
+
+    public AudioClip PlayerDeath;
+
     public static SfxManager sfxInstance;
 
 

@@ -38,7 +38,7 @@ public class HealthManager : MonoBehaviour
             if (currentHealth <= 0)
             {
                 rocky.alive = false;
-                UIManager.GameOver();
+                StartCoroutine(UIManager.GameOver());
             }
 
             rocky.Health = currentHealth;

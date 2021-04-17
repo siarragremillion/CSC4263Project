@@ -11,10 +11,23 @@ public class ArtifactDoor : MonoBehaviour
         return artifactType;
     }
 
-    public void OpenDoor(Rocky rocky) {
+    public IEnumerator OpenDoor(Rocky rocky) {
+        var sceneName = SceneManager.GetActiveScene().name;
+        var music = GameObject.FindGameObjectWithTag("Music");
+        var musicSource = music.GetComponent<AudioSource>();
+        musicSource.Pause();
+
+        yield return new WaitForSeconds(0.5f);
+
+        if (!sceneName.Equals("Level0"))
+        {
+            SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.LevelComplete);
+            yield return new WaitForSeconds(SfxManager.sfxInstance.LevelComplete.length / 2.0f);
+        }
+
         gameObject.SetActive(false);
         rocky.SavePlayer();
-        var sceneName = SceneManager.GetActiveScene().name;
+        
         if (sceneName.Contains("Level"))
         {
             var lastChar = sceneName.Substring(sceneName.Length - 1);
@@ -22,6 +35,5 @@ public class ArtifactDoor : MonoBehaviour
             lastInt++;
             UIManager.LoadLevel("Level" + lastInt);
         }
-        //FindObjectOfType<UIManager>().showComplete();
     }
 }

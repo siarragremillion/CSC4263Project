@@ -199,8 +199,27 @@ public class UIManager : MonoBehaviour
     }
 
     // Loads Game Over Screen
-    public static void GameOver()
+    public static IEnumerator GameOver()
     {
+        var music = GameObject.FindGameObjectWithTag("Music");
+        var musicSource = music.GetComponent<AudioSource>();
+        musicSource.Pause();
+        SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.PlayerDeath);
+        yield return new WaitForSeconds(SfxManager.sfxInstance.PlayerDeath.length / 2.0f);
+
         SceneManager.LoadScene("GameOverScene");
     }
+
+
+    public static IEnumerator GameComplete()
+    {
+        var music = GameObject.FindGameObjectWithTag("Music");
+        var musicSource = music.GetComponent<AudioSource>();
+        musicSource.Pause();
+        SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.PlayerDeath);
+        yield return new WaitForSeconds(SfxManager.sfxInstance.PlayerDeath.length / 2.0f);
+
+        SceneManager.LoadScene("GameCompleteScene");
+    }
+
 }
