@@ -64,7 +64,7 @@ public class Rocky : MonoBehaviour
         {
             Debug.Log("Rocky Is Dead");
             alive = false;
-            UIManager.GameOver();
+            StartCoroutine(UIManager.GameOver());
         }
 
         if (Input.GetKeyDown(KeyCode.F)) {

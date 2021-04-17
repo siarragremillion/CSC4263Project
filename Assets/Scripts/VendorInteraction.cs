@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class VendorInteraction : MonoBehaviour
@@ -14,17 +15,7 @@ public class VendorInteraction : MonoBehaviour
     {
         if (canInteract) {
             if (Input.GetKeyDown(KeyCode.E)) {
-                GlobalControl.Instance.canPause = false;
-                canInteract = false;
-                rocky.GetComponent<PlayerMovement>().FreezeMovement();
-                vendorSystem.gameObject.SetActive(true);
-                Debug.Log("Showing");
-                if (sameVendor)
-                {
-                    vendorSystem.SetVendor(vendor);
-                }
-                StartCoroutine(vendorSystem.SetupVendor());
-                vendorSystem.cached = false;
+                StartCoroutine(Interact());
             }
 
         }
@@ -41,6 +32,25 @@ public class VendorInteraction : MonoBehaviour
             }   
         }
 
+    }
+
+    public IEnumerator Interact()
+    {
+        var music = GameObject.FindGameObjectWithTag("Music");
+        var musicSource = music.GetComponent<AudioSource>();
+        musicSource.Pause();
+        yield return new WaitForSeconds(.3f);
+        GlobalControl.Instance.canPause = false;
+        canInteract = false;
+        rocky.GetComponent<PlayerMovement>().FreezeMovement();
+        vendorSystem.gameObject.SetActive(true);
+        Debug.Log("Showing");
+        if (sameVendor)
+        {
+            vendorSystem.SetVendor(vendor);
+        }
+        StartCoroutine(vendorSystem.SetupVendor());
+        vendorSystem.cached = false;
     }
 
     private void OnCollisionEnter2D(Collision2D other)

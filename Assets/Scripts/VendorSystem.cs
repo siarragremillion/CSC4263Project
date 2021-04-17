@@ -118,6 +118,11 @@ public class VendorSystem : MonoBehaviour
             {
                 case 0:
                     vendor.PowerUp(textEle.text);
+                    var tempVol = SfxManager.sfxInstance.Audio.volume;
+                    SfxManager.sfxInstance.Audio.volume = 0.5f;
+                    SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.PlayerUpgrade);
+                    yield return new WaitForSeconds(SfxManager.sfxInstance.PlayerUpgrade.length * 2);
+                    SfxManager.sfxInstance.Audio.volume = tempVol;
                     break;
                 case 1:
                     grocerObtainFood = vendor.ObtainFood(textEle.text);
@@ -155,9 +160,15 @@ public class VendorSystem : MonoBehaviour
         }
 
         canLeaveInteraction = true;
+        yield return new WaitForSeconds(.3f);
+        var music = GameObject.FindGameObjectWithTag("Music");
+        var musicSource = music.GetComponent<AudioSource>();
+        musicSource.UnPause();
 
         StartCoroutine(SetupVendor());
         cached = false;
+        
+        
     }
 
     
