@@ -33,6 +33,15 @@ public class HealthManager : MonoBehaviour
     {
         if (!cached)
         {
+
+
+            if (currentHealth < 1)
+            {
+                rocky.alive = false;
+                // StartCoroutine(UIManager.GameOver());
+                UIManager.GameOver();
+            }
+
             rocky.Health = currentHealth;
 
             if (currentHealth > numHearts)
@@ -62,13 +71,6 @@ public class HealthManager : MonoBehaviour
             }
             rocky.Health = currentHealth;
             cached = true;
-
-
-            if (currentHealth <= 0)
-            {
-                rocky.alive = false;
-                StartCoroutine(UIManager.GameOver());
-            }
         }
     }
 
