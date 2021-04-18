@@ -24,7 +24,9 @@ public class VendorDoor : MonoBehaviour
 
         gameObject.SetActive(false);
         rocky.SavePlayer();
-        
+        rocky.journalSystem.SaveJournals();
+        rocky.GetComponent<RingHolder>().SaveRings();
+
         UIManager.LoadLevel("Level" + 0);
     }
 

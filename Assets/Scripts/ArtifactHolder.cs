@@ -46,11 +46,11 @@ public class ArtifactHolder : MonoBehaviour
 
     public IEnumerator ArtifactPickUp(Artifact artifact)
     {
+        dialogHandler.SetUpDialog();
         var music = GameObject.FindGameObjectWithTag("Music");
         var musicSource = music.GetComponent<AudioSource>();
         musicSource.Pause();
-        SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.ArtifactFound);
-        yield return new WaitForSeconds(SfxManager.sfxInstance.ArtifactFound.length / 2.0f);
+        
         AddArtifact(artifact.GetArtifactType());
 
         if(artifact.GetArtifactType() == Artifact.ArtifactType.Loot){
@@ -59,7 +59,7 @@ public class ArtifactHolder : MonoBehaviour
 
         Destroy(artifact.gameObject);
         dialogHandler.gameObject.SetActive(true);
-        dialogHandler.SetUpDialog();
+        
         string artifactDlg = "";
         switch(artifact.GetArtifactType()){
             case Artifact.ArtifactType.Totem:
@@ -71,7 +71,18 @@ public class ArtifactHolder : MonoBehaviour
         }
         StartCoroutine(dialogHandler.TypeDialog(artifactDlg));
 
-        musicSource.UnPause();
+        if (artifact.BossKey)
+        {
+            FindObjectOfType<Rocky>().journalSystem.FindJournal(6);
+        }
+        if (artifact.IsFirst)
+        {
+            FindObjectOfType<Rocky>().journalSystem.FindJournal(5);
+        }
+
+        SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.ArtifactFound);
+        yield return new WaitForSeconds(SfxManager.sfxInstance.ArtifactFound.length / 2.0f);
+
     }
 
 }

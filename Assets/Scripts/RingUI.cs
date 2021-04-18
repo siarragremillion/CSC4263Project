@@ -17,8 +17,7 @@ public class RingUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ringImage.sprite = ringSprites[0];
-        currentRing = RingType.none;
+        ringImage.sprite = ringSprites[SetCurrentRing()];
     }
 
     // Update is called once per frame
@@ -46,7 +45,6 @@ public class RingUI : MonoBehaviour
         {
             Debug.Log("No rings have been collected");
             return 0;
-            //maybe put a dialog box here saying you currently have not collected any rings
         }
         else
         {

@@ -5,10 +5,28 @@ using UnityEngine;
 public class RingHolder : MonoBehaviour
 {
     [SerializeField] private List<Ring.RingType> ringList;
-    private Ring.RingType activeRing = Ring.RingType.none;
+    private Ring.RingType activeRing;
 
-    private void Awake(){
-        ringList = new List<Ring.RingType>();
+    private void Start()
+    {
+        ringList = GlobalControl.Instance.ringList;
+        activeRing = GlobalControl.Instance.activeRing;
+    }
+
+    public void SaveRings()
+    {
+        GlobalControl.Instance.ringList = ringList;
+        GlobalControl.Instance.activeRing = activeRing;
+    }
+
+    public List<Ring.RingType> GetRingList()
+    {
+        return ringList;
+    }
+
+    public void SetRingList(List<Ring.RingType> _ringList)
+    {
+        ringList = _ringList;
     }
 
     public void AddRing(Ring.RingType ringType){
