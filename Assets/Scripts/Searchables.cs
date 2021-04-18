@@ -14,7 +14,11 @@ public class Searchables : MonoBehaviour
     public void isSearched()
     {
         Destroy(gameObject);
-        Instantiate(treasure, transform.position, transform.rotation);
+        if(treasure.tag == "Ring" 
+            && GameObject.FindGameObjectWithTag("Player").GetComponent<RingHolder>().ContainsRing(treasure.GetComponent<Ring>().GetRingType()))
+        {
+            Instantiate(treasure, transform.position, transform.rotation);
+        }
 
     }
 
