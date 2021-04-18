@@ -5,9 +5,6 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] GameObject completeSelector;
-    [SerializeField] public List<Text> completeItems;
-
     [SerializeField] GameObject pauseSelector;
     [SerializeField] public List<Text> pauseItems;
 
@@ -32,7 +29,6 @@ public class UIManager : MonoBehaviour
 
         InUI = false;
         hidePaused();
-        hideComplete();
 
         if (SceneManager.GetActiveScene().name.Contains("Level"))
         {
@@ -58,20 +54,6 @@ public class UIManager : MonoBehaviour
                 SelectHandler(pauseItems);
             }
         }
-    }
-
-    //shows level complete objects
-    public void showComplete()
-    {
-        Time.timeScale = 0;
-        completeSelector.SetActive(true);
-    }
-
-    //hides level complete objects
-    public void hideComplete()
-    {
-        Time.timeScale = 1;
-        completeSelector.SetActive(false);
     }
 
     //shows pause objects

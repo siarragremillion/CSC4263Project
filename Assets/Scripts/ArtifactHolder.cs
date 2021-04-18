@@ -50,8 +50,7 @@ public class ArtifactHolder : MonoBehaviour
         var music = GameObject.FindGameObjectWithTag("Music");
         var musicSource = music.GetComponent<AudioSource>();
         musicSource.Pause();
-        SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.ArtifactFound);
-        yield return new WaitForSeconds(SfxManager.sfxInstance.ArtifactFound.length / 2.0f);
+        
         AddArtifact(artifact.GetArtifactType());
 
         if(artifact.GetArtifactType() == Artifact.ArtifactType.Loot){
@@ -80,6 +79,9 @@ public class ArtifactHolder : MonoBehaviour
         {
             FindObjectOfType<Rocky>().journalSystem.FindJournal(5);
         }
+
+        SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.ArtifactFound);
+        yield return new WaitForSeconds(SfxManager.sfxInstance.ArtifactFound.length / 2.0f);
 
     }
 

@@ -818,8 +818,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5edfee925162f664ca20336b401d049a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  completeSelector: {fileID: 0}
-  completeItems: []
   pauseSelector: {fileID: 0}
   pauseItems: []
   journalSystem: {fileID: 0}
@@ -937,18 +935,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405c386285a11fd47a6e18bdb784fa15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 3
-  MaxHealth: 3
-  crystals: 50
-  maxCrystals: 99
-  currentWeapon: 0
-  alive: 0
-  swordPower: 3
-  gunPower: 2
-  waterRingisActive: 0
-  hasDrink: 0
-  hasFood: 0
-  canPause: 0
+  activeRing: 0
 --- !u!4 &1148579800
 Transform:
   m_ObjectHideFlags: 0
@@ -1305,6 +1292,11 @@ MonoBehaviour:
   Audio: {fileID: 1954810363}
   MenuSelection: {fileID: 0}
   itemPickup: {fileID: 8300000, guid: 80c6036c14c0f6842ad3def2b8e26a67, type: 3}
+  dialogBlip: {fileID: 8300000, guid: fb5cd4cf306ee8941b7848309a6abaa3, type: 3}
+  LevelComplete: {fileID: 8300000, guid: d9222c641ce3e8c46b1ce8768363050c, type: 3}
+  ArtifactFound: {fileID: 8300000, guid: d994b1685ed91944580b868d2471d372, type: 3}
+  PlayerUpgrade: {fileID: 8300000, guid: ee7027c1e568c1a4caca1e6e2e61c03e, type: 3}
+  PlayerDeath: {fileID: 8300000, guid: 6fd131df0bbea504a9a562def08016e5, type: 3}
 --- !u!4 &1954810362
 Transform:
   m_ObjectHideFlags: 0
