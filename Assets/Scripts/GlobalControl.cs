@@ -59,14 +59,28 @@ public class GlobalControl : MonoBehaviour
         {
             new JournalEntry {
                 Title = "Help!!!",
-                Content = @"I'm trapped at the bottom of this cave. I was searching for the secrets hidden within. Please come find me! You can switch weapons by pressing the E key.",
+                Content = @"Rocky,
+I’m taking a trip to look into that cave we spoke about last spring.
+I know you said it was dangerous and not worth it, but this needs to be examined. 
+If I’m not back in a week…well, I might need your help…
+- Chris 
+PS: Yes, I remember how to switch weapons with the E key.
+",
                 Author = "",
                 hasInJournal = true,
                 isAdded = false
             },
             new JournalEntry {
                 Title = "Vendors",
-                Content = @"Be fooled not by these trees... They bear scrumptious fruit.",
+                Content = @"Trees!  Imagine, trees that speak.
+Well, I suppose I don’t have to anymore.
+Shrewd trees nonetheless!
+But to be fair,
+the fruit they bear, 
+seems to be worth the fare!
+haHA!  I’m a poet now too!
+
+-Chris, the poet",
                 Author = "",
                 hasInJournal = true,
                 isAdded = false
@@ -74,32 +88,45 @@ public class GlobalControl : MonoBehaviour
             new JournalEntry
             {
                 Title = "Water Ring",
-                Content = @"When I first heard of this cave, I was told never to go in, for those who do, never come out.  I’ve yet to determine why that is.
-In fact, it would seem quite the opposite given my discoveries thus far, because I've found something!
-
-A ring, that imbues power!  It sounds like something out of a novel, yet here I am, holding it.
-When I wear it, it seems my steps tread so softly, almost like I could walk on nothing at all.
-
-
-Almost.  Attempts to fly or glide have failed.  It seems I still need the slightest resistance.",
+                Content = @"Another ring? 
+This one seems different, apart from its color.
+Again, though gem is blue, it doesn’t seem to be a sapphire.
+But I feel lighter.  Perhaps just light enough?
+--
+Attempts to fly have failed.
+It seems I still need a bit of resistance.
+-Chris",
                 Author = "",
                 hasInJournal = false,
                 isAdded = false
             },
             new JournalEntry {
                 Title = "Fire Ring",
-                Content = @"When holding this ring I feel the power of a flame. 
+                Content = @"A third ring!
+This one has a red gem,
+But this definitely isn’t a ruby.
+It’s terribly cold, icy even.
+--
+I’ve just discovered the purpose!
+Upon failing at cooking,
+I didn’t burn myself like I should have…
 
-I wonder if I would feel the pain of fire? Let me try it out.",
+-Chris",
                 Author = "",
                 hasInJournal = false,
                 isAdded = false
             },
             new JournalEntry {
                 Title = "Earth Ring",
-                Content = @"This ring gives me the strength of an ox! 
+                Content = @"A ring.  
 
-I bet I could move that boulder, I bet it could go for miles. ",
+It’s got a green gem on it.
+It doesn’t seem like an emerald, though…
+I’m not quite sure what this is actually.
+But upon wearing it, I feel…
+...stronger!
+
+-Chris",
                 Author = "",
                 hasInJournal = false,
                 isAdded = false
@@ -107,16 +134,29 @@ I bet I could move that boulder, I bet it could go for miles. ",
             new JournalEntry
             {
                 Title = "Artifacts",
-                Content = @"I’ve had a strange idea, terribly strange I must admit.  I see across this stream, an artifact.  The door to move forward is locked, but the door also has a indention that looks to hold one of those things quite nicely.  I think that’s the ticket out, or, I suppose in.
-
-The strange part.  Maybe I’m going mad…but I’d bet this ring will let me get across the stream rather nicely…",
+                Content = @"An artifact!  The dream of the archaeologist.
+Oh Rocky, I hope you get to see this.
+It’s like a totem!
+With more strange gems…
+--
+And it seems to have a purpose!
+There’s a door at the far end,
+And it has a socket shaped just like this thing…",
                 Author = "",
                 hasInJournal = false,
                 isAdded = false
             },
             new JournalEntry {
                 Title = "Boss",
-                Content = @"test5",
+                Content = @"Oh man Rocky, you were right.
+
+You’re cunning, so I'm sure you've made it this far.
+Something loud, fiery, and big is around the corner, and I think it knows I’m here.
+This might be the end of the line for me, old chap.
+I’ll see you on the other side.
+
+- Chris
+",
                 Author = "",
                 hasInJournal = false,
                 isAdded = false
