@@ -18,7 +18,7 @@ public class BossAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Time.time > nextFire){
+        if(Time.time > nextFire && GetComponent<EnemyAI>().FindTarget() != null){
             nextFire = Time.time + fireRate;
             Instantiate(bullet, ShootPoint.position, Quaternion.Euler(0, 0, 0));
             Instantiate(bullet, ShootPoint.position, Quaternion.Euler(0, 0, 90));

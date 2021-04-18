@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 4972026620554950700}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.1521, y: 1.7223, z: -1}
-  m_LocalScale: {x: 4.3569, y: 3.9123, z: 1}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -66,6 +66,7 @@ MonoBehaviour:
   power: 1
   damageRate: 10
   hitCooldown: 2
+  moveSpeed: 3
 --- !u!114 &1602624247652544053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,6 +81,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 6
   maxHealth: 6
+  rb: {fileID: 0}
   loot: {fileID: 5019906111271539464, guid: 4bc333a914bee4c40b7bd37284aee3cd, type: 3}
 --- !u!212 &4972026620554950697
 SpriteRenderer:
@@ -121,7 +123,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: aa94c6da14ecf4a8690f02549a9ac6a7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 32d393c5f4ca64783902d6596040762c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -145,8 +147,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.18, y: 0.29}
+  m_Offset: {x: -0.094200134, y: -0.08896685}
+  m_Size: {x: 5.2249565, y: 5.402891}
   m_Direction: 0
 --- !u!50 &4972026620554950702
 Rigidbody2D:

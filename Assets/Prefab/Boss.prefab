@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
-  detectDistance: 5
+  detectDistance: 10
   target: {fileID: 0}
 --- !u!114 &1033111335356924150
 MonoBehaviour:
@@ -135,7 +135,7 @@ MonoBehaviour:
   currentHealth: 10
   maxHealth: 10
   rb: {fileID: 0}
-  loot: {fileID: 0}
+  loot: {fileID: 6838195943250033023, guid: 26c40edbb0e424c218a4b553875de667, type: 3}
 --- !u!50 &1033111335356924148
 Rigidbody2D:
   serializedVersion: 4

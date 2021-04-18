@@ -52,10 +52,24 @@ public class ArtifactHolder : MonoBehaviour
         SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.ArtifactFound);
         yield return new WaitForSeconds(SfxManager.sfxInstance.ArtifactFound.length / 2.0f);
         AddArtifact(artifact.GetArtifactType());
+
+        if(artifact.GetArtifactType() == Artifact.ArtifactType.Loot){
+            Instantiate(artifact.loot, artifact.transform.position, artifact.transform.rotation);
+        }
+
         Destroy(artifact.gameObject);
         dialogHandler.gameObject.SetActive(true);
         dialogHandler.SetUpDialog();
-        StartCoroutine(dialogHandler.TypeDialog("You found the Artifact!\nYou can now complete the level.\nGo to the door!!!!"));
+        string artifactDlg = "";
+        switch(artifact.GetArtifactType()){
+            case Artifact.ArtifactType.Totem:
+                artifactDlg = "You found the Artifact!\nYou can now complete the level.\nGo to the door!!!!";
+                break;
+            case Artifact.ArtifactType.Loot:
+                artifactDlg = "You found an artifact!";
+                break;
+        }
+        StartCoroutine(dialogHandler.TypeDialog(artifactDlg));
 
         musicSource.UnPause();
     }

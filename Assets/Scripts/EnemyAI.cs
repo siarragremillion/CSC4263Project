@@ -32,7 +32,7 @@ public class EnemyAI : MonoBehaviour
         target = FindTarget();
     }
 
-    Transform FindTarget(){
+    public Transform FindTarget(){
         if(target == null){
             Transform _target = GameObject.FindGameObjectWithTag("Player").transform;
 
