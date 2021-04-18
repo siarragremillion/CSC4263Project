@@ -46,6 +46,7 @@ public class ArtifactHolder : MonoBehaviour
 
     public IEnumerator ArtifactPickUp(Artifact artifact)
     {
+        dialogHandler.SetUpDialog();
         var music = GameObject.FindGameObjectWithTag("Music");
         var musicSource = music.GetComponent<AudioSource>();
         musicSource.Pause();
@@ -59,7 +60,7 @@ public class ArtifactHolder : MonoBehaviour
 
         Destroy(artifact.gameObject);
         dialogHandler.gameObject.SetActive(true);
-        dialogHandler.SetUpDialog();
+        
         string artifactDlg = "";
         switch(artifact.GetArtifactType()){
             case Artifact.ArtifactType.Totem:
@@ -71,7 +72,15 @@ public class ArtifactHolder : MonoBehaviour
         }
         StartCoroutine(dialogHandler.TypeDialog(artifactDlg));
 
-        musicSource.UnPause();
+        if (artifact.BossKey)
+        {
+            FindObjectOfType<Rocky>().journalSystem.FindJournal(6);
+        }
+        if (artifact.IsFirst)
+        {
+            FindObjectOfType<Rocky>().journalSystem.FindJournal(5);
+        }
+
     }
 
 }

@@ -6,6 +6,8 @@ public class Artifact : MonoBehaviour
 {
     [SerializeField] private ArtifactType artifactType;
     [SerializeField] public GameObject loot;
+    [SerializeField] public bool BossKey;
+    [SerializeField] public bool IsFirst;
     public enum ArtifactType {
         Totem,
         Relic,

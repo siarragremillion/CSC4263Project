@@ -29,6 +29,8 @@ public class ArtifactDoor : MonoBehaviour
 
         gameObject.SetActive(false);
         rocky.SavePlayer();
+        rocky.journalSystem.SaveJournals();
+        rocky.GetComponent<RingHolder>().SaveRings();
         
         if (sceneName.Contains("Level"))
         {

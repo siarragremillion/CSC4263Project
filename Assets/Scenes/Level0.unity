@@ -4079,7 +4079,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bca22b461019a40639c4be46fff0fcc6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0b3c081953ea76e4d8675128d899fd95, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6054,6 +6054,57 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 990542140}
   m_CullTransparentMesh: 1
+--- !u!1 &1026782635
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1026782637}
+  - component: {fileID: 1026782636}
+  m_Layer: 0
+  m_Name: '@RingHandler'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1026782636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1026782635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b52bb988f8aa72045b9dbb0d6f3ef67e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ringImage: {fileID: 490010324}
+  ringSprites:
+  - {fileID: 21300000, guid: 0b3c081953ea76e4d8675128d899fd95, type: 3}
+  - {fileID: 21300000, guid: bca22b461019a40639c4be46fff0fcc6, type: 3}
+  - {fileID: 21300000, guid: b04b050cf515c42f09323240a41dfe8a, type: 3}
+  - {fileID: 21300000, guid: 01a0537218b5246f1b7b703b08dc2066, type: 3}
+  currentRing: 6
+  rocky: {fileID: 679069819}
+--- !u!4 &1026782637
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1026782635}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 774.70056, y: 367.4612, z: 174.79234}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1845922659}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1048119167
 GameObject:
   m_ObjectHideFlags: 0
@@ -6083,19 +6134,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405c386285a11fd47a6e18bdb784fa15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 3
-  MaxHealth: 3
-  crystals: 50
-  maxCrystals: 99
-  currentWeapon: 0
-  alive: 0
-  swordPower: 3
-  gunPower: 2
-  waterRingisActive: 0
-  ring: {fileID: 0}
-  hasDrink: 0
-  hasFood: 0
-  canPause: 0
 --- !u!4 &1048119169
 Transform:
   m_ObjectHideFlags: 0
@@ -11196,6 +11234,7 @@ Transform:
   - {fileID: 404068839}
   - {fileID: 127433091}
   - {fileID: 1247910133}
+  - {fileID: 1026782637}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

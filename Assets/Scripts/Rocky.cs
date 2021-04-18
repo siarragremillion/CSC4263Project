@@ -28,8 +28,6 @@ public class Rocky : MonoBehaviour
     public DialogHandler dialogHandler;
     public JournalSystem journalSystem;
 
-    private Ring.RingType typeRing;
-
     private Ring ring;
 
     public bool hasDrink;
@@ -46,11 +44,10 @@ public class Rocky : MonoBehaviour
         alive = GlobalControl.Instance.alive;
         swordPower = GlobalControl.Instance.swordPower;
         gunPower = GlobalControl.Instance.gunPower;
-        waterRingisActive = GlobalControl.Instance.waterRingisActive;
         hasFood = GlobalControl.Instance.hasFood;
         hasDrink = GlobalControl.Instance.hasDrink;
-        ring = GlobalControl.Instance.ring;
         GemHandler.gemAmount = crystals;
+        ring = GlobalControl.Instance.ring;
     }
 
     // Update is called once per frame
@@ -104,6 +101,7 @@ public class Rocky : MonoBehaviour
         GlobalControl.Instance.alive = alive;
         GlobalControl.Instance.hasDrink = hasDrink;
         GlobalControl.Instance.hasFood = hasFood;
+        GlobalControl.Instance.ring = ring;
     }
 
     public void ChangeWeapon()
@@ -229,17 +227,17 @@ public class Rocky : MonoBehaviour
         if (ring.GetRingType() == Ring.RingType.RedSilver)
         {
             dialogText = "You found the Fire Ring!\nYou can now walk through fire.";
-            journalSystem.FindJournal(2);
+            journalSystem.FindJournal(3);
         }
         else if (ring.GetRingType() == Ring.RingType.BlueSilver)
         {
             dialogText = "You found the Water Ring!\nYou can now walk on water.";
-            journalSystem.FindJournal(1);
+            journalSystem.FindJournal(2);
         }
         else if (ring.GetRingType() == Ring.RingType.GreenSilver)
         {
             dialogText = "You found the Earch Ring!\nYou can now move heavy boulders.";
-            journalSystem.FindJournal(3);
+            journalSystem.FindJournal(4);
         }
 
         dialogHandler.gameObject.SetActive(true);
