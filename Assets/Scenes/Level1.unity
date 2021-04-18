@@ -15960,12 +15960,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1406301209}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.09, y: -0.25, z: -1.2557751}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -50.506176, y: 4.8037176, z: 118.73591}
   m_LocalScale: {x: 7, y: 7, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_Father: {fileID: 1795918751}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1445082007
 RectTransform:
@@ -36198,6 +36198,7 @@ MonoBehaviour:
   swordPower: 0
   gunPower: 0
   waterRingisActive: 0
+  ring: {fileID: 0}
   hasDrink: 0
   hasFood: 0
   canPause: 0
@@ -36245,6 +36246,7 @@ Transform:
   - {fileID: 1613353542}
   - {fileID: 6053504220980402345}
   - {fileID: 368683202}
+  - {fileID: 1406301214}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

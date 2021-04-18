@@ -32,7 +32,15 @@ public class ArtifactDoor : MonoBehaviour
         {
             var lastChar = sceneName.Substring(sceneName.Length - 1);
             var lastInt = int.Parse(lastChar);
-            lastInt++;
+            if (lastInt == 0)
+            {
+                lastInt = GlobalControl.Instance.currentLevel;
+            }
+            else
+            {
+                lastInt++;
+                GlobalControl.Instance.currentLevel = lastInt;
+            }
             UIManager.LoadLevel("Level" + lastInt);
         }
     }

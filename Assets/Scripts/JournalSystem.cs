@@ -109,7 +109,7 @@ The strange part.  Maybe I’m going mad…but I’d bet this ring will let me get acr
     // Update is called once per frame
     void Update()
     {
-        if (InJournal && GlobalControl.Instance.canPause)
+        if (InJournal)
         {
             if (!cached)
             {
@@ -245,12 +245,12 @@ The strange part.  Maybe I’m going mad…but I’d bet this ring will let me get acr
 
     public void ItemSelected(string selectedText, int journalNumber)
     {
-        Debug.Log(selectedText);
+        //Debug.Log(selectedText);
         if (selectedText.Equals("<"))
         {
             JournalSelector.SetActive(false);
             var uiManager = GameObject.FindObjectOfType<UIManager>();
-
+            InJournal = false;
             uiManager.ReEnterPause();
         }
         else

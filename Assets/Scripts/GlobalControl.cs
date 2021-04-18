@@ -28,6 +28,8 @@ public class GlobalControl : MonoBehaviour
 
     public bool canPause;
 
+    public int currentLevel;
+
     private void Start()
     {
         swordPower = 3;
@@ -41,7 +43,7 @@ public class GlobalControl : MonoBehaviour
         hasFood = false;
         canPause = true;
         alive = true;
-        ring = new Ring();
+        //ring = new Ring();
     }
     
     void Awake()

@@ -56,7 +56,6 @@ public class UIManager : MonoBehaviour
             if (InUI)
             {
                 SelectHandler(pauseItems);
-
             }
         }
     }
@@ -95,6 +94,7 @@ public class UIManager : MonoBehaviour
             Time.timeScale = 0;
             showPaused();
             InUI = true;
+
             var music = GameObject.FindGameObjectWithTag("Music");
             var musicSource = music.GetComponent<AudioSource>();
             musicSource.Pause();
@@ -104,6 +104,7 @@ public class UIManager : MonoBehaviour
             Time.timeScale = 1;
             hidePaused();
             InUI = false;
+
             var music = GameObject.FindGameObjectWithTag("Music");
             var musicSource = music.GetComponent<AudioSource>();
             musicSource.UnPause();
@@ -113,8 +114,10 @@ public class UIManager : MonoBehaviour
     // Method that the JournalSystem Calls to leave the journal and return to the pause menu
     public void ReEnterPause()
     {
+
         showPaused();
         journalFlag = false;
+        InUI = true;
     }
 
     public void SelectHandler(List<Text> selectorTexts)
@@ -131,6 +134,7 @@ public class UIManager : MonoBehaviour
             }
 
             UpdateItemSelection(selector, selectorTexts);
+
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -172,6 +176,7 @@ public class UIManager : MonoBehaviour
                 break;
             case "Journal":
                 hidePaused();
+                InUI = false;
                 journalFlag = true;
                 journalSystem.SetUp();
                 break;
