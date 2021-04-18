@@ -12,6 +12,9 @@ public class DialogHandler : MonoBehaviour
     public void SetUpDialog()
     {
         rocky.GetComponent<PlayerMovement>().FreezeMovement();
+        var music = GameObject.FindGameObjectWithTag("Music");
+        var musicSource = music.GetComponent<AudioSource>();
+        musicSource.Pause();
         inDialog = true;
     }
 

@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] public List<Text> pauseItems;
 
     [SerializeField] public JournalSystem journalSystem;
+
     [SerializeField] public bool journalFlag;
 
     private int selector;
@@ -94,12 +95,18 @@ public class UIManager : MonoBehaviour
             Time.timeScale = 0;
             showPaused();
             InUI = true;
+            var music = GameObject.FindGameObjectWithTag("Music");
+            var musicSource = music.GetComponent<AudioSource>();
+            musicSource.Pause();
         }
         else if (Time.timeScale == 0)
         {
             Time.timeScale = 1;
             hidePaused();
             InUI = false;
+            var music = GameObject.FindGameObjectWithTag("Music");
+            var musicSource = music.GetComponent<AudioSource>();
+            musicSource.UnPause();
         }
     }
 

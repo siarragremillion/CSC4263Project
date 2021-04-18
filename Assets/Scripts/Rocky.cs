@@ -35,11 +35,6 @@ public class Rocky : MonoBehaviour
     public bool hasDrink;
     public bool hasFood;
 
-/*    // RingFound.mp3 but could be used for other things as well
-    public AudioClip pickUpSound;
-
-    public AudioSource audioSource;*/
-
     // Start is called before the first frame update
     void Start()
     {
@@ -54,6 +49,7 @@ public class Rocky : MonoBehaviour
         waterRingisActive = GlobalControl.Instance.waterRingisActive;
         hasFood = GlobalControl.Instance.hasFood;
         hasDrink = GlobalControl.Instance.hasDrink;
+        ring = GlobalControl.Instance.ring;
         GemHandler.gemAmount = crystals;
     }
 
@@ -67,12 +63,15 @@ public class Rocky : MonoBehaviour
             StartCoroutine(UIManager.GameOver());
         }
 
-        if (Input.GetKeyDown(KeyCode.F)) {
-            if(currentWeapon < 2){
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (currentWeapon < 2)
+            {
                 currentWeapon++;
                 ChangeWeapon();
             }
-            else{
+            else
+            {
                 currentWeapon = 0;
                 ChangeWeapon();
             }
@@ -83,33 +82,14 @@ public class Rocky : MonoBehaviour
         {
             if (currentSearchable) //if player is collided with a searchable
             {
-                StartCoroutine(Searchable());
+                currentSearchable.SendMessage("isSearched");
             }
             if (currentInteractable)
             {
-                currentInteractable.SendMessage("isPickedUp");
-                GetComponent<RingHolder>().AddRing(ring.GetRingType());
-                GetComponent<RingHolder>().SetActiveRing(ring.GetRingType());
-                string dialogText = "";
-                if (ring.GetRingType() == Ring.RingType.RedSilver)
-                {
-                    dialogText = "You found the Fire Ring!\nYou can now walk through fire.";
-                }
-                else if (ring.GetRingType() == Ring.RingType.BlueSilver)
-                {
-                    dialogText = "You found the Water Ring!\nYou can now walk on water.";
-                }
-                else if (ring.GetRingType() == Ring.RingType.GreenSilver)
-                {
-                    dialogText = "You found the Earch Ring!\nYou can now move heavy boulders.";
-                }
-
-                dialogHandler.gameObject.SetActive(true);
-                StartCoroutine(dialogHandler.TypeDialog(dialogText));
-                journalSystem.FindJournal(1);
+                StartCoroutine(Interactable());
             }
         }
-        
+
     }
 
     // Save data to global control
@@ -125,14 +105,15 @@ public class Rocky : MonoBehaviour
         GlobalControl.Instance.hasFood = hasFood;
     }
 
-    public void ChangeWeapon(){
-        if(currentWeapon == 0)
+    public void ChangeWeapon()
+    {
+        if (currentWeapon == 0)
         {
             GetComponent<RangedWeaponController>().SetActive(true);
             GetComponent<MeleeWeaponController>().SetActive(false);
 
         }
-        else if(currentWeapon == 1)
+        else if (currentWeapon == 1)
         {
             GetComponent<RangedWeaponController>().SetActive(false);
             GetComponent<MeleeWeaponController>().SetActive(true);
@@ -181,7 +162,7 @@ public class Rocky : MonoBehaviour
         }
     }
 
-    public bool SpendCrystal (int value)
+    public bool SpendCrystal(int value)
     {
         if (crystals >= value)
         {
@@ -203,7 +184,7 @@ public class Rocky : MonoBehaviour
     //for searchables
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag ("Searchable"))
+        if (other.CompareTag("Searchable"))
         {
             Debug.Log(other.name);
             currentSearchable = other.gameObject;
@@ -220,7 +201,7 @@ public class Rocky : MonoBehaviour
     {
         if (other.CompareTag("Searchable"))
         {
-            if(other.gameObject == currentSearchable)
+            if (other.gameObject == currentSearchable)
             {
                 currentSearchable = null;
             }
@@ -234,20 +215,42 @@ public class Rocky : MonoBehaviour
         }
     }
 
-    IEnumerator Searchable()
+    IEnumerator Interactable()
     {
         var music = GameObject.FindGameObjectWithTag("Music");
         var musicSource = music.GetComponent<AudioSource>();
         musicSource.Pause();
 
+        currentInteractable.SendMessage("isPickedUp");
+        GetComponent<RingHolder>().AddRing(ring.GetRingType());
+        GetComponent<RingHolder>().SetActiveRing(ring.GetRingType());
+        string dialogText = "";
+        if (ring.GetRingType() == Ring.RingType.RedSilver)
+        {
+            dialogText = "You found the Fire Ring!\nYou can now walk through fire.";
+            journalSystem.FindJournal(2);
+        }
+        else if (ring.GetRingType() == Ring.RingType.BlueSilver)
+        {
+            dialogText = "You found the Water Ring!\nYou can now walk on water.";
+            journalSystem.FindJournal(1);
+        }
+        else if (ring.GetRingType() == Ring.RingType.GreenSilver)
+        {
+            dialogText = "You found the Earch Ring!\nYou can now move heavy boulders.";
+            journalSystem.FindJournal(3);
+        }
+
+        dialogHandler.gameObject.SetActive(true);
+        StartCoroutine(dialogHandler.TypeDialog(dialogText));
+        
 
         gameObject.GetComponent<PlayerMovement>().FreezeMovement();
         SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.itemPickup);
 
         yield return new WaitForSeconds(SfxManager.sfxInstance.itemPickup.length / 2);
 
-        currentSearchable.SendMessage("isSearched");
-
-        gameObject.GetComponent<PlayerMovement>().UnfreezeMovement();
     }
+
+
 }

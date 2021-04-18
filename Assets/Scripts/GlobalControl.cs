@@ -21,6 +21,8 @@ public class GlobalControl : MonoBehaviour
     public int gunPower;
     public bool waterRingisActive;
 
+    public Ring ring;
+
     public bool hasDrink;
     public bool hasFood;
 
@@ -39,6 +41,7 @@ public class GlobalControl : MonoBehaviour
         hasFood = false;
         canPause = true;
         alive = true;
+        ring = new Ring();
     }
     
     void Awake()

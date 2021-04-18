@@ -17,14 +17,11 @@ public class JournalSystem : MonoBehaviour
 
     private int selector;
     private int titleCounter;
-    private bool isInSecondHalf;
     private bool backButtonAdded;
     private bool cached;
 
     [SerializeField] Color highlightedColor;
     [SerializeField] Color defaultColor;
-
-    public UIManager uiManager;
 
     // Start is called before the first frame update
     void Start()
@@ -40,7 +37,7 @@ public class JournalSystem : MonoBehaviour
             },
             new JournalEntry
             {
-                Title = "Rings",
+                Title = "Water Ring",
                 Content = @"When I first heard of this cave, I was told never to go in, for those who do, never come out.  I’ve yet to determine why that is.
 In fact, it would seem quite the opposite given my discoveries thus far, because I've found something!
 
@@ -53,26 +50,26 @@ Almost.  Attempts to fly or glide have failed.  It seems I still need the slight
                 hasInJournal = false,
                 isAdded = false
             },
+            new JournalEntry {
+                Title = "Fire Ring",
+                Content = @"When holding this ring I feel the power of a flame. I wonder if I would feel the pain of fire? Let me try it out.",
+                Author = "",
+                hasInJournal = false,
+                isAdded = false
+            },
+            new JournalEntry {
+                Title = "Earth Ring",
+                Content = @"This ring gives me the strength of an ox! I bet I could move that boulder, I bet it could go for miles. ",
+                Author = "",
+                hasInJournal = false,
+                isAdded = false
+            },
             new JournalEntry
             {
                 Title = "Artifacts",
                 Content = @"I’ve had a strange idea, terribly strange I must admit.  I see across this stream, an artifact.  The door to move forward is locked, but the door also has a indention that looks to hold one of those things quite nicely.  I think that’s the ticket out, or, I suppose in.
 
 The strange part.  Maybe I’m going mad…but I’d bet this ring will let me get across the stream rather nicely…",
-                Author = "",
-                hasInJournal = false,
-                isAdded = false
-            },
-            new JournalEntry {
-                Title = "Test1",
-                Content = @"Test1",
-                Author = "",
-                hasInJournal = false,
-                isAdded = false
-            },
-            new JournalEntry {
-                Title = "test2",
-                Content = @"test2",
                 Author = "",
                 hasInJournal = false,
                 isAdded = false
@@ -112,7 +109,7 @@ The strange part.  Maybe I’m going mad…but I’d bet this ring will let me get acr
     // Update is called once per frame
     void Update()
     {
-        if (InJournal)
+        if (InJournal && GlobalControl.Instance.canPause)
         {
             if (!cached)
             {
@@ -151,73 +148,29 @@ The strange part.  Maybe I’m going mad…but I’d bet this ring will let me get acr
         {
             item.isAdded = false;
         }
-
-        if (titleCounter > 7)
+        int journalSelectorTextIndex = 0;
+        for (int i = 0; i < journals.Count; i++)
         {
-
-            if (isInSecondHalf)
+            if (journals[i].hasInJournal && !journals[i].isAdded)
             {
-                JournalTitlesTexts[0].text = "...";
-                JournalTitles.Add("...");
-                for (int i = 6; i < journals.Count; i++)
-                {
-                    if (journals[i].hasInJournal && !journals[i].isAdded)
-                    {
-                        JournalTitlesTexts[i - 5].text = journals[i].Title;
-                        JournalTitles.Add(journals[i].Title);
 
-                        journals[i].isAdded = true;
+                JournalTitlesTexts[journalSelectorTextIndex].text = journals[i].Title;
+                JournalTitles.Add(journals[i].Title);
 
-                        titleCounter++;
-                    }
-                }
+                journals[i].isAdded = true;
+
+                titleCounter++;
+                journalSelectorTextIndex++;
             }
-            else
-            {
-                for (int i = 0; i < 6; i++)
-                {
-                    if (journals[i].hasInJournal && !journals[i].isAdded)
-                    {
-                        JournalTitlesTexts[i].text = journals[i].Title;
-                        JournalTitles.Add(journals[i].Title);
 
-                        journals[i].isAdded = true;
-
-                        titleCounter++;
-                    }
-                }
-                JournalTitlesTexts[6].text = "...";
-                JournalTitles.Add("...");
-            }
-            if (!backButtonAdded)
-            {
-                JournalTitles.Add(BackButton.text);
-                backButtonAdded = true;
-            }
         }
-        else
+
+        if (!backButtonAdded)
         {
-            for (int i = 0; i < journals.Count; i++)
-            {
-                if (journals[i].hasInJournal && !journals[i].isAdded)
-                {
-
-                        JournalTitlesTexts[i].text = journals[i].Title;
-                        JournalTitles.Add(journals[i].Title);
-
-                        journals[i].isAdded = true;
-
-                        titleCounter++;
-                    
-                }
-            }
-
-            if (!backButtonAdded)
-            {
-                JournalTitles.Add(BackButton.text);
-                backButtonAdded = true;
-            }
+            JournalTitles.Add(BackButton.text);
+            backButtonAdded = true;
         }
+        ShowTitles();
         cached = true;
     }
 
@@ -296,24 +249,16 @@ The strange part.  Maybe I’m going mad…but I’d bet this ring will let me get acr
         if (selectedText.Equals("<"))
         {
             JournalSelector.SetActive(false);
+            var uiManager = GameObject.FindObjectOfType<UIManager>();
+
             uiManager.ReEnterPause();
-        }
-        else if (selectedText.Equals("..."))
-        {
-            // Show next page....
-            isInSecondHalf = !isInSecondHalf;
-            cached = false;
         }
         else
         {
-            if (isInSecondHalf)
+            var journal = journals.Find(u => u.Title.Equals(selectedText));
+            if (journal != null)
             {
-                JournalContent.text = journals[journalNumber + 5].Content;
-                JournalContent.gameObject.SetActive(true);
-            }
-            else
-            {
-                JournalContent.text = journals[journalNumber].Content;
+                JournalContent.text = journal.Content;
                 JournalContent.gameObject.SetActive(true);
             }
         }
