@@ -360,7 +360,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "Members:\n\n\n\tAbigail Crabtree\n\t\t- Developer\n\t\t- Documentation\n\n\tSiarra
     Gremillion\n\t\t- Team Lead\n\t\t- Developer\n\n\tSeth Richard\n\t\t- UI Specialist\n\t\t-
-    Developer\n\n\tTalia Teplizky\n\t\t- Lead Developer\n\t\t- Powerhouse\n\n\tStephen
+    Developer\n\n\tTalia Teplitzky\n\t\t- Lead Developer\n\t\t- Powerhouse\n\n\tStephen
     A. Watson\n\t\t- Graphics\n\t\t- Level Design\n"
 --- !u!222 &191282007
 CanvasRenderer:
@@ -1323,7 +1323,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0

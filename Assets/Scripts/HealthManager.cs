@@ -21,8 +21,8 @@ public class HealthManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {   
-        currentHealth = 3;
-        numHearts = 3;
+        currentHealth = GlobalControl.Instance.Health;
+        numHearts = GlobalControl.Instance.MaxHealth;
         cached = false;
 
         rocky = GameObject.FindGameObjectWithTag("Player").GetComponent<Rocky>();

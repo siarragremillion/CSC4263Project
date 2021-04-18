@@ -55,7 +55,7 @@ public class GlobalControl : MonoBehaviour
         alive = true;
         currentLevel = 1;
         ringList = new List<Ring.RingType>();
-        journals = journals = new List<JournalEntry>
+        journals = new List<JournalEntry>
         {
             new JournalEntry {
                 Title = "Help!!!",

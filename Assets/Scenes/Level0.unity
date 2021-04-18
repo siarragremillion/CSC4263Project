@@ -375,7 +375,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -3877,10 +3877,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5edfee925162f664ca20336b401d049a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  completeSelector: {fileID: 89797406}
-  completeItems:
-  - {fileID: 1964841281}
-  - {fileID: 931712841}
   pauseSelector: {fileID: 1583146}
   pauseItems:
   - {fileID: 1583145}
@@ -6134,6 +6130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405c386285a11fd47a6e18bdb784fa15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activeRing: 0
 --- !u!4 &1048119169
 Transform:
   m_ObjectHideFlags: 0
@@ -6544,7 +6541,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 52cf5c3b2468441448b2a1b9519e8a95, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.418
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0

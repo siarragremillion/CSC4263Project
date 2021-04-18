@@ -29,7 +29,7 @@ public class RingUI : MonoBehaviour
         }
 
         //changing rings
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             ringImage.sprite = ringSprites[SetCurrentRing()];
         }
