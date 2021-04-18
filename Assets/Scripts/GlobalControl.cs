@@ -21,6 +21,7 @@ public class GlobalControl : MonoBehaviour
     public int gunPower { get; set; }
 
     public List<Ring.RingType> ringList { get; set; }
+    public List<Artifact.ArtifactType> artifactList { get; set; }
 
     public bool hasDrink { get; set; }
     public bool hasFood { get; set; }
@@ -55,14 +56,15 @@ public class GlobalControl : MonoBehaviour
         alive = true;
         currentLevel = 1;
         ringList = new List<Ring.RingType>();
+        artifactList = new List<Artifact.ArtifactType>();
         journals = journals = new List<JournalEntry>
         {
             new JournalEntry {
                 Title = "Help!!!",
                 Content = @"Rocky,
-I’m taking a trip to look into that cave we spoke about last spring.
+Iï¿½m taking a trip to look into that cave we spoke about last spring.
 I know you said it was dangerous and not worth it, but this needs to be examined. 
-If I’m not back in a week…well, I might need your help…
+If Iï¿½m not back in a weekï¿½well, I might need your helpï¿½
 - Chris 
 PS: Yes, I remember how to switch weapons with the E key.
 ",
@@ -73,12 +75,12 @@ PS: Yes, I remember how to switch weapons with the E key.
             new JournalEntry {
                 Title = "Vendors",
                 Content = @"Trees!  Imagine, trees that speak.
-Well, I suppose I don’t have to anymore.
+Well, I suppose I donï¿½t have to anymore.
 Shrewd trees nonetheless!
 But to be fair,
 the fruit they bear, 
 seems to be worth the fare!
-haHA!  I’m a poet now too!
+haHA!  Iï¿½m a poet now too!
 
 -Chris, the poet",
                 Author = "",
@@ -90,7 +92,7 @@ haHA!  I’m a poet now too!
                 Title = "Water Ring",
                 Content = @"Another ring? 
 This one seems different, apart from its color.
-Again, though gem is blue, it doesn’t seem to be a sapphire.
+Again, though gem is blue, it doesnï¿½t seem to be a sapphire.
 But I feel lighter.  Perhaps just light enough?
 --
 Attempts to fly have failed.
@@ -104,12 +106,12 @@ It seems I still need a bit of resistance.
                 Title = "Fire Ring",
                 Content = @"A third ring!
 This one has a red gem,
-But this definitely isn’t a ruby.
-It’s terribly cold, icy even.
+But this definitely isnï¿½t a ruby.
+Itï¿½s terribly cold, icy even.
 --
-I’ve just discovered the purpose!
+Iï¿½ve just discovered the purpose!
 Upon failing at cooking,
-I didn’t burn myself like I should have…
+I didnï¿½t burn myself like I should haveï¿½
 
 -Chris",
                 Author = "",
@@ -120,10 +122,10 @@ I didn’t burn myself like I should have…
                 Title = "Earth Ring",
                 Content = @"A ring.  
 
-It’s got a green gem on it.
-It doesn’t seem like an emerald, though…
-I’m not quite sure what this is actually.
-But upon wearing it, I feel…
+Itï¿½s got a green gem on it.
+It doesnï¿½t seem like an emerald, thoughï¿½
+Iï¿½m not quite sure what this is actually.
+But upon wearing it, I feelï¿½
 ...stronger!
 
 -Chris",
@@ -136,12 +138,12 @@ But upon wearing it, I feel…
                 Title = "Artifacts",
                 Content = @"An artifact!  The dream of the archaeologist.
 Oh Rocky, I hope you get to see this.
-It’s like a totem!
-With more strange gems…
+Itï¿½s like a totem!
+With more strange gemsï¿½
 --
 And it seems to have a purpose!
-There’s a door at the far end,
-And it has a socket shaped just like this thing…",
+Thereï¿½s a door at the far end,
+And it has a socket shaped just like this thingï¿½",
                 Author = "",
                 hasInJournal = false,
                 isAdded = false
@@ -150,10 +152,10 @@ And it has a socket shaped just like this thing…",
                 Title = "Boss",
                 Content = @"Oh man Rocky, you were right.
 
-You’re cunning, so I'm sure you've made it this far.
-Something loud, fiery, and big is around the corner, and I think it knows I’m here.
+Youï¿½re cunning, so I'm sure you've made it this far.
+Something loud, fiery, and big is around the corner, and I think it knows Iï¿½m here.
 This might be the end of the line for me, old chap.
-I’ll see you on the other side.
+Iï¿½ll see you on the other side.
 
 - Chris
 ",
