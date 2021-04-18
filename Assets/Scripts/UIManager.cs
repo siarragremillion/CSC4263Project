@@ -211,8 +211,8 @@ public class UIManager : MonoBehaviour
         var music = GameObject.FindGameObjectWithTag("Music");
         var musicSource = music.GetComponent<AudioSource>();
         musicSource.Pause();
-        SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.PlayerDeath);
-        yield return new WaitForSeconds(SfxManager.sfxInstance.PlayerDeath.length / 2.0f);
+        SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.LevelComplete);
+        yield return new WaitForSeconds(SfxManager.sfxInstance.LevelComplete.length / 2.0f);
 
         SceneManager.LoadScene("GameCompleteScene");
     }

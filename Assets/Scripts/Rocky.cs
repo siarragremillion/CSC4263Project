@@ -33,6 +33,8 @@ public class Rocky : MonoBehaviour
     public bool hasDrink;
     public bool hasFood;
 
+    public bool WithinChris;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -61,7 +63,7 @@ public class Rocky : MonoBehaviour
             UIManager.GameOver();
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             if (currentWeapon < 2)
             {
@@ -86,13 +88,28 @@ public class Rocky : MonoBehaviour
             {
                 StartCoroutine(Interactable());
             }
+            if (WithinChris)
+            {
+                StartCoroutine(Chris());
+            }
         }
+    }
 
+    IEnumerator Chris()
+    {
+        dialogHandler.SetUpDialog();
+        dialogHandler.gameObject.SetActive(true);
+        yield return StartCoroutine(dialogHandler.TypeDialog(@"Hey Rocky, you found me! Thank you so much. 
+
+It was very scary down here with that thing. Let's go have a nap."));
+
+        StartCoroutine(UIManager.GameComplete());
     }
 
     // Save data to global control
     public void SavePlayer()
     {
+        GetComponent<HealthManager>().cached = false;
         GlobalControl.Instance.Health = Health;
         GlobalControl.Instance.MaxHealth = MaxHealth;
         GlobalControl.Instance.crystals = crystals;
@@ -172,14 +189,6 @@ public class Rocky : MonoBehaviour
         return false;
     }
 
-    // void OnCollisionEnter2D (Collision2D collision)
-    // {
-    //     if(collision.gameObject.tag == "Gun")
-    //     {
-    //         Physics2D.IgnoreCollision(Gun.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-    //     }
-    // }
-
     //for searchables
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -193,6 +202,10 @@ public class Rocky : MonoBehaviour
             currentInteractable = other.gameObject;
             ring = currentInteractable.GetComponent<Ring>();
             Debug.Log(ring.GetRingType());
+        }
+        if (other.CompareTag("Chris"))
+        {
+            WithinChris = true;
         }
     }
 
@@ -211,6 +224,10 @@ public class Rocky : MonoBehaviour
             {
                 currentInteractable = null;
             }
+        }
+        if (other.CompareTag("Chris"))
+        {
+            WithinChris = false;
         }
     }
 
