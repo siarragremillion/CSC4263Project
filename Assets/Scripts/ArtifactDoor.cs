@@ -6,12 +6,14 @@ using UnityEngine.SceneManagement;
 public class ArtifactDoor : MonoBehaviour
 {
     [SerializeField] private Artifact.ArtifactType artifactType;
+    public Sprite sprite;
 
     public Artifact.ArtifactType GetArtifactType() {
         return artifactType;
     }
 
     public IEnumerator OpenDoor(Rocky rocky) {
+        GetComponent<SpriteRenderer>().sprite = sprite;
         var sceneName = SceneManager.GetActiveScene().name;
         var music = GameObject.FindGameObjectWithTag("Music");
         var musicSource = music.GetComponent<AudioSource>();
