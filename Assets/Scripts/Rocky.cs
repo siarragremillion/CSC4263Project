@@ -56,11 +56,12 @@ public class Rocky : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Health < 0 || Health == 0)
+        if (Health <= 0)
         {
             Debug.Log("Rocky Is Dead");
             alive = false;
-            StartCoroutine(UIManager.GameOver());
+            // StartCoroutine(UIManager.GameOver());
+            UIManager.GameOver();
         }
 
         if (Input.GetKeyDown(KeyCode.F))
