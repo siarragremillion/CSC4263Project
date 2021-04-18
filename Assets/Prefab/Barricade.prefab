@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7377248643829366785}
   - component: {fileID: 7377248643829366798}
   - component: {fileID: 7377248643829366799}
+  - component: {fileID: 3229297633737882885}
   m_Layer: 0
   m_Name: Barricade
   m_TagString: Untagged
@@ -27,9 +28,8 @@ Transform:
   m_GameObject: {fileID: 7377248643829366796}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.682, y: 2.973, z: -0.901198}
-  m_LocalScale: {x: 3.3182857, y: 3.3182857, z: 3.3182857}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 3.3182857}
   m_Children:
-  - {fileID: 7377248644632820105}
   - {fileID: 7377248644836219559}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -47,18 +47,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.32376558, y: -0.06571695}
+  m_Offset: {x: -0.17828822, y: -0.9865078}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.2, y: 3.2}
+    newSize: {x: 3.2, y: 3.2}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.95884335, y: 0.58164114}
+  m_Size: {x: 4.5416827, y: 2.4232233}
   m_EdgeRadius: 0
 --- !u!114 &7377248643829366799
 MonoBehaviour:
@@ -73,44 +73,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   artifactType: 0
---- !u!1 &7377248644632820118
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7377248644632820105}
-  - component: {fileID: 7377248644632820104}
-  m_Layer: 0
-  m_Name: rock
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7377248644632820105
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7377248644632820118}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.25, y: 0.19, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 7377248643829366785}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &7377248644632820104
+  sprite: {fileID: 21300000, guid: 2339df3d4a01e4872bba28fe2cffb288, type: 3}
+--- !u!212 &3229297633737882885
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7377248644632820118}
+  m_GameObject: {fileID: 7377248643829366796}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -143,13 +113,13 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 37eaf6e537ca749adaaea0a3e900d411, type: 3}
+  m_SortingOrder: 4
+  m_Sprite: {fileID: 21300000, guid: 7f6179cbb9e1e461d9bf90f6003fa26d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.31, y: 0.29}
+  m_Size: {x: 3.2, y: 3.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -184,7 +154,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7377248643829366785}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &7377248644836219558
 BoxCollider2D:
@@ -199,7 +169,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.24885339, y: 0.15046957}
+  m_Offset: {x: 0.032057524, y: -0.6767783}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -210,5 +180,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.29973805, y: 0.13190615}
+  m_Size: {x: 2.7643666, y: 1.7864017}
   m_EdgeRadius: 0
