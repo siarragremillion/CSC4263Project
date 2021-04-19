@@ -38,7 +38,8 @@ public class ArtifactHolder : MonoBehaviour
                 StartCoroutine(artifactDoor.OpenDoor(gameObject.GetComponent<Rocky>()));
             }
             else if(ContainsArtifact(artifactDoor.GetArtifactType())){
-                RemoveArtifact(artifactDoor.GetArtifactType());
+                // RemoveArtifact(artifactDoor.GetArtifactType());
+                GlobalControl.artifactList = new List<Artifact.ArtifactType>();
                 StartCoroutine(artifactDoor.OpenDoor(gameObject.GetComponent<Rocky>()));
             }
         }
