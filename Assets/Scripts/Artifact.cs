@@ -8,6 +8,13 @@ public class Artifact : MonoBehaviour
     [SerializeField] public GameObject loot;
     [SerializeField] public bool BossKey;
     [SerializeField] public bool IsFirst;
+
+    void Start() {
+        if(GameObject.FindGameObjectWithTag("Player").GetComponent<ArtifactHolder>().ContainsArtifact(artifactType)){
+            gameObject.SetActive(false);
+        }
+    }
+
     public enum ArtifactType {
         Totem,
         Relic,
