@@ -45,7 +45,7 @@ public class GlobalControl : MonoBehaviour
         swordPower = 3;
         gunPower = 2;
         MaxHealth = 3;
-        crystals = 30;
+        crystals = 50;
         maxCrystals = 99;
         Health = MaxHealth;
         currentWeapon = 0;
