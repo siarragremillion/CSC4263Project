@@ -180,5 +180,6 @@ I�ll see you on the other side.
     public void Death()
     {
         Health = MaxHealth;
+        artifactList = new List<Artifact.ArtifactType>();
     }
 }
