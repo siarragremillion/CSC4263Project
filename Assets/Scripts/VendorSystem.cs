@@ -15,6 +15,8 @@ public class VendorSystem : MonoBehaviour
 
     public bool cached;
 
+    public bool canBuy = true;
+
     private void Start()
     {
         dialogBox.EnableItemText(false);
@@ -23,6 +25,7 @@ public class VendorSystem : MonoBehaviour
             dialogBox.itemPrices[i].text = vendor.GetItemPrices()[i].ToString();
         }
         cached = true;
+        canBuy = true;
     }
 
     public void SetVendor(Vendor _vendor){
@@ -73,7 +76,7 @@ public class VendorSystem : MonoBehaviour
 
     private void Update()
     {
-        if (dialogBox.itemsShown)
+        if (dialogBox.itemsShown && canBuy)
         {
             HandleItemSelection();
             canLeaveInteraction = true;
@@ -117,12 +120,11 @@ public class VendorSystem : MonoBehaviour
             switch ((int) vendor.GetVendorType())
             {
                 case 0:
+                    canBuy = false;
                     vendor.PowerUp(textEle.text);
-                    var tempVol = SfxManager.sfxInstance.Audio.volume;
-                    SfxManager.sfxInstance.Audio.volume = 0.5f;
                     SfxManager.sfxInstance.Audio.PlayOneShot(SfxManager.sfxInstance.PlayerUpgrade);
-                    yield return new WaitForSeconds(SfxManager.sfxInstance.PlayerUpgrade.length * 2);
-                    SfxManager.sfxInstance.Audio.volume = tempVol;
+                    yield return new WaitForSeconds(SfxManager.sfxInstance.PlayerUpgrade.length);
+                    canBuy = true;
                     break;
                 case 1:
                     grocerObtainFood = vendor.ObtainFood(textEle.text);
@@ -139,6 +141,7 @@ public class VendorSystem : MonoBehaviour
                 default:
                     break;
             }
+            cached = false;
 
             dialogBox.EnableItemText(false);
             if (vendor.GetVendorType() != Vendor.VendorType.Grocer)
@@ -160,16 +163,8 @@ public class VendorSystem : MonoBehaviour
         }
 
         canLeaveInteraction = true;
-        yield return new WaitForSeconds(.3f);
-        var music = GameObject.FindGameObjectWithTag("Music");
-        var musicSource = music.GetComponent<AudioSource>();
-        musicSource.UnPause();
+        
 
-        StartCoroutine(SetupVendor());
-        cached = false;
-        
-        
+        StartCoroutine(SetupVendor());   
     }
-
-    
 }

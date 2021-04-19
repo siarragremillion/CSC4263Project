@@ -196,6 +196,7 @@ public class UIManager : MonoBehaviour
     // public static IEnumerator GameOver()
     public static void GameOver()
     {
+        GlobalControl.Instance.SetUp();
         var music = GameObject.FindGameObjectWithTag("Music");
         var musicSource = music.GetComponent<AudioSource>();
         musicSource.Pause();

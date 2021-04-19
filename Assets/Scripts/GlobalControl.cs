@@ -42,11 +42,25 @@ public class GlobalControl : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log("Is not cached");
+        SetUp();
+
+        if (Instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void SetUp()
+    {
         swordPower = 3;
         gunPower = 2;
         MaxHealth = 3;
-        crystals = 10;
+        crystals = 99;
         maxCrystals = 99;
         Health = MaxHealth;
         currentWeapon = 0;
@@ -165,15 +179,5 @@ I�ll see you on the other side.
             }
         };
         activeRing = Ring.RingType.none;
-
-        if (Instance == null)
-        {
-            DontDestroyOnLoad(gameObject);
-            Instance = this;
-        }
-        else if (Instance != this)
-        {
-            Destroy(gameObject);
-        }
     }
 }

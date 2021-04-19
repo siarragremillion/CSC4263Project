@@ -5090,6 +5090,7 @@ MonoBehaviour:
   canLeaveInteraction: 0
   currentItem: 0
   cached: 0
+  canBuy: 1
 --- !u!4 &850409947
 Transform:
   m_ObjectHideFlags: 0

@@ -29,6 +29,9 @@ public class VendorInteraction : MonoBehaviour
                 vendorSystem.canLeaveInteraction = false;
                 canInteract = true;
                 GlobalControl.Instance.canPause = true;
+                var music = GameObject.FindGameObjectWithTag("Music");
+                var musicSource = music.GetComponent<AudioSource>();
+                musicSource.UnPause();
             }   
         }
 
