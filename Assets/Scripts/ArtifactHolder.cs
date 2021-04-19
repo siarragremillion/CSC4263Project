@@ -9,7 +9,7 @@ public class ArtifactHolder : MonoBehaviour
     [SerializeField] public DialogHandler dialogHandler;
 
     private void Awake(){
-        artifactList = new List<Artifact.ArtifactType>();
+        artifactList = GlobalControl.Instance.artifactList;
     }
 
     public void AddArtifact(Artifact.ArtifactType artifactType){
