@@ -360,7 +360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79c7794cd32c24b4194d9f25c2bb9f6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JournalSelector: {fileID: 1163326491}
+  JournalSelector: {fileID: 1289380907}
   JournalTitlesTexts:
   - {fileID: 1381974440}
   - {fileID: 1431807471}

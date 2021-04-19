@@ -294,7 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79c7794cd32c24b4194d9f25c2bb9f6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JournalSelector: {fileID: 229079439}
+  JournalSelector: {fileID: 2094967437}
   JournalTitlesTexts:
   - {fileID: 1965092626}
   - {fileID: 1505401117}
@@ -1089,7 +1089,7 @@ Transform:
   - {fileID: 1539230360}
   - {fileID: 2142612589}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &923229303
 GameObject:
@@ -7522,7 +7522,7 @@ Transform:
   - {fileID: 1730319207}
   - {fileID: 1681804152}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1681804151
 GameObject:

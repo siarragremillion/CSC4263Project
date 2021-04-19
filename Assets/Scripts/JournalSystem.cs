@@ -108,6 +108,7 @@ public class JournalSystem : MonoBehaviour
         }
         ShowTitles();
         cached = true;
+
     }
 
     private void HideTitles()
@@ -198,5 +199,6 @@ public class JournalSystem : MonoBehaviour
                 JournalContent.gameObject.SetActive(true);
             }
         }
+        selector = 0;
     }
 }
